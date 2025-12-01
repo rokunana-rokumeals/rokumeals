@@ -1,0 +1,375 @@
+{% extends 'mbg_app/base.html' %}
+{% load static %}
+
+{% block title %}MBG Knowledge Graph - Search Recipes & Ingredients{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 mb-4">
+                    <i class="fas fa-search me-3"></i>
+                    Meal Balance Grub Knowledge Graph
+                </h1>
+                <p class="lead mb-4">
+                    Explore recipes, ingredients, and their relationships in our comprehensive food knowledge graph.
+                    Search through <strong>{{ total_recipes|floatformat:0 }}</strong> recipes, 
+                    <strong>{{ total_ingredients|floatformat:0 }}</strong> ingredients, and 
+                    <strong>{{ total_categories|floatformat:0 }}</strong> categories.
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <div class="stats-card p-4 rounded bg-white text-dark">
+                    <h5><i class="fas fa-chart-bar me-2"></i>Database Stats</h5>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h3 class="text-primary">{{ total_recipes|floatformat:0 }}</h3>
+                            <small>Recipes</small>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="text-success">{{ total_ingredients|floatformat:0 }}</h3>
+                            <small>Ingredients</small>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="text-warning">{{ total_categories|floatformat:0 }}</h3>
+                            <small>Categories</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section id="search" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">
+            <i class="fas fa-search me-2"></i>Search Knowledge Graph
+        </h2>
+        
+        <!-- Search Form -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="search-form-container">
+                    <form id="searchForm" class="mb-4">
+                        <div class="input-group input-group-lg">
+                            <input type="text" 
+                                   id="searchInput" 
+                                   class="form-control" 
+                                   placeholder="Search recipes, ingredients, or categories..."
+                                   autocomplete="off">
+                            <select id="searchType" class="form-select" style="max-width: 150px;">
+                                <option value="all">All</option>
+                                <option value="recipe">Recipes</option>
+                                <option value="ingredient">Ingredients</option>
+                                <option value="category">Categories</option>
+                            </select>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Autocomplete Dropdown -->
+                    <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Suggestions -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="search-suggestions">
+                    <p class="text-muted mb-2">Try searching for:</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary btn-sm search-suggestion" data-query="chicken">chicken</button>
+                        <button class="btn btn-outline-primary btn-sm search-suggestion" data-query="chocolate">chocolate</button>
+                        <button class="btn btn-outline-primary btn-sm search-suggestion" data-query="vegetarian">vegetarian</button>
+                        <button class="btn btn-outline-primary btn-sm search-suggestion" data-query="pasta">pasta</button>
+                        <button class="btn btn-outline-primary btn-sm search-suggestion" data-query="dessert">dessert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-muted">Searching knowledge graph...</p>
+        </div>
+        
+        <!-- Search Results -->
+        <div id="searchResults" class="mt-5"></div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Knowledge Graph Features</h2>
+        <div class="row">
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-card p-4 bg-white rounded shadow-sm h-100">
+                    <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                    <h4>Advanced Search</h4>
+                    <p class="text-muted">Search recipes, ingredients, and categories with fuzzy matching and autocomplete.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-card p-4 bg-white rounded shadow-sm h-100">
+                    <i class="fas fa-project-diagram fa-3x text-success mb-3"></i>
+                    <h4>Relationship Exploration</h4>
+                    <p class="text-muted">Discover connections between recipes, ingredients, and categories in the knowledge graph.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="feature-card p-4 bg-white rounded shadow-sm h-100">
+                    <i class="fas fa-info-circle fa-3x text-warning mb-3"></i>
+                    <h4>Detailed Info Box</h4>
+                    <p class="text-muted">Get comprehensive information about each entity with nutritional data and relationships.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Search functionality
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchType = document.getElementById('searchType');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const searchResults = document.getElementById('searchResults');
+    const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+    
+    // Search form submission
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        performSearch();
+    });
+    
+    // Search suggestions
+    document.querySelectorAll('.search-suggestion').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const query = this.getAttribute('data-query');
+            searchInput.value = query;
+            performSearch();
+        });
+    });
+    
+    // Autocomplete
+    let autocompleteTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(autocompleteTimeout);
+        const query = this.value.trim();
+        
+        if (query.length >= 2) {
+            autocompleteTimeout = setTimeout(() => {
+                fetchAutocomplete(query);
+            }, 300);
+        } else {
+            autocompleteDropdown.style.display = 'none';
+        }
+    });
+    
+    // Hide autocomplete when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !autocompleteDropdown.contains(e.target)) {
+            autocompleteDropdown.style.display = 'none';
+        }
+    });
+    
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        const type = searchType.value;
+        
+        if (!query) {
+            alert('Please enter a search query');
+            return;
+        }
+        
+        loadingSpinner.style.display = 'block';
+        searchResults.innerHTML = '';
+        autocompleteDropdown.style.display = 'none';
+        
+        try {
+            const response = await fetch(`/api/search/?q=${encodeURIComponent(query)}&type=${type}&limit=20`);
+            const data = await response.json();
+            
+            loadingSpinner.style.display = 'none';
+            
+            if (data.status === 'success') {
+                displaySearchResults(data.data, query);
+            } else {
+                searchResults.innerHTML = `<div class="alert alert-warning">${data.message}</div>`;
+            }
+        } catch (error) {
+            loadingSpinner.style.display = 'none';
+            searchResults.innerHTML = '<div class="alert alert-danger">Search error. Please try again.</div>';
+            console.error('Search error:', error);
+        }
+    }
+    
+    async function fetchAutocomplete(query) {
+        try {
+            const response = await fetch(`/api/autocomplete/?q=${encodeURIComponent(query)}`);
+            const data = await response.json();
+            
+            if (data.suggestions && data.suggestions.length > 0) {
+                displayAutocomplete(data.suggestions);
+            } else {
+                autocompleteDropdown.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Autocomplete error:', error);
+        }
+    }
+    
+    function displayAutocomplete(suggestions) {
+        const html = suggestions.map(suggestion => 
+            `<div class="autocomplete-item" data-text="${suggestion.text}" data-type="${suggestion.type}">
+                <i class="fas fa-${getIconForType(suggestion.type)} me-2"></i>
+                ${suggestion.text}
+                <small class="text-muted ms-auto">${suggestion.type}</small>
+            </div>`
+        ).join('');
+        
+        autocompleteDropdown.innerHTML = html;
+        autocompleteDropdown.style.display = 'block';
+        
+        // Add click handlers
+        autocompleteDropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+            item.addEventListener('click', function() {
+                searchInput.value = this.getAttribute('data-text');
+                autocompleteDropdown.style.display = 'none';
+                performSearch();
+            });
+        });
+    }
+    
+    function displaySearchResults(results, query) {
+        if (results.length === 0) {
+            searchResults.innerHTML = `
+                <div class="text-center">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4>No results found for "${query}"</h4>
+                    <p class="text-muted">Try different keywords or check your spelling.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        const html = `
+            <h3>Search Results for "${query}" (${results.length} found)</h3>
+            <div class="row">
+                ${results.map(result => createResultCard(result)).join('')}
+            </div>
+        `;
+        
+        searchResults.innerHTML = html;
+    }
+    
+    function createResultCard(result) {
+        if (result.type === 'recipe') {
+            return `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 result-card" data-type="recipe" data-id="${result.id}">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-utensils text-primary me-2"></i>
+                                ${result.title}
+                            </h5>
+                            <p class="card-text text-muted">${result.description || 'No description available'}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fas fa-star text-warning"></i> ${result.rating || 'N/A'}
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fas fa-fire text-danger"></i> ${result.calories || 'N/A'} cal
+                                </small>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-info">${result.ingredient_count || 0} ingredients</span>
+                                ${(result.categories || []).slice(0, 2).map(cat => 
+                                    `<span class="badge bg-secondary">${cat}</span>`
+                                ).join(' ')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (result.type === 'ingredient') {
+            return `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 result-card" data-type="ingredient" data-id="${result.id}">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-leaf text-success me-2"></i>
+                                ${result.name}
+                            </h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fas fa-fire text-danger"></i> ${result.calories_per_100g || 'N/A'} cal/100g
+                                </small>
+                                <small class="text-muted">
+                                    <i class="fas fa-utensils"></i> ${result.recipe_count || 0} recipes
+                                </small>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge bg-success">${result.category}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (result.type === 'category') {
+            return `
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 result-card" data-type="category" data-id="${result.id}">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-tag text-warning me-2"></i>
+                                ${result.name}
+                            </h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-${result.category_type === 'recipe' ? 'primary' : 'success'}">${result.category_type}</span>
+                                <small class="text-muted">${result.item_count || 0} items</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    function getIconForType(type) {
+        switch(type) {
+            case 'recipe': return 'utensils';
+            case 'ingredient': return 'leaf';
+            case 'category': return 'tag';
+            default: return 'circle';
+        }
+    }
+    
+    // Add click handlers for result cards
+    document.addEventListener('click', function(e) {
+        const card = e.target.closest('.result-card');
+        if (card) {
+            const type = card.getAttribute('data-type');
+            const id = card.getAttribute('data-id');
+            // TODO: Navigate to detail page or show modal
+            console.log(`Clicked ${type}:`, id);
+        }
+    });
+});
+</script>
+{% endblock %}
