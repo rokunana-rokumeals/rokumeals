@@ -6,13 +6,9 @@ This module queries DBpedia to enrich ingredient data with additional nutritiona
 DBpedia contains structured data about food items including vitamins, minerals, and nutritional facts.
 """
 
-import requests
-import json
-import time
-import re
-from typing import Dict, List, Optional, Tuple
-from urllib.parse import quote
+from SPARQLWrapper import SPARQLWrapper, JSON
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 

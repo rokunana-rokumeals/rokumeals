@@ -17,8 +17,8 @@ import logging
 import json
 from typing import List, Dict
 
-from mbg_app.models import Ingredient
-from mbg_app.external.dbpedia_enricher import DBpediaEnricher
+from rokumeals.mbg_app.models import Ingredient
+from rokumeals.mbg_app.external.dbpedia_enricher_v2 import DBpediaEnricher
 
 logger = logging.getLogger(__name__)
 

@@ -9,8 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from neomodel import db
 import json
+import logging
 
 from .models import Recipe, Ingredient, Category
+
+logger = logging.getLogger(__name__)
 
 def home(request):
     """Homepage dengan search interface"""
@@ -441,3 +444,120 @@ def category_detail(request, category_id):
             'message': f'Category with ID "{category_id}" does not exist.'
         }
         return render(request, 'mbg_app/404.html', context, status=404)
+
+
+@require_http_methods(["POST"])
+@csrf_exempt
+def enrich_ingredient(request, ingredient_id):
+    """
+    Enrich ingredient with Wikidata data on-demand
+    """
+    try:
+        # Get ingredient
+        ingredient = Ingredient.nodes.get(ingredient_id=ingredient_id)
+        
+        # Check if already enriched recently (to avoid duplicate calls)
+        if hasattr(ingredient, 'wikidata_entity') and ingredient.wikidata_entity:
+            return JsonResponse({
+                'success': True,
+                'already_enriched': True,
+                'message': 'Ingredient already has Wikidata data',
+                'data': {
+                    'wikidata_entity': ingredient.wikidata_entity,
+                    'description': getattr(ingredient, 'description', ''),
+                    'calories_per_100g': getattr(ingredient, 'calories_per_100g', None),
+                    'carbohydrates_g': getattr(ingredient, 'carbohydrates_g', None),
+                    'protein_g': getattr(ingredient, 'protein_g', None),
+                    'fat_g': getattr(ingredient, 'fat_g', None),
+                    'fiber_g': getattr(ingredient, 'fiber_g', None),
+                    'vitamin_c_mg': getattr(ingredient, 'vitamin_c_mg', None),
+                    'calcium_mg': getattr(ingredient, 'calcium_mg', None),
+                    'iron_mg': getattr(ingredient, 'iron_mg', None),
+                }
+            })
+        
+        # Import WikidataEnricher dynamically to avoid startup issues
+        try:
+            from rokumeals.mbg_app.external.wikidata_enricher import WikidataEnricher
+            enricher = WikidataEnricher()
+        except ImportError:
+            logger.error("Failed to import WikidataEnricher")
+            return JsonResponse({
+                'success': False,
+                'error': 'Wikidata enricher not available'
+            })
+        
+        # Enrich the ingredient
+        enrichment_result = enricher.enrich_ingredient(ingredient.name)
+        
+        if enrichment_result['wikidata_found']:
+            # Update ingredient with enriched data
+            nutritional_fields = {
+                'calories_per_100g': 'calories_per_100g',
+                'carbohydrates_g': 'carbohydrates_g',
+                'protein_g': 'protein_g',
+                'fat_g': 'fat_g',
+                'fiber_g': 'fiber_g',
+                'vitamin_c_mg': 'vitamin_c_mg',
+                'calcium_mg': 'calcium_mg',
+                'iron_mg': 'iron_mg',
+                'sodium_mg': 'sodium_mg',
+                'potassium_mg': 'potassium_mg'
+            }
+            
+            updated_fields = []
+            for source_field, target_field in nutritional_fields.items():
+                if source_field in enrichment_result and enrichment_result[source_field]:
+                    setattr(ingredient, target_field, enrichment_result[source_field])
+                    updated_fields.append(target_field)
+            
+            # Update other fields
+            if 'description' in enrichment_result:
+                ingredient.description = enrichment_result['description'][:500]
+                updated_fields.append('description')
+            
+            if 'wikidata_entity' in enrichment_result:
+                ingredient.wikidata_entity = enrichment_result['wikidata_entity']
+                updated_fields.append('wikidata_entity')
+            
+            # Save changes
+            ingredient.save()
+            
+            logger.info(f"Successfully enriched ingredient '{ingredient.name}' with Wikidata data")
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'Successfully enriched {ingredient.name} with Wikidata data',
+                'updated_fields': updated_fields,
+                'data': {
+                    'entity_label': enrichment_result.get('entity_label', ''),
+                    'wikidata_entity': enrichment_result.get('wikidata_entity', ''),
+                    'description': enrichment_result.get('description', ''),
+                    'calories_per_100g': enrichment_result.get('calories_per_100g'),
+                    'carbohydrates_g': enrichment_result.get('carbohydrates_g'),
+                    'protein_g': enrichment_result.get('protein_g'),
+                    'fat_g': enrichment_result.get('fat_g'),
+                    'fiber_g': enrichment_result.get('fiber_g'),
+                    'vitamin_c_mg': enrichment_result.get('vitamin_c_mg'),
+                    'calcium_mg': enrichment_result.get('calcium_mg'),
+                    'iron_mg': enrichment_result.get('iron_mg'),
+                }
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': enrichment_result.get('error', 'No Wikidata entity found'),
+                'message': f'Could not find Wikidata data for {ingredient.name}'
+            })
+            
+    except Ingredient.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'error': 'Ingredient not found'
+        })
+    except Exception as e:
+        logger.error(f"Error enriching ingredient {ingredient_id}: {e}")
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })
