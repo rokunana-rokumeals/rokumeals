@@ -1,0 +1,22 @@
+{
+  "total_recipes": 20111,
+  "total_ingredients": 4682,
+  "total_categories": 710,
+  "recipe_ingredient_relationships": 166751,
+  "recipe_category_relationships": 221797,
+  "ingredient_category_relationships": 1993,
+  "avg_rating": 3.7110287902143106,
+  "avg_calories": 5010.905524339913,
+  "top_categories": {
+    "Nut": 1,
+    "Halibut": 1,
+    "Emeril Lagasse": 1,
+    "Winter": 1,
+    "Vegetarian": 1,
+    "Nectarine": 1,
+    "Thyme": 1,
+    "Lime": 1,
+    "Monterey Jack": 1,
+    "Brine": 1
+  }
+}

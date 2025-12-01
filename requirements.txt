@@ -1,0 +1,20 @@
+# Requirements for MBG Knowledge Graph Project
+Django==4.2.7
+neomodel==5.2.1
+python-dotenv==1.0.0
+django-cors-headers==4.3.1
+
+# For data processing
+pandas==2.3.3
+numpy==2.3.5
+
+# For API development
+djangorestframework==3.14.0
+
+# For frontend integration
+whitenoise==6.6.0
+tqdm==4.66.1
+
+# For external knowledge integration
+SPARQLWrapper==2.0.0
+requests==2.31.0

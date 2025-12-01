@@ -1,0 +1,711 @@
+category_id,name,type
+733beec7-230e-4707-adbd-79b908acb485,Nut,recipe
+b0e27dea-e377-4cb0-b95f-12d2d3b24469,Halibut,recipe
+a11defc8-05b3-40eb-a5af-aa2b86bc831e,Emeril Lagasse,recipe
+cfbf6f66-daef-4b61-98be-01baf5d1e294,Winter,recipe
+b88fae76-655e-40d2-b9d6-c452e5c5e4cd,Vegetarian,recipe
+e7d04336-bcb9-4436-9841-291ef34cd432,Nectarine,recipe
+a5406a48-c7e4-466e-aff6-6d4d98a22229,Thyme,recipe
+f46647ec-c118-4416-94e6-26c3d8b8dfad,Lime,recipe
+b8503d09-fedd-478f-a766-1679792dc5a1,Monterey Jack,recipe
+d4f805cf-03f8-401c-9f7b-4c22e0914286,Brine,recipe
+4bf01621-fd88-40ac-8c9b-a5a0a796bfad,Kale,recipe
+c311eb36-7a03-4826-a333-e0577ccbc659,Smoker,recipe
+80f2665f-5f79-4363-b2eb-5b2c482b4747,Windsor,recipe
+4bf0a490-b77f-4501-8557-02ccbea6e046,Cornmeal,recipe
+d2e9e7b7-38a4-497c-a391-6680db349758,Pasadena,recipe
+6bce3563-0913-41b4-888c-8a6431f9ce66,Kansas City,recipe
+7d0d52a0-3ef7-4ee0-adb1-3817c9e01464,Pork,ingredient
+52c4f219-445a-4121-a642-2341521bbc2b,Tart,recipe
+a1bab469-d26d-40f0-9d21-cb2acc9379f7,Persimmon,recipe
+43ea309f-01ef-4351-b728-f05be72bfb77,White Wine,recipe
+d9cfd4f4-b733-407b-a4e2-3534821c3446,Scallop,recipe
+a6a8acba-79de-4ecc-835d-d85b687a3c25,Seattle,recipe
+0b84063c-b778-494c-8f6e-d6d9661f7185,Tree Nut Free,recipe
+cb7f5764-dc67-4add-8875-6f4bdeca0717,Game,recipe
+74b8418a-f06d-4e12-a1bd-f6974e36a3d1,Chile Pepper,recipe
+06fedf5d-84d2-4007-b9e3-e6349dd79fd6,Super Bowl,recipe
+059ee790-aa42-458b-b1af-6be5878e0ea0,Sake,recipe
+423c1c31-5c56-407c-aa5d-67b9614f223f,Plantain,recipe
+4ce33686-3068-4213-9468-a61950793e79,Fruit,recipe
+510daf21-8f0e-4485-ab43-966353d8cd63,Fall,recipe
+19cb303d-8263-45da-8d8f-1890ea7871bf,22-Minute Meals,recipe
+6c5e0e48-c6cd-44d9-9f6c-38e8cda3d984,Semolina,recipe
+e72aab83-739d-4195-8e67-f5fa3a21a54d,Oregon,recipe
+5f56c213-c3cb-460e-93c9-b576ebe38ad8,Shrimp,recipe
+e4463748-7cae-47fe-8eb1-28ee0bfc432b,Coffee Grinder,recipe
+3f2e4a71-9965-454d-91e6-486fbe019ff0,Edible Gift,recipe
+7b5da51b-ae85-4400-9945-901f4ccad3f6,Pork Chop,recipe
+a38e0e04-df46-41c6-812e-90f0e2226d35,Yogurt,ingredient
+ed4c181a-3de2-4a4b-8556-64e90c50d3cc,Pickles,recipe
+fea8c89a-7e3e-4aa7-8854-4e43d82299e4,AlcoholicDrinks&Beverages,ingredient
+9f0716ba-a009-4591-8007-3d390e2ac86d,Low Sodium,recipe
+e896613c-8d3e-40cc-8c08-ebd9b0aec8f0,Eau de Vie,recipe
+90569f9b-67db-4550-9a2d-30f2c333d0af,Deep-Fry,recipe
+db948a78-7200-4375-a708-fb434dd213a9,Marinate,recipe
+e5bcb0ef-69a5-43a6-bc19-f2c53b240f19,Freeze/Chill,recipe
+5aec6f02-8cf2-4097-92b1-53fff1d25df4,Waffle,recipe
+6df7cf71-c1ca-4153-bb67-ce52aab09954,Hamburger,recipe
+b7933153-4be8-48be-878c-0172ffac839c,Chestnut,recipe
+a513c393-cbbd-4619-b894-cdd4c4e92a7e,Camping,recipe
+4be92cdf-27d5-46ae-86d5-98761f6c20d1,Soy,recipe
+c479b78e-f63d-47e6-9db4-ed9423e104e3,Snapper,recipe
+a3efd85d-dfc2-4c48-9c35-20412710e730,Anchovy,recipe
+bbf2688f-bfa0-4c52-b0f5-a6da720aa752,Sweet Potato/Yam,recipe
+d3310945-b771-43c4-bdf3-9785fba7aeef,Australia,recipe
+c3c7b04c-a8bb-4eb8-b98f-2802d18e5273,Sherry,recipe
+2997fd17-3305-4fad-beeb-2032996b5dfd,Fish&Seafood,ingredient
+1620ff42-202c-4068-8998-45bf461e495c,Rice,recipe
+6bb4ee12-3ba5-4e07-a4fe-f6d68fd970cc,Vinegar,recipe
+3344cf91-36ba-4007-8163-e6ed5e81b5ff,Gouda,recipe
+bd100e2d-3a8a-47df-bb0a-2a257770f0f6,Poultry,recipe
+bf6f9518-a510-4a73-ae96-c3648299b446,Cantaloupe,recipe
+bfd4a534-4544-4b6e-92bf-c01ec63a4706,Christmas Eve,recipe
+a4872e9b-bbf8-438a-b2e9-31a316d9d604,Saffron,recipe
+4ff473ca-f26d-4202-88fa-9bdd1ec7d546,Grappa,recipe
+2b82c541-5235-4644-b1b5-03e4d438899c,SlicedCheese,ingredient
+6c9edf97-16fb-467c-aba4-e1ce587f1898,Hors D'Oeuvre,recipe
+f3ac6204-752a-400a-b097-7bebea1baa26,Simmer,recipe
+40153e41-1b50-4bc5-8c15-e294dc4f7ae4,Cheddar,recipe
+6be6a88c-a462-4a37-a514-0704922be658,#WasteLess,recipe
+1450a93a-2636-4537-b937-a869cf6c1ec7,Anthony Bourdain,recipe
+c768b54b-0384-45fe-b8c0-9fe8cd20f113,Cook Like a Diner,recipe
+665dda2e-ff10-4d27-8e03-503bda647797,Alcoholic,recipe
+8c883c28-9aa4-4b9b-9fe3-69a81943dec1,Fourth of July,recipe
+fd7f2364-6dbe-4a43-9579-473b67d868b5,Friendsgiving,recipe
+9978ecf7-82cb-42ac-bcaf-f3c16bb1edf0,Fruit Juice,recipe
+b677bea3-c5ce-4d81-beef-21e9cc7963c3,St. Patrick's Day,recipe
+06e51cec-dc6e-4021-b8a7-910d369faba5,Gourmet,recipe
+39aef70e-41a7-4446-9053-d9d38c7098c1,Orange Juice,recipe
+15481911-26e3-4bb6-a49b-0b883a7f9213,Chile,recipe
+622a5dc7-96b7-444c-92ab-6e28c9b0b910,Chickpea,recipe
+1fa32224-57cb-4b34-86aa-16c40413769f,Texas,recipe
+2f58400f-7558-4c34-a179-8eb46502ff91,Rabbit,recipe
+177b5fad-4c4e-463e-ac67-b3a9b2452ea0,Cookie,recipe
+b2f26173-1637-49ca-b494-bb0691a0f75e,Gin,recipe
+9fa3f57f-196c-44f5-81cb-8e18f9f82970,Margarita,recipe
+e9e4eaad-7a1d-4bd9-b64c-9e351f540afd,Beer,ingredient
+cb3c1910-c753-4e02-b0c4-052fe2c6b383,Frittata,recipe
+df3cc81e-7670-458e-b23a-6a95b8e46193,Port,recipe
+e955e523-cb25-41b1-b34f-1dfa2c1d351c,Kosher for Passover,recipe
+1171a829-3df2-48a8-871e-23aba934ec01,Prune,recipe
+b77ba59f-dbcc-42bb-934d-f668543501c1,Cheese,ingredient
+4344b517-8abb-46e9-a3a6-dcbecdb811ab,Low Sugar,recipe
+84938f0a-7f40-4297-a520-d3ae3c1eb7aa,Kahlúa,recipe
+e8c6aa1a-36ad-4d4b-a173-14529a888011,New Mexico,recipe
+9b2a8c2e-7797-4458-a88c-84f4377603e4,Birthday,recipe
+9aa690f3-5b93-4d10-a8d5-9a6a3334d51b,Ice Cream,recipe
+9d3894ed-efc8-4c2e-9724-0a3d1be9d71f,Currant,recipe
+16a77009-c75b-405c-abc0-b0f22f9d8180,Vermont,recipe
+19066b58-1f6f-441d-95d1-54456fcf2c89,Feta,recipe
+b0646f22-5566-4426-9776-fdc64dea1631,Punch,recipe
+70d970cc-79bc-45bb-9340-488d2ab30420,30 Days of Groceries,recipe
+941b0d19-ef4d-4f02-8e7f-2b375be44936,Offal&Giblets,ingredient
+a52687f5-d2dd-46c9-9746-b4dd957222a6,Kiwi,recipe
+aba80c0a-87a5-4e7e-b598-69d8fc7bfb98,Rum,recipe
+5c38b217-3d67-44c2-b135-89eaa5926ba6,Skewer,recipe
+11792b63-edb0-49bb-b4ef-99ad281938c2,Candy Thermometer,recipe
+8fcecd6d-31d7-47f2-b44d-b2fba6cbaae8,Passover,recipe
+455d07eb-bab6-45dc-9787-65079cbf3714,Paprika,recipe
+18e3fdac-2035-4c31-a8a4-e665f7238b5f,Octopus,recipe
+f9a6d5a1-ff87-420b-803a-4e32fb647112,Peach,recipe
+b680d4a3-2cc5-456c-89ba-1ccda92bf4f1,Chicken,recipe
+153cac64-4a6a-49b1-a4ed-f3b283d3e344,"Washington, D.C.",recipe
+e19fd6a5-a2a5-40a5-b2d2-95c75fa7761b,Rye,recipe
+6fa88152-9fd9-40e9-951c-de754b0acb68,Marinade,recipe
+4d1cec94-af03-4d76-8cee-053ad85b4285,Caviar,recipe
+5f0cb0da-2cc0-4181-9454-06d45e2f45f4,Grand Marnier,recipe
+7ec22f57-0310-4517-846d-0484e472df1c,Vegetable,recipe
+8110347f-af9d-45de-807b-1f0f83e1fe07,New Year's Day,recipe
+801d5c6e-bc6e-45c4-b41f-f1d09da21e78,Pacific Palisades,recipe
+89aebc30-0b33-474b-8e82-89beda4cc9e2,Chive,recipe
+af8c5bb4-a345-4865-9741-ae399d239a76,Mardi Gras,recipe
+d91d1b77-ecd4-4623-a0ae-25da09789d46,France,recipe
+77678377-0d5d-4f51-b1ba-f62a914a5a54,Prosciutto,recipe
+6b18c14f-9848-4e47-907d-92b93c9547a0,Butter,recipe
+ee7b408c-8161-4cbb-9776-15655b4f06a2,Salad,recipe
+9744c4a6-4b69-4b66-bc7a-d49ce5ebadcf,Minnesota,recipe
+50c3cb96-814d-45aa-bbd2-c2c1f1d57c4c,Dallas,recipe
+b438bc5a-d4b7-4511-ac94-eff47e0cd111,Pasta,recipe
+e1307023-4f9f-4c33-849c-43a8b5368816,Blackberry,recipe
+58c392e4-3a1b-43b6-bb23-33a2ee9fbfc2,Sausage,ingredient
+3ee56284-a97b-46db-86c7-1710b5a6f5ef,Frozen Dessert,recipe
+a7e9803d-79c7-442b-a099-5ecf771297be,Frangelico,recipe
+94b2ca76-8d03-41d2-a869-9940aacd1fea,Brown Rice,recipe
+4783d63e-324c-42f8-9300-8d672777364b,Missouri,recipe
+bce515a1-0c90-4f1b-a8a3-f842a7e60b03,Lamb Shank,recipe
+e08974a1-b0c8-4172-90f1-a359dc85b682,Cr��me de Cacao,recipe
+53712cf9-56fb-41d0-88a3-67dcc54b14f4,Spinach,recipe
+fb9e88c6-06c7-4068-92cb-2d3a2197f7a9,Spirit,recipe
+44941044-a170-4c48-b191-4a80c143771f,Coffee,recipe
+42d5ce64-d156-4159-a9e7-a3bd7a1d7012,Sesame Oil,recipe
+177fd2b1-a398-4cd5-9517-ef7a7e31c2ed,North Carolina,recipe
+f7633b91-9e03-4721-9f54-2666a7b49e09,Nancy Silverton,recipe
+b0ba3009-0eb1-43d7-8411-422710ae7565,Tropical&ExoticFruits,ingredient
+87e2edf8-0a39-4510-865e-12bf09620a51,Steam,recipe
+15c4b855-fd60-4914-8e6f-d9fdd79cb4ce,Dorie Greenspan,recipe
+7c410234-0d47-4e39-8ff9-e38a1f2a990b,Sugar Conscious,recipe
+26f5f199-1c9f-494e-b126-c4b6f86c15c9,Bulgaria,recipe
+60cb08ae-804f-4073-9ac2-17f8df3b79b3,Back to School,recipe
+3272ef18-40c4-496f-a5d5-0a65b2891042,Green Bean,recipe
+fd0b34e5-b785-4cf0-827b-d9655ad40f64,Venison&Game,ingredient
+40d5c3aa-2d10-4605-9df2-352bda33ba73,Bulgur,recipe
+cc91d150-1e73-4cf4-a07b-eb6cb0a96e5d,Milk/Cream,recipe
+934420a7-d587-4f03-b42e-f116e09c4528,Fontina,recipe
+7516649e-7cdc-47b6-b30d-023daa930468,Marshmallow,recipe
+9f7cd9a4-0be0-477d-a9ff-7742aeb5de16,Clam,recipe
+5fcfdfc2-dc0c-40ef-ae78-9c373ac6c5ef,Poultry Sausage,recipe
+57afef59-fcfb-4ddd-a499-bd13c347da52,Capers,recipe
+3ea9e822-26f3-41de-a47c-f5230e2e6455,Avocado,recipe
+5967624d-ce45-413c-af35-868107f8b4ed,Mississippi,recipe
+79ffdacc-0c13-4a8f-94d0-238445a0d374,Low Cholesterol,recipe
+33a736da-69c3-4eb1-b782-aa7e4d493e18,Cookies,recipe
+f0c83bd9-c14c-4437-9bc8-00172609c3f4,Vermouth,recipe
+2ab2b506-6af4-4717-90a1-7df41a6f39f2,Marsala,recipe
+143e236e-c2f2-4811-b58c-709d89ac5ee6,Salmon,recipe
+6200eede-86fb-4e65-a37f-892e64a22331,Champagne,recipe
+995e811d-0df3-4152-af78-309a023d0339,Louisville,recipe
+a3b5cf41-6917-4696-96c9-17dd4acaf5a6,ColdCuts&LunchMeat,ingredient
+a81dca91-3e33-41c1-800d-3426a2ecb0d9,Carrot,recipe
+37a82c9c-441f-4428-b629-8432b397e02f,Pancake,recipe
+78db1f77-b542-4435-b756-02b0d4c4947d,Cumin,recipe
+50417f54-382d-4049-941d-eda45f9436b4,Fortified Wine,recipe
+7673e73a-d78e-401e-9d73-a440e90e0565,Legume,recipe
+4c24beda-1b1a-4378-b973-14e568beffa2,Venison,recipe
+448755d3-d565-4f2c-8fae-d81689e906e2,Bass,recipe
+7c112082-5335-4306-b684-e0364f15cbc0,Lentil,recipe
+34a204d2-8bda-4fa5-a948-dfe496626170,Fish,recipe
+b9661d97-9a5d-4698-b45d-e9293eca5751,Passion Fruit,recipe
+75b0f3df-66e4-4708-a164-cacfbb14e648,Watercress,recipe
+897341bf-26b5-4489-aebd-4bcdd020fba0,Pine Nut,recipe
+bfc10917-a621-4371-85ff-03e28cb33c2a,Melon,recipe
+e6793541-9e33-4e66-a0fd-a721c4d43ff9,Meatloaf,recipe
+79997216-d9e1-4291-a4e5-344d060e0d4e,Soda&SoftDrinks,ingredient
+fc472cdf-5a90-475c-aa30-5630b66fe7a8,Sourdough,recipe
+3b9a0cb1-0d69-4f4d-83d8-67a5940da13e,Oregano,recipe
+400fb61a-6c97-45a8-8cb1-1f1e2c49e3b9,Cakes&Pies,ingredient
+384390dc-5062-476c-b89d-ae33ec656648,No Sugar Added,recipe
+4cb4f24c-8c31-4845-9dda-01f3d160c08b,Sukkot,recipe
+1a0dcfce-da23-43e5-80e1-05c47c3c6349,Leafy Green,recipe
+5c6cdf6c-6291-484b-839b-d2c4c65aec98,Pennsylvania,recipe
+74328476-fcc4-4416-a4b2-a716e1515a87,Fruits,ingredient
+9ece872f-e7cd-41e7-8cc0-743adbecfe85,Radish,recipe
+75919666-ee86-4c45-b8fa-ee31b8eacc03,Quinoa,recipe
+ed125842-9277-46ab-a181-9ee039211bb2,Fry,recipe
+cc90e7bf-d73f-4dd6-b4f9-a628e46245d6,Spain,recipe
+93142a84-9179-4c21-b26f-278a1ff17dc4,Bell Pepper,recipe
+41a095d6-2849-48db-9829-f867723bafe3,Rosemary,recipe
+2b8f7f3b-2ecb-4105-97e4-424d6dc8b6e8,Pineapple,recipe
+9f41a999-2d69-4e3a-9537-de6cdd9690c5,Okra,recipe
+2ff38588-9b5e-4940-86a5-2a5776245cbe,Mortar and Pestle,recipe
+49381f2e-46c6-484a-982e-899d12f585a6,Picnic,recipe
+dd46ca37-3144-43e3-b1f6-10875d61dba1,Crab,recipe
+f0f691eb-6bc5-4ebc-8c9b-edacc7439490,Cake,recipe
+9891cd80-0dfa-49bb-8a19-c7b63394204c,Cabbage,recipe
+e9e4ba1a-6850-49aa-a2e2-06afe8750230,Flaming Hot Summer,recipe
+58c5439d-774d-4d89-9987-68baaf30aca8,Low/No Sugar,recipe
+9ab841fd-1635-4f67-92a7-77fb1a57f934,Side,recipe
+a84167b8-9052-4ff9-92d7-22710c502fba,Ramadan,recipe
+302e94bb-9d46-426a-982f-2699e4745557,Beef Shank,recipe
+30bc46ba-0665-44be-aedf-4709c9642946,Lasagna,recipe
+e7b57a45-ba7f-4c75-8857-930793093c03,Potato,recipe
+253b6cab-cfdb-4e8f-af49-fdebb1fac112,Cream Cheese,recipe
+a3e93079-5890-49af-a353-07382844cb32,Cocktail Party,recipe
+dbecdf30-289d-455a-af80-bc9b51775e99,Apple Juice,recipe
+963fa7ce-8db1-4b92-9d2b-6156d30f3a64,Michigan,recipe
+4fa69e2e-a2f6-4cc0-9ad7-6d309caef05c,Sardine,recipe
+e6a8d5d9-e6ca-40ac-b7cf-dd38f37361c7,Peanut,recipe
+34533c58-b125-4513-9dea-18047fa9986b,Custard,recipe
+774822ee-6cf6-4c24-a9ac-ee60fd2b6334,New Hampshire,recipe
+c7400777-e0ba-4760-96e5-2360fa4af328,Clove,recipe
+100262aa-c5d2-4dbb-a61c-1a6766e53a95,Quince,recipe
+e10bef79-2650-4083-be25-422674f085a0,Paris,recipe
+db93ad8a-5976-457c-b2be-a59764561af6,Quick & Easy,recipe
+ade40903-3413-4f93-be43-7308e6243fcc,St. Louis,recipe
+a2d05973-33fb-4a6e-90b9-a105312b9b6f,Paleo,recipe
+19f54364-aa66-4e1d-885a-508455befb4d,Egg,recipe
+cbb8128a-b31b-41cc-88ef-af36751ce2de,New Orleans,recipe
+646ec955-fe32-464a-aa30-ef7a2b00e4ba,Pork Tenderloin,recipe
+ccb85555-c83a-445a-9409-471d720ce07d,Cashew,recipe
+fe9a4eca-73fc-4516-9d84-fba819423b85,Christmas,recipe
+1cda55e7-43a9-497c-93da-c4e1aeaf91cb,Whole Wheat,recipe
+c2a72cef-4add-4ebe-80bf-0736ea8d56b9,Raisin,recipe
+536afcf7-fd4f-4422-ab9f-796673ddae71,Lemon Juice,recipe
+55e288e9-895b-4ecc-8b8b-503d4d36d420,Broccoli,recipe
+b32bfd2c-e932-4e2b-bd73-f332e5ec5157,Colorado,recipe
+f9c7ab41-0506-42bb-8b1b-32f80e7c58dc,Cinco de Mayo,recipe
+a030d67f-ad31-4d53-bac1-4472b6325b5c,Steak,recipe
+be8043e8-4793-4fa6-a3c2-5fc66e92833d,Tennessee,recipe
+359619db-c457-467c-87d3-b0d6ebdb637c,Shower,recipe
+3bac1603-dcbb-4a24-891c-3019ceb38488,Dinner,recipe
+6abd8057-8504-43ba-a68e-5574d5455cb5,Dairy,recipe
+9af4bad5-f2c2-4380-9a84-fb27e4a1b93e,Triple Sec,recipe
+ff52be9b-4b24-43e1-a1f3-7de514b896a3,Mezcal,recipe
+518cd2c5-5dee-47be-84f8-7b87cf7e39a4,Lobster,recipe
+c87a0066-4bee-471b-9026-439a5a969000,Pepper,recipe
+c04f440d-d3cb-481e-bada-3755d0783660,Orzo,recipe
+d7a9a1e4-987c-41f2-809f-57c213ff7f62,Party,recipe
+00c70fb8-2a78-47ba-bbbe-a477cdb42fe8,Poblano,recipe
+71927c81-f652-4fa6-a5f4-e99291713e64,Arizona,recipe
+9e13fb64-ac42-4c21-bc89-93e7d9d49636,Epi + USHG,recipe
+0f29d899-61fb-4dee-9b21-f5e0f76396a1,Wild Rice,recipe
+bc701b31-5743-4a79-8077-0f0966adaea8,Iced Tea,recipe
+f3d11a25-f239-4748-9cf8-b3d57e1b5f6c,Yellow Squash,recipe
+dd1d7106-5b6c-49c8-a17e-b788f7928c49,Pasta Maker,recipe
+21a272fc-ea18-421d-96a9-c6484338ba62,Ground Lamb,recipe
+62276fe9-1836-4c55-b0ad-221d205c2edb,Papaya,recipe
+de4e76aa-f712-477f-a4eb-891edc8134da,Philippines,recipe
+cb7a23b4-d930-404f-905c-9609243ecd05,Zucchini,recipe
+dbc4fe59-6004-4208-861a-ef947f77c913,Leek,recipe
+f611e441-0291-4e43-b18f-64be50d2ffcc,Tequila,recipe
+5e7cbae9-234c-454b-83d7-4e97d1a7f47c,House Cocktail,recipe
+de269d1d-a81d-4f88-9977-c696ae909f44,Virginia,recipe
+707b1051-c448-4382-89da-2761f5938364,England,recipe
+ed97e47b-b87b-447f-84a8-333efce2fc4c,Drinks,recipe
+4864766c-de91-4caf-ba82-7bc358494ffe,Chill,recipe
+cbfc7c46-c240-4828-98e3-1122e1e84a22,Swiss Cheese,recipe
+9c9deb97-806e-401b-916f-e9c92be2e038,Entertaining,recipe
+797a04b8-be23-43f7-bd0a-dac83eb9125a,Anniversary,recipe
+8c22cdf7-1e6a-40a6-99bc-bfc3ce2a1793,Jamaica,recipe
+8c54a2c3-2bd8-4c2c-9a20-378c52495f48,Rhubarb,recipe
+f6400be4-3f1e-4b48-ad67-2285890b02b7,Hominy/Cornmeal/Masa,recipe
+6fc31f0d-b40a-4f12-9d5d-76891f8fa861,Kumquat,recipe
+8ed50217-fe5b-4dc3-9da4-0e75f862cd31,Biscuit,recipe
+78636d7f-9512-45b3-80a1-efec420e6920,Non-AlcoholicDrinks&Beverages,ingredient
+819cb93a-5923-471d-a768-36e27978a75c,Butternut Squash,recipe
+c80e750e-9ea2-4930-adf7-f0cf610d026f,Vodka,recipe
+0998a334-7cc0-4b18-b246-6089777eb9cc,Aspen,recipe
+daad5461-91fe-411e-a2a6-34df7bb299b8,Hawaii,recipe
+87da9f38-e26e-47c8-99c4-69dad2454f31,Campari,recipe
+c08eb853-8af7-43ba-b2fa-4dedb5e8e302,New Year's Eve,recipe
+97a53870-07ee-47fd-8e5c-3e265a55e593,Fritter,recipe
+f01294ca-5094-4de3-8e51-566fe573831c,Cinnamon,recipe
+b43b1fa2-c3a5-41e3-aea3-78f1df7e0408,Non-Alcoholic,recipe
+72aaede3-e271-4530-9f99-89bf0d0ccf8f,Squid,recipe
+e749fc5b-bb6f-4243-b19d-c65dca278535,Banana,recipe
+94999783-f7a9-4800-a15b-27531bec8732,Lunar New Year,recipe
+cfb16bd1-ff4e-4219-89ad-2e0d732c8c18,Family Reunion,recipe
+eccb785c-4de2-4c58-9260-cee70fcc1544,Date,recipe
+172fc2d9-bcaa-4a08-8861-591a1938ae3f,Dishes&Meals,ingredient
+8ab79759-6373-4a81-af63-a1d2d6120af5,Noodle,recipe
+bc36baf6-9617-440b-9c0a-9a39d75b2831,Honey,recipe
+c414e709-87ea-44fe-98c6-52c691cba7e9,Cherry,recipe
+148afed4-d66d-470f-93dd-b34e2a3f30bb,Pea,recipe
+c77c598a-70bc-4d61-9ccb-d10aae2a1d02,Summer,recipe
+ef22c37d-4572-49fb-8862-8474a94c9c64,Kentucky,recipe
+c7a06c41-08c4-4493-89db-b75b116990e6,Squash,recipe
+980a2f72-a8ba-4832-89aa-8d443cb9a53e,Tea,recipe
+c940d211-1b0a-47d2-9900-1c72c63eda8b,Providence,recipe
+d06154f9-91e6-4666-8e90-792852e96304,Garlic,recipe
+fdf07d2b-7e9e-4b89-a163-2a90d15ebd52,Poppy,recipe
+0d9d0846-7528-4797-a268-cbcb63ec041b,Aperitif,recipe
+1894dfee-7155-4616-95de-7f703e42bc60,Buttermilk,recipe
+5bddcdde-c59d-4e8f-849f-5544fd97c77a,Bread,recipe
+2175570a-935c-4c73-ae86-4c75c99b2325,Israel,recipe
+a19404ad-ccbf-4b60-8c6b-ce33281fe27f,Purim,recipe
+7727c6bb-202a-47df-875e-fe142dc48d20,Kid-Friendly,recipe
+a5a71b86-8d47-4998-a664-0fc2fbda4249,Shallot,recipe
+57f4810c-34ba-4320-84ad-a61c9159d91e,Japan,recipe
+67a17e30-945c-4308-ad66-94f0b8277e64,Blue Cheese,recipe
+aadbe7bd-0da7-462d-b2ba-fffc51ddd0bf,Graduation,recipe
+e85101d3-9f45-454d-ba96-f4efee35a24c,West Virginia,recipe
+b92e07c8-09b0-44f8-9a59-7298fc69ad7d,Lettuce,recipe
+25ac8775-025c-4fc1-992c-eca89b5c7988,Wine,ingredient
+24655850-466c-4e32-8ad7-ad649de58cf3,Buffalo,recipe
+7e324d9f-d7cd-4e78-a229-386417a8f67a,House & Garden,recipe
+ab74603f-098f-49e4-8f3d-324419aa0342,Martini,recipe
+ec6897ac-0caf-41f7-b843-c8dc33987faf,Sandwich,recipe
+45b0193e-c370-4667-b06b-1b5bce6d57be,Boil,recipe
+aaf6220d-8976-43ca-a859-a287a4a8707f,Anise,recipe
+a78179e2-ecd0-4ea2-817c-e4da0076e959,Whiskey,recipe
+20fe66d2-e4db-4435-9d13-b98c2e186603,Self,recipe
+6e193edd-d618-413c-9e8f-e015b72e7e38,Bok Choy,recipe
+4e49fb47-80af-4229-ae10-bf6630949705,Westwood,recipe
+25bb730c-e640-4a73-917b-143fd9697103,"Pastries,Breads&Rolls",ingredient
+4f520e22-37c3-4c7d-8360-6609deb0b68c,Peanut Free,recipe
+606018e1-431a-420e-abaa-68a7fd37bb53,Endive,recipe
+db9d0f58-8ca8-440f-82df-484963e6dd55,Pork Rib,recipe
+2d17d605-2af5-4c97-bba2-bd1defa47f08,Peanut Butter,recipe
+24184a6f-d9fa-4c7f-9f15-925e06c05727,Wheat/Gluten-Free,recipe
+353802a7-ab59-44aa-a472-00e750a44d9c,Fat Free,recipe
+3cf903f9-6d20-47b7-82f9-d6884c380eae,Scotch,recipe
+c2c4ceab-2cf7-4262-9ee6-58f63a99823d,Condiment,recipe
+3a50b2a4-e7fb-417e-9d8f-f5997511b16b,Crêpe,recipe
+414abf0f-cd8b-496f-acef-c6cd1511eace,Yuca,recipe
+146ff8e7-5ff3-4485-a3e6-798b8b7e8a57,Potato Salad,recipe
+7b55ec0a-4ffc-4c7b-8453-a0964bfa7957,Créme de Cacao,recipe
+f65a62bf-cbd9-4918-9303-eea9b8d31131,California,recipe
+b1e15dd7-4d22-413a-8b16-b95b7726460f,Cottage Cheese,recipe
+5105e08c-9eb6-4059-8069-6cef677c01f3,Tamarind,recipe
+8073db1c-9c9c-41d1-8fd5-99a7dda55ddc,Sugar Snap Pea,recipe
+4a836fe9-65a8-4630-bc14-b60925fcda16,Tomatillo,recipe
+3ae13a90-0b17-46eb-8d95-306801e3df7c,Watermelon,recipe
+329bf6e3-e07f-4194-8f32-7861c91ec635,Lunch,recipe
+a8ef4c3b-696c-4f64-bb5c-65e06e0cbf66,Florida,recipe
+270e90a1-b5df-426a-b369-1a1dfc9f8e3e,Dip,recipe
+20e346cf-4bc3-441b-91f7-86065e818ee8,Seafood,recipe
+f5474b93-9181-4ff7-9278-07bed0c61d7f,Pittsburgh,recipe
+eccb31ff-f39c-4a54-945a-89a1729b77f3,Bitters,recipe
+f0a311c0-45d3-4957-8661-7954c1e6ea5a,Tropical Fruit,recipe
+9a31a25e-e474-4ad6-aa21-461377893f58,Dried Fruit,recipe
+ac0ff079-9435-44f8-a08b-fd568419d7b8,Cranberry Sauce,recipe
+c8aa5de1-52cc-4dd9-9f36-5d9e16c130aa,Epi Loves the Microwave,recipe
+f3e611af-dfcd-4b16-9e31-ae63632e64e1,Grape,recipe
+017fdf96-8dfc-4970-9d09-739696458c18,Citrus,recipe
+56aec6c5-42dd-491a-9e59-95d1da63edb5,Switzerland,recipe
+ba23181f-3d96-48df-9e87-e96135f42b1b,Granola,recipe
+655f7724-3f7f-4b43-ab27-7786f50dc9ca,Bake,recipe
+eb13f5bf-8309-4948-b5d7-e2ae140d514d,cookbooks,recipe
+e5691b90-c572-4d63-bad2-39422a8bce5a,Marscarpone,recipe
+4b904574-2529-488b-a2a4-7a65d7720329,Grill/Barbecue,recipe
+7aff4573-e3c5-4f6d-ad63-ad9394398ed4,Connecticut,recipe
+6b5f5ea0-864e-4a51-9155-c6b7abcad38f,Salad Dressing,recipe
+75a00a4f-9eba-4536-9624-431ddbb1a3a7,Spice,recipe
+32abcb15-f5fb-4a33-8d23-33983ff177c3,Cilantro,recipe
+0b99016b-eac3-4db5-b7ce-cd539a0a37ed,Pie,recipe
+61af68b6-71d1-4e78-abb0-07a866e0e687,Suzanne Goin,recipe
+4af8047f-0038-414b-8871-d4869ec55a94,Cardamom,recipe
+d9bed3b4-2cb7-44cb-bbf9-74fdc2daeff5,Ramekin,recipe
+3736b0db-989d-4d2d-a96c-a732aae6f57c,Midori,recipe
+5b74adfe-b6e7-4cd5-8ed9-e902dfd3d20c,High Fiber,recipe
+9b223f4a-a8fd-477f-a2f4-e9fbac01cdd4,Sorbet,recipe
+ed059d25-7710-4313-bb3b-daed6fd34c08,Swordfish,recipe
+50590267-9498-44b1-b541-37a3c5bb3ba0,Coriander,recipe
+2799ce1f-4303-4815-a563-d07adb277211,Kansas,recipe
+0b9eea11-abc7-4ac4-ad49-5f2d7636ccf8,Brunch,recipe
+895f7ebb-0b84-4543-9a95-0b3579e8b880,Mustard Greens,recipe
+9d795429-31d6-464b-a5ce-4fc9f4539bd9,Quiche,recipe
+735fcfd6-d8bd-4866-a853-627913f90426,Mushroom,recipe
+5d14dc1f-01c5-47d2-bedb-bedfe5b4f7be,Goose,recipe
+c50685bd-209f-49e3-ac4d-7f8a3aa682c4,Costa Mesa,recipe
+af8b1df2-ad66-4f25-a662-c6e5135cacea,Muffin,recipe
+365c23f1-8d83-40d6-8ee6-9529e28df650,Italy,recipe
+1392de20-77f8-424d-a7f1-c083e0efef77,Chili,recipe
+e833fa4e-49f1-496f-9c2f-48bc66009d45,Hanukkah,recipe
+bcae5ea7-7289-4d0e-acb1-09108e611aaf,Bon App��tit,recipe
+3970cac9-8ccc-433f-9c3b-beeaf1396e63,BakingIngredients,ingredient
+9a71cdd9-7ee6-4963-b263-403c51afb1a7,Wok,recipe
+f9303d2d-a23f-4dbd-ad2e-c057a4b7191a,Seed,recipe
+56740b0a-c012-4e2c-a26b-e6b7c98f9b4a,Minneapolis,recipe
+88eaa22b-0aa0-490f-9fef-b8e3e365c16a,FastFood,ingredient
+6fc3e51a-2e77-4656-a6e4-cf8db446d2b9,Backyard BBQ,recipe
+2524b6a6-4042-437c-a712-c5163f0f9977,Coconut,recipe
+0c77f037-66a9-45c6-ab0b-6af69c5fc54f,Turnip,recipe
+e92d3d2e-57ba-4a43-9874-553b39cf1470,Oat,recipe
+74c3a9ee-b005-4956-a98d-a1fb5a493851,Washington,recipe
+a7934739-5c6a-4f28-887e-949b15c724e4,Dessert,recipe
+d070acc3-8287-4326-9b29-be0ca37a71a2,Poach,recipe
+cf7dc393-a23b-48d3-8f82-9b4bf6813e1c,Digestif,recipe
+6317dcc8-7900-49ed-8406-55d0f636135f,Pistachio,recipe
+aa5159bd-c994-4fa2-95f3-800a0f85c169,Collard Greens,recipe
+3014eace-29eb-421e-9428-29836d2ef5c7,Brooklyn,recipe
+024362bd-f5f9-4d9f-935d-0d5ee0e3e9a1,Father's Day,recipe
+e2f92d27-7745-4bf7-bd86-56aaeb36c370,Oyster,recipe
+13815557-0708-40bd-bcfa-ea6b4aeff264,Tortillas,recipe
+e36a01b3-a83d-44d0-9ff6-7fd884d408ea,Raspberry,recipe
+84e7b692-3609-4736-9ccc-7e3a99425c43,Easter,recipe
+7d94115b-29c7-4569-8570-5d6483f6b2d8,Parsnip,recipe
+9e5252e9-2b0c-45e3-8220-16d73a83015a,Berry,recipe
+037be0d7-3a2c-4d6a-bfb6-cc7e0b3cf69f,Mixer,recipe
+43442bbc-f5f6-4d04-b850-b77c34060ec9,Asian Pear,recipe
+88627534-62ee-4c11-8a25-81260fc89fef,Macaroni and Cheese,recipe
+75cc60b6-1c9d-4326-93f7-6c00c42682e7,Asparagus,recipe
+15dde87d-8497-4eb6-8bf8-1720a735aacc,Bacon,recipe
+e6f30455-e93e-4610-91de-8c99eeba52a8,Portland,recipe
+73944fdc-dd3c-4a43-b01a-0f1941167f63,Kosher,recipe
+093fc827-4496-4b30-ada4-7df87b7912e4,Iowa,recipe
+4eecac7f-0a94-40ea-a66b-3aab27dc781d,Soy Sauce,recipe
+2b18840f-6116-47d5-ac8d-22d6fcb1b44e,Hummus,recipe
+cee929ff-7dac-424b-9459-52785371e2b6,Juicer,recipe
+8c1e6713-8f08-4e46-b65d-68c634900932,Onion,recipe
+4c0a4484-81c1-4361-8e35-38e482b9f6c6,Appetizer,recipe
+68ba485b-b21d-4d02-a5bd-e37a3d2c6b27,Vegetables,ingredient
+d5175929-b838-4996-9a63-e94d3baa7d8c,Macadamia Nut,recipe
+cb231093-2ae7-48f1-a321-bae2d6baec5b,Labor Day,recipe
+550dd5f2-d44c-4584-b808-0e5d90229311,Brie,recipe
+5dcd12c0-4d4e-49a8-bc70-b5c5673ca0c4,Low Fat,recipe
+9bfa66f2-07c9-4823-bca5-9a58066f2064,Beverly Hills,recipe
+f73b9d0c-78dd-4b7f-ad5a-31b0e3a2e08a,Hot Drink,recipe
+7718a586-ddd3-486b-a60c-52cbb214bfca,One-Pot Meal,recipe
+0a1c7d49-8dff-4462-9b7f-22c607eb4434,Taco,recipe
+b2539a05-bd83-4720-90c1-542a598b65eb,Hot Pepper,recipe
+f523b527-327b-4f36-8a1a-3203e4abf386,Fig,recipe
+5fe0f7ab-54c8-4f8a-a9fe-575c2b3f9d60,San Francisco,recipe
+a7c1de93-ff37-4588-a246-fcf263c0aa93,Los Angeles,recipe
+af64354a-4bc1-4e27-9eb6-041624c10f9f,Bran,recipe
+3dfa79fc-d478-49b1-ac97-a4ae216ac656,Cambridge,recipe
+b760aa5e-d7e9-4ae6-ab11-abf85ea946c7,Beef Tenderloin,recipe
+ee7f0728-d7f0-4ed4-9ae1-e436189f5fd8,Haiti,recipe
+45b97393-5e2f-44b7-8049-c948b7628329,Spring,recipe
+a2ca18e1-de60-407d-8217-6a581ae535b3,Thanksgiving,recipe
+fce7fef0-cc37-4c35-8515-3590c8f5e181,Oatmeal,recipe
+62ca9e24-3c81-4cb8-9bce-63596aa36974,Guam,recipe
+1031137e-1d29-4085-97e2-ff1f99d63875,Basil,recipe
+040c87c7-565f-4fb6-b488-00011b41a43e,Pastry,recipe
+0167d088-bc7b-41a3-b59e-e9bc0dc6f056,Breakfast,recipe
+08a4edd4-db8a-4f6f-806f-fd91d797c639,Molasses,recipe
+2da7d479-fb08-40d1-8bad-f3a5ac9a5655,Tapioca,recipe
+e3699965-ff1b-44af-90ce-a9a00ba64b55,Stew,recipe
+d86f7f1c-d2bb-4f65-84f3-c3bdd35e6ecb,IceCream,ingredient
+4fe3779a-09d6-4ae8-8e98-77eef32e4f8c,Parmesan,recipe
+23a96971-35a9-44ac-98ec-c19a92c67690,Organic,recipe
+28e523aa-672e-44de-b004-5f72a3544935,Valentine's Day,recipe
+512519fa-8bf4-4515-a92b-a1e33bbd67c4,snack week,recipe
+3f91b501-13f0-4b48-9cb1-9c0021da160e,Nebraska,recipe
+7c461d06-d7cb-4911-ac34-855c17d4dc29,Potluck,recipe
+a456e5cc-9b51-473c-b04b-225bdbf40c2a,Oils&Fats,ingredient
+1e1b4bcb-79e6-433c-9c66-702c834b0f63,Cod,recipe
+682fcab0-13a7-4a62-a340-1665245d05a1,Healthy,recipe
+25aaa764-4348-4855-aa89-561e13048800,Pear,recipe
+f76c6488-260b-417e-9068-be33020ce06f,Nutmeg,recipe
+931b58a2-8564-452d-8453-cfabf6029e65,Stuffing/Dressing,recipe
+6c84ded6-dc1e-43b3-8666-fe2937b6c051,Kentucky Derby,recipe
+fafe2802-191c-4038-8396-c9e64af25476,Casserole/Gratin,recipe
+3b1be27a-db74-43af-acad-02476d7052ab,Lemon,recipe
+a9ea5f3c-b1d5-41f1-8cfa-a386f6c833d6,Tilapia,recipe
+f7ff4a7b-4351-4efb-8762-7f6775bf0c93,Cocktail,recipe
+13ef75cc-7cca-480c-9a30-92a79af145e2,Pumpkin,recipe
+63e158ad-64be-4109-b860-e88f7457397a,Cupcake,recipe
+421d2bdb-6de6-456d-8182-b0db082f9831,Nuts&Seeds,ingredient
+c4a3cb9b-b35a-4e98-b4d7-ea8fbb65ee5b,Maryland,recipe
+315d99d3-e29c-4833-8313-33ac4a1ba759,Eggplant,recipe
+d7274260-de9f-478c-a2a4-a4eaa09d7187,Couscous,recipe
+e7f6f6dd-68f4-4fdc-91eb-deb03284dfc6,Sesame,recipe
+79af587d-0d48-46aa-b45e-80577b0e8578,Tailgating,recipe
+64461be6-6e9d-48f0-903e-985758ff26fa,Mango,recipe
+41d721e6-be45-40c7-be4e-a7e2b53855bf,Buffet,recipe
+06c932de-c9c8-450b-bf11-02b93fa43b08,Rhode Island,recipe
+deec2d13-0bef-4678-a515-6f9e572e87f5,Germany,recipe
+230464d6-18cc-4384-84cd-6c5869a07f3b,Beef,recipe
+d09ed6dd-5998-4b35-a563-f28e24d18f9a,Beef Rib,recipe
+fbcfd995-95ec-43a6-b458-1df1d99bdcd8,Oscars,recipe
+c17aeaa9-b1a9-4ca1-bde1-c6b5e4a0e899,Quick and Healthy,recipe
+d3e95c16-d0ac-4641-8ad4-28ccbf7b06ab,Jerusalem Artichoke,recipe
+5f117f77-92c3-4827-89c1-e29c08268703,Mexico,recipe
+db69704c-d842-44f7-b68d-8200d6af2210,Lancaster,recipe
+36d70407-f3fa-45e0-8bb8-aefeb78d3219,Idaho,recipe
+f98cfdb8-4520-48c1-a9a1-558978e23089,Brussel Sprout,recipe
+9c4e29f1-4b57-4885-9238-1f6d539da4eb,Soups,ingredient
+ea9c3d6a-0139-4549-b645-3f6f748cbe9e,Tree Nut,recipe
+8bdd6f72-4f60-46ff-a9ac-f796b3dd10f8,Persian New Year,recipe
+e5e89dd7-bdf7-4d26-a46b-3598faac5647,Alaska,recipe
+914f392d-2525-4eb8-8dfa-027c9b7b6553,Grill,recipe
+638cfb17-eae6-43e6-ab9c-d03b5b6e5548,Kitchen Olympics,recipe
+3913cd0c-e4fa-476b-a33c-c5767fbb7e3d,Plum,recipe
+636d449f-eb7b-4e27-8ce7-635ac2493348,Soy Free,recipe
+b46aa956-3f0b-4f2e-a504-967cf37d3abb,Sandwich Theory,recipe
+77602bc3-2268-4244-b96f-946b71fe94dc,Legumes,ingredient
+88247996-67cb-45e1-a6ce-285735df2109,Bon Appétit,recipe
+b73970df-2de5-411a-a0ed-96ac07edba6e,Mozzarella,recipe
+e0c7d4ac-fb75-4885-bd37-bd47e4dc383b,Tuna,recipe
+bfc5e3b5-0061-45fc-b99b-b5037ab29c1a,Goat Cheese,recipe
+77e257a5-ab50-4154-b46a-20fcdb7bcd4b,turkey,recipe
+253f9d0c-0150-4b9b-8d62-bb2d0deb2676,Braise,recipe
+92480c07-9366-46eb-9af8-3e174644f8cd,CannedFruit,ingredient
+807c4592-dc16-4702-b26d-b662b776de38,Poultry&Fowl,ingredient
+66f6da49-28e9-4656-a8cc-7b7f5a63a5df,Jícama,recipe
+550cb53a-08af-4ee4-8ffc-4def93b645f8,Quail,recipe
+a3fffacb-a26e-400f-9fb3-ad071a4811fb,Grains,recipe
+32c51f97-eb39-4194-a196-446426ce45de,Ohio,recipe
+58ccf894-24a6-448b-8735-92360610c42c,Ground Beef,recipe
+3d15d359-d4b2-40fe-9080-5a93eef7d3a7,Egg Nog,recipe
+0b0148f8-a3c8-45ad-af8e-41fe25c34c30,Sauce,recipe
+8d6e4fa8-2b91-48a3-835a-45e662cc1206,Beet,recipe
+7b5c29b9-cbcf-4b48-b611-6cc12bf32460,Long Beach,recipe
+e0251999-f564-43ba-855d-5de19caa4666,Peru,recipe
+52e601c3-2cdd-4126-8cba-6612a1608099,Phyllo/Puff Pastry Dough,recipe
+6b56aa45-71e6-4ecc-a0eb-789d6a6e8efe,Pomegranate Juice,recipe
+65e62b4e-24c7-47f9-b7b6-c9ee57643787,Dairy Free,recipe
+6084a805-791f-4b1c-8ac9-93d63babaa46,Maple Syrup,recipe
+5ab72ebe-df99-4ff7-ab5c-a0cf4574633f,Low Cal,recipe
+e1fa3be4-59ef-48f6-b835-e4647392c4eb,Pescatarian,recipe
+f95c92f6-c340-4e08-b7ee-7cc081b58d03,3-Ingredient Recipes,recipe
+1c5df40e-54b9-4cfb-88e6-57c4cf61708c,Weelicious,recipe
+bb8b07b1-60aa-4b35-9e45-d2dcf58aef22,Pressure Cooker,recipe
+91ffd7ab-c710-4794-b6b4-9939bfeb4764,Denver,recipe
+4c0334af-cda8-47a6-9a70-fd5dea91cc73,Radicchio,recipe
+897e5f18-89d0-4adc-b459-f19aead57daf,Arugula,recipe
+27033890-eba6-4708-9fad-71e47be97b97,Wisconsin,recipe
+16d7fdf8-54e9-44d2-8c83-56060893e9db,Tofu,recipe
+8daad464-0758-471d-813a-44e62256601e,Drink,recipe
+58adb10c-d208-430a-8dac-abbb2b979f83,snack,recipe
+9822f874-388c-4fee-9869-64ae8625af4e,Cranberry,recipe
+6a7bb956-b7da-46ec-9af5-383e38341038,Curry,recipe
+aafb76a8-d3a7-4cb2-b022-85b44a7f40c6,"Oatmeal,Muesli&Cereals",ingredient
+8e843d73-1dbc-4f60-8e37-917d8fb0afcd,Sauté,recipe
+585dd62d-9c8c-407b-84b4-3886e8c4cd19,Lamb,recipe
+5520c7d5-c1a1-452e-93c0-06e773545356,leftovers,recipe
+7e19e01f-b3cd-4341-a769-77dcd7761f9f,Jam or Jelly,recipe
+e9b15228-b972-4e1e-8dbb-c1fd574d3bae,Sour Cream,recipe
+2961f644-b383-4b33-9f77-c838f47049f1,Miami,recipe
+e5edac65-884f-4cc9-876b-6f13d9a3892b,Spritzer,recipe
+3cdc137b-4117-4f34-b8c1-2ac29cad915f,Frankenrecipe,recipe
+131a7b25-26ab-435a-862d-80c690065092,Broccoli Rabe,recipe
+353d2036-649e-44ca-bdde-8902de8ec2d7,Stock,recipe
+74dbfca6-2dec-4662-9b45-5b906bef409e,Alabama,recipe
+b59638b2-2a32-4697-91ec-3d2ac5a194d2,Sangria,recipe
+c7174c91-a99b-4c9f-8e32-d43ba2f19a97,Ham,recipe
+8eef7e43-e3db-4598-8d31-cb8e819d4692,Pernod,recipe
+25e74c60-9dac-4ede-8e7f-9182e1d9c751,Healdsburg,recipe
+34beb429-aac6-4862-8a45-ba2bc0d1a117,Lingonberry,recipe
+5a1533b4-ef35-4fb0-ba4e-131a2e19f55f,PotatoProducts,ingredient
+1f9e0396-ea8d-4344-a901-1adde3b66c35,Oktoberfest,recipe
+1a2b557c-7cf7-486e-8a0a-acf818352913,Engagement Party,recipe
+a16e8605-075e-4050-9376-8c62dd1279b1,Lime Juice,recipe
+e23c887c-6d3a-45a4-b1ff-4acf6836b8c8,Ireland,recipe
+928a567b-478e-4546-a494-8a0b1ff0ef87,Strawberry,recipe
+c9ffc837-e56a-4729-bd55-a1045da48e78,New Jersey,recipe
+2cd16268-27ad-42a7-8170-fb5ef4071c27,Massachusetts,recipe
+6ea83c1a-9079-4b3d-915d-04f68e52706a,Breadcrumbs,recipe
+557bbc71-0332-40fc-979a-34713487b6f0,Lychee,recipe
+8e8415ae-ccf0-4ee4-bad9-fe43707c08fd,Utah,recipe
+32e19c35-e04a-465a-a96d-8bcb94b03263,Poker/Game Night,recipe
+a2d78f43-6758-497e-9d8c-501995e7f272,Advance Prep Required,recipe
+d8ccc89e-de32-4e7d-8a21-4289d9208a21,Cobbler/Crumble,recipe
+00597905-36b9-4c72-b13d-f51b5de7b919,Ginger,recipe
+b16eea48-af2c-476d-b535-08066b8a28e7,Rub,recipe
+b79efa7d-e79a-491c-a108-a28d82c79b2f,Mustard,recipe
+b649fca1-566e-4233-86e0-d32467167c0c,Chicago,recipe
+cb0b23d8-e78a-4b96-965e-0cf0834b2565,Duck,recipe
+2637ad53-a2e7-4d45-8daa-20e4024d0dc0,Tarragon,recipe
+5468c96a-4b62-4814-bd03-fa922754f219,Pomegranate,recipe
+9c2063b9-befa-45e3-82ea-8e8afb9f24a7,Tangerine,recipe
+3998d66a-b721-46de-a141-7fe1f12bd95c,"No Meat, No Problem",recipe
+40df5f03-2537-46a6-9309-58b6e5cceea8,Chartreuse,recipe
+cf104ed0-c2ed-4fd8-a0af-2fba56793da0,Sparkling Wine,recipe
+204ad512-9db6-4475-896d-27d1da352a4d,Jalapeño,recipe
+0fa11d66-6797-4e22-858b-8fe9ad18f4be,Herb,recipe
+39d6008f-e609-465d-b6e6-65ce4339e7fa,Meatball,recipe
+3da6167c-a938-4332-916c-a3a46d862d72,Mint,recipe
+1791e0c3-c748-437e-8040-89e6005268eb,Trout,recipe
+8dfd9a17-76d4-4e4a-b61a-111e578d4131,Rosé,recipe
+2e773364-dc86-4c78-b975-77e9720d49d3,Almond,recipe
+e3b9ad73-7860-459a-9c90-52f017ec4f3f,Sage,recipe
+3bb6d8c0-8127-4758-89e9-ad71298e2dea,Orange,recipe
+46b69bd6-e4c1-4b7a-a0c6-548709839387,Mussel,recipe
+811333aa-ca70-4166-a600-ef4bc7ba8982,South Carolina,recipe
+89d14b94-ecb2-4647-9114-a74fcf649adb,Bean,recipe
+3bab49a8-4dad-4ff5-ba9a-a36e5d486cec,Pecan,recipe
+f44cf830-d414-43a7-a4d3-98afce8ef2ef,Atlanta,recipe
+7dcdd863-fa84-4a6d-a28e-b5e7f4d017f8,Canada,recipe
+6f947c2b-f70b-4064-b7fc-20d916b51202,Tested & Improved,recipe
+665d3b1a-16c3-4f78-a39d-cc954d4f1b02,Kidney Friendly,recipe
+e53f6040-8921-4762-b0be-9f5beab4c739,Shavuot,recipe
+a21e693a-64e5-449a-b192-e8cee85d520e,London,recipe
+7e782675-1bc6-4d9a-a954-93dd0f4ef92b,VegetableOils,ingredient
+cd2d3dab-0c1f-4a38-aaa1-2aca2808f7cb,Barley,recipe
+b5050364-8d3e-421b-bd8c-692a9b67dfea,Broil,recipe
+34b31eed-d457-48eb-99ea-6731c55a356e,Raw,recipe
+18dc55fe-07f1-48b3-b651-5f35a7ac2737,Bastille Day,recipe
+cd3b1e46-be99-40f0-9174-f8da89f0e99e,Wedding,recipe
+0e8dcb33-20a3-4b3b-8c0a-efab2d29ab48,Grapefruit,recipe
+b4b1d23c-1f9f-45a8-b2af-cf4f3b65d659,Sauces&Dressings,ingredient
+ec632f12-0fd2-413f-b3b2-4a9a44e8dd56,Beef&Veal,ingredient
+6d575335-85ce-4c74-81f1-57004885a015,Columbus,recipe
+30577233-bd26-4d1f-a5bf-d2ba9198d9e2,Fennel,recipe
+47d696a4-5098-4125-bc7a-3edde51a6bd2,Food Processor,recipe
+82f3edd8-d44d-4c88-bd7b-94756924085f,Low Carb,recipe
+8652c355-e196-4644-a26c-88360d6c0d39,Shellfish,recipe
+f65985cd-b456-403e-9518-813b45162059,Slow Cooker,recipe
+a48d3e1b-b0ab-46ad-9908-017bb6e72aee,Herbs&Spices,ingredient
+6097aa78-1918-4841-8e9f-e87b800a7387,Root Vegetable,recipe
+45fc41a5-7d98-427f-96d2-02d1f768e0b7,Spreads,ingredient
+7d48408b-2b56-4a2f-b723-73337cd872c5,Kwanzaa,recipe
+264825b6-b618-4ef1-bebc-57da3da94f5d,Butterscotch/Caramel,recipe
+ca5f80b0-693a-4934-8ad3-4a168a3dae0e,Tomato,recipe
+ac125e1e-0498-42f9-9fd7-13f2c197344b,Louisiana,recipe
+454ba7a7-652b-48eb-9edb-1a5216f65f76,Corn,recipe
+0dcc4555-3917-4aad-8ee0-33657f46c638,Microwave,recipe
+12af84fe-ff3b-4d5b-8d6c-9936844e13b5,Illinois,recipe
+28593565-c00c-49a9-b039-65b8b0c6f23d,Soufflé/Meringue,recipe
+12aafe9d-86c8-41bf-99ac-114938f0f7dc,Pan-Fry,recipe
+6a5a1e1d-fc63-4ec3-a52e-d637a1116038,Candy&Sweets,ingredient
+9d32a33b-70ef-49b8-b4ce-bb4cde08d48a,Hollywood,recipe
+0606fc38-c6ca-49b6-915b-04b2e1bbf6f2,Olive,recipe
+f7d01d7f-04d2-4bb2-ba45-77596089b2bd,Guava,recipe
+f042399e-545f-4e5c-8efa-e87e26b54a41,Wasabi,recipe
+da97bd46-210a-4e6f-a77c-997581e9fbd1,Ricotta,recipe
+2db9fe7b-47e1-45f0-b681-d48f8d145acd,Yonkers,recipe
+e4f4ae84-c22a-48eb-893e-87b3eae5ef41,Indiana,recipe
+cdd0c9fd-f9e8-4e66-90ed-1ad27626015c,Calvados,recipe
+a056b1b0-20c2-471e-b64e-61228e872f85,Liqueur,recipe
+9dbf8916-3b31-4d5c-9c29-f8c54364c988,Pasta&Noodles,ingredient
+4dc08531-ba30-4d88-8895-29a80d7a437c,Egypt,recipe
+509739f5-af1e-4942-b67a-98563fd0f156,Mayonnaise,recipe
+9d3f7537-cddf-4bdc-a79d-b0926cfea448,Lamb Chop,recipe
+4b5976db-1e18-47ce-97f8-bfb43f39a43a,Milk&DairyProducts,ingredient
+ac0cc4f0-1749-4f36-b41f-f858196698c6,No-Cook,recipe
+d4384983-6491-4033-92eb-5518e3e05166,CerealProducts,ingredient
+be235114-5708-46a5-b40d-89393b831f73,Cognac/Armagnac,recipe
+18dff3ba-b471-4681-90f7-3fd5b7985289,Oklahoma,recipe
+24cbd4ce-c67d-44ac-a0e6-1b1b5da6d42e,Cauliflower,recipe
+25a3b41f-0dea-4aef-9a94-6fd5f9961725,Halloween,recipe
+af908fcd-f6f6-4836-8605-579ae36ee283,Green Onion/Scallion,recipe
+8f26b549-0cca-4aa5-9c07-1c8257de4880,Iced Coffee,recipe
+196788f9-8ee7-4f49-9fd5-97de3bd1d46f,Candy,recipe
+d56fd18d-a89a-49ac-8d48-7f590bc21e76,Cucumber,recipe
+3b4e7e52-815d-498e-95c3-fb4c3b60198f,Meat,ingredient
+5b8d12d8-2757-4caf-b114-feb46f4a2981,New York,recipe
+1bf39b83-83f4-43b1-afcc-55a0a7acfe6e,Pot Pie,recipe
+781e8bf0-ba7c-4c35-964b-45cb4bf9685c,Red Wine,recipe
+ae1b1750-6b28-4e34-b5e9-23975c79eaed,Stir-Fry,recipe
+b4cf5a0e-ef48-4b96-a4dc-b2b983e37673,Lemongrass,recipe
+b54dd07d-0a17-45dd-8b10-b2dfbf7af784,Condiment/Spread,recipe
+7c004679-b7b4-4294-b679-bf309b6c6e06,Ice Cream Machine,recipe
+d34ba46e-08a7-4139-9f46-cbdc57f23372,Brownie,recipe
+247c7a12-ee2f-4f91-af0c-b539cf27c5e3,Mother's Day,recipe
+b69240fb-a9b8-43fa-a307-453c7232c86d,Maine,recipe
+42a35ab6-b1c2-4216-9cf2-6481e7de3e9f,Rack of Lamb,recipe
+da17782b-fd0b-4e4d-b368-5ee68a0fd9b4,#CAKEWEEK,recipe
+b5103f46-6e2b-44b2-839b-17bd70bee92d,Santa Monica,recipe
+0955f1cb-0ed1-400c-80b1-70dc04ed8fd9,Salsa,recipe
+9007050c-82be-4b2b-b857-735304fa9ecb,CreamCheese,ingredient
+8f4b44e9-a8be-4ead-ab92-65cc09679900,Lima Bean,recipe
+1ed87ee9-598d-48b4-b5c4-5de026a6174d,Rosh Hashanah/Yom Kippur,recipe
+6fc6d226-5008-48b2-bf4d-d603fae7f24a,(Fruit)Juices,ingredient
+d2569940-3943-418e-9ebb-eabe90787ae3,Vegan,recipe
+a1b8f667-7514-4883-aff5-03d601034612,Vanilla,recipe
+f3ab797d-2c70-425e-8def-ce96eab72f35,Blender,recipe
+7d6bdce4-8326-48db-8151-ac765ad1d11d,Diwali,recipe
+a092ab5d-1e2f-4b41-95e8-e30f965cc957,Apple,recipe
+7079f61b-c764-4e73-abd7-dbc2e62fa784,Soup/Stew,recipe
+00f0621e-7ef9-4016-a845-82d8574fd15f,Horseradish,recipe
+094497f6-48c6-4b53-b05b-45d5aa597ef4,Brisket,recipe
+66e85038-cad2-420c-b993-13683b7037f5,Rutabaga,recipe
+409498b2-d74b-4143-85c2-61a8edc34826,Kirsch,recipe
+61192e48-b95b-4a0c-9733-48a9d10f1032,Blueberry,recipe
+a51ad101-b0da-4ecd-a749-fccd0373e5f0,Las Vegas,recipe
+65580833-381f-483e-a37e-020116062adb,Parsley,recipe
+d021d731-8415-4595-a48e-1593c02317c3,Cookbook Critic,recipe
+1708c13e-e6d9-4c1f-8c08-947629510fae,Burrito,recipe
+9e370af3-2f46-4eb7-8888-02e492758e79,Chard,recipe
+b53f9bf3-2f90-4f04-bfd5-a60783abff03,Boston,recipe
+eb33e014-2688-47be-8412-77314977d39f,Parade,recipe
+b6252842-2c1d-463c-8477-12c0b6169c82,Walnut,recipe
+a7ffd63c-a938-4bb5-bc93-7623880ea24e,Flat Bread,recipe
+0bd0e1d1-aece-4715-a218-082923dd3022,Houston,recipe
+2c97a9ef-5f31-4d49-a59b-34d64d10241f,Pizza,ingredient
+620a3943-91be-4a07-ab07-f45b80492220,Chambord,recipe
+977f66aa-07b2-4c16-bb22-22e351d9bb7a,Bourbon,recipe
+7753ab1f-c200-4369-a32e-24c45b278375,Escarole,recipe
+ff9af7e3-ba49-4dde-9de0-ab60184e6777,Double Boiler,recipe
+dce20e4d-7f55-404e-9738-9f5f17f0b9a8,Dominican Republic,recipe
+7211871e-678c-4c63-b565-3f176e7b3407,Freezer Food,recipe
+267e41b0-cf5b-465e-88c6-116198fec648,Mandoline,recipe
+215b0c4a-2811-4e11-9b00-2d1e1ecd8b15,Veal,recipe
+0d412753-1328-4937-bb56-88cafa83d46e,Cuba,recipe
+696a42e6-91b4-40e8-8b6f-b4af321cf49d,Caraway,recipe
+81d71992-1a60-49f5-b992-aa09240df914,Georgia,recipe
+dfe92a19-6cb3-4a84-af01-d1c2dfd64dbf,HarperCollins,recipe
+8676c60d-4eb5-4938-bc4c-c0d78c109dee,Hazelnut,recipe
+f00b5645-52d2-492d-b0fd-89d97bc9a350,Dill,recipe
+5678e293-6511-4c38-b4d3-c0a57e7ba944,Celery,recipe
+46cbfa94-f8f6-4e63-8847-65635049dab7,Omelet,recipe
+5a221c1b-b73d-4212-9a15-e3423d8a0edd,Brandy,recipe
+033bd70e-3e7b-4f01-a6c8-03b8f3606a45,Artichoke,recipe
+f17626a0-7cbd-45ec-a0d0-aa966ac5dc8a,Apricot,recipe
+03f62bcc-d082-4828-a77a-e06159e82bd5,Smoothie,recipe
+82b5307b-2006-4b65-804b-90d9120426be,Roast,recipe
+1b260667-6e9e-43aa-b424-447a591c90a5,Amaretto,recipe
+4b3b84c2-8ee3-46c0-8fb5-43efdbd7f777,Chocolate,recipe
+cdd02b94-e546-46ac-ba24-88bc3eb28532,Honeydew,recipe
