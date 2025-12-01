@@ -7,11 +7,23 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
+from django.core.cache import cache
 from neomodel import db
 import json
 import logging
 
 from .models import Recipe, Ingredient, Category
+try:
+    from rokumeals.mbg_app.external.dbpedia_enricher_simple import DBpediaEnricher
+except ImportError:
+    # Fallback if import fails (e.g. different project structure)
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'rokumeals', 'mbg_app', 'external'))
+    try:
+        from dbpedia_enricher_simple import DBpediaEnricher
+    except ImportError:
+        DBpediaEnricher = None
 
 logger = logging.getLogger(__name__)
 
@@ -294,6 +306,24 @@ def recipe_detail(request, recipe_id):
                 'type': category.type,
             })
         
+        # Get external data for Info Box
+        external_data = None
+        if DBpediaEnricher:
+            try:
+                # Check cache first
+                cache_key = f'dbpedia_recipe_{recipe.recipe_id}'
+                external_data = cache.get(cache_key)
+                
+                if not external_data:
+                    enricher = DBpediaEnricher()
+                    # For recipes, we might want to search differently or just use the title
+                    external_data = enricher.search_ingredient_in_dbpedia(recipe.title)
+                    # Cache for 24 hours
+                    if external_data:
+                        cache.set(cache_key, external_data, 60 * 60 * 24)
+            except Exception as e:
+                logger.error(f"Error fetching external data: {e}")
+
         context = {
             'item': recipe,
             'ingredients': ingredients,
@@ -301,6 +331,7 @@ def recipe_detail(request, recipe_id):
             'related_items': ingredients + categories,
             'type': 'recipe',
             'title': recipe.title,
+            'external_data': external_data,
         }
         
         return render(request, 'mbg_app/detail.html', context)
@@ -350,6 +381,15 @@ def ingredient_detail(request, ingredient_id):
             except:
                 pass
         
+        # Get external data for Info Box
+        external_data = None
+        if DBpediaEnricher:
+            try:
+                enricher = DBpediaEnricher()
+                external_data = enricher.search_ingredient_in_dbpedia(ingredient.name)
+            except Exception as e:
+                logger.error(f"Error fetching external data: {e}")
+
         context = {
             'item': ingredient,
             'recipes': recipes[:12],  # Limit to 12 recipes
@@ -357,6 +397,7 @@ def ingredient_detail(request, ingredient_id):
             'related_items': recipes[:8] + categories,
             'type': 'ingredient',
             'title': ingredient.name,
+            'external_data': external_data,
         }
         
         return render(request, 'mbg_app/detail.html', context)
@@ -427,6 +468,9 @@ def category_detail(request, category_id):
                     'calories_per_100g': result[2] or 0,
                 })
         
+        # Get external data for Info Box
+        external_data = get_dbpedia_data(category.name, 'category')
+
         context = {
             'item': category,
             'recipes': recipes[:12],  # Limit to 12 recipes
@@ -434,6 +478,7 @@ def category_detail(request, category_id):
             'related_items': recipes[:6] + ingredients[:6],
             'type': 'category',
             'title': category.name,
+            'external_data': external_data,
         }
         
         return render(request, 'mbg_app/detail.html', context)

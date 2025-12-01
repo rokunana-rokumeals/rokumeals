@@ -74,18 +74,211 @@
 
     <div class="container detail-content-wrapper">
         <div class="row">
+            <!-- Sidebar with related items -->
+            <div class="col-lg-4">
+                <!-- Info Box from External Data -->
+                {% if external_data %}
+                <div class="info-box mb-4 external-info-box">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="section-title mb-0">
+                            <i class="bi bi-info-circle me-2"></i>Knowledge Graph Info
+                        </h5>
+                        <span class="badge bg-secondary">{{ external_data.source }}</span>
+                    </div>
+
+                    {% if external_data.thumbnail %}
+                    <div class="text-center mb-3">
+                        <img src="{{ external_data.thumbnail }}" alt="{{ title }}" class="img-fluid rounded shadow-sm"
+                            style="max-height: 200px;">
+                    </div>
+                    {% endif %}
+
+                    {% if external_data.abstract %}
+                    <div class="mb-3">
+                        <h6 class="fw-bold text-muted text-uppercase small">Abstract</h6>
+                        <p class="small text-muted mb-0 text-clamp-3">{{ external_data.abstract }}</p>
+                        <a href="#" class="small text-primary" data-bs-toggle="modal"
+                            data-bs-target="#abstractModal">Read more</a>
+                    </div>
+                    {% endif %}
+
+                    <div class="row g-2 mb-3">
+                        {% if external_data.scientificName %}
+                        <div class="col-6">
+                            <div class="p-2 bg-light rounded border">
+                                <small class="d-block text-muted x-small">Scientific Name</small>
+                                <span class="fw-bold small text-clamp-1">{{ external_data.scientificName }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if external_data.kingdom %}
+                        <div class="col-6">
+                            <div class="p-2 bg-light rounded border">
+                                <small class="d-block text-muted x-small">Kingdom</small>
+                                <span class="fw-bold small text-clamp-1">{{ external_data.kingdom }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if external_data.wikiLink %}
+                    <div class="d-grid">
+                        <a href="{{ external_data.wikiLink }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-wikipedia me-1"></i> View on Wikipedia
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Abstract Modal -->
+                <div class="modal fade" id="abstractModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ title }} - Abstract</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ external_data.abstract }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{{ external_data.wikiLink }}" target="_blank" class="btn btn-primary">Read on
+                                    Wikipedia</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="info-box">
+                    {% if type == 'recipe' %}
+                    <h5 class="section-title">Ingredients ({{ ingredients|length }})</h5>
+                    <div class="row g-2">
+                        {% for ingredient in ingredients %}
+                        <div class="col-6">
+                            <a href="{% url 'mbg_app:ingredient_detail' ingredient.id %}" class="related-item-sm h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light text-success flex-shrink-0">
+                                        <i class="bi bi-egg"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h6 class="fw-bold text-clamp-1">{{ ingredient.name }}</h6>
+                                        {% if ingredient.calories_per_100g > 0 %}
+                                        <small class="text-muted">{{ ingredient.calories_per_100g }} cal</small>
+                                        {% else %}
+                                        <small class="text-muted">N/A</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if categories %}
+                    <h5 class="section-title mt-5">Categories</h5>
+                    <div class="row g-2">
+                        {% for category in categories %}
+                        <div class="col-6">
+                            <a href="{% url 'mbg_app:category_detail' category.id %}" class="related-item-sm h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light text-primary flex-shrink-0">
+                                        <i class="bi bi-tag"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h6 class="fw-bold text-clamp-1">{{ category.name }}</h6>
+                                        <small class="text-muted">{{ category.type|capfirst }}</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% elif type == 'ingredient' %}
+                    <h5 class="section-title">Recipes Using This</h5>
+                    <div class="d-flex flex-column gap-2">
+                        {% for recipe in recipes|slice:":8" %}
+                        <a href="{% url 'mbg_app:recipe_detail' recipe.id %}" class="related-item">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light p-2 me-3 text-primary">
+                                        <i class="bi bi-bowl"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold text-clamp-1">{{ recipe.title }}</h6>
+                                        <small class="text-muted">{{ recipe.calories|floatformat:0 }} cal</small>
+                                    </div>
+                                </div>
+                                {% if recipe.rating > 0 %}
+                                <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    {% elif type == 'category' %}
+                    <h5 class="section-title">Recipes in Category</h5>
+                    <div class="d-flex flex-column gap-2">
+                        {% for recipe in recipes|slice:":6" %}
+                        <a href="{% url 'mbg_app:recipe_detail' recipe.id %}" class="related-item">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light p-2 me-3 text-primary">
+                                        <i class="bi bi-bowl"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-bold text-clamp-1">{{ recipe.title }}</h6>
+                                        <small class="text-muted">{{ recipe.calories|floatformat:0 }} cal</small>
+                                    </div>
+                                </div>
+                                {% if recipe.rating > 0 %}
+                                <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
+                                {% endif %}
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                    <h5 class="section-title mt-5">Ingredients in Category</h5>
+                    <div class="row g-2">
+                        {% for ingredient in ingredients|slice:":6" %}
+                        <div class="col-6">
+                            <a href="{% url 'mbg_app:ingredient_detail' ingredient.id %}" class="related-item-sm h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light text-success flex-shrink-0">
+                                        <i class="bi bi-egg"></i>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <h6 class="fw-bold text-clamp-1">{{ ingredient.name }}</h6>
+                                        <small class="text-muted">{{ ingredient.calories_per_100g }} cal</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
             <!-- Main Information -->
             <div class="col-lg-8">
                 <div class="info-box">
                     {% if type == 'recipe' %}
                     <h3 class="section-title">About Recipe</h3>
                     {% if item.description %}
-                    <p class="lead text-muted mb-4">{{ item.description }}</p>
+                    <p class="lead text-muted mb-4 text-clamp-3">{{ item.description }}</p>
                     {% endif %}
 
                     {% if item.directions %}
                     <h5 class="fw-bold mb-3">Directions</h5>
-                    <p class="text-secondary mb-4">{{ item.directions|truncatewords:50 }}</p>
+                    <p class="text-secondary mb-4 text-clamp-4">{{ item.directions }}</p>
                     {% endif %}
 
                     <div class="property-grid mt-4">
@@ -119,111 +312,30 @@
                             item.category }}</strong> category, provides essential nutritional information for meal
                         planning and dietary considerations.</p>
 
-                    <!-- Wikidata Enrichment Section -->
-                    <div class="card mb-4" id="enrichment-section">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0">
-                                <i class="bi bi-globe2 me-2 text-primary"></i>
-                                External Knowledge Data
-                            </h6>
-                            {% if item.wikidata_entity %}
-                            <span class="badge bg-success">
-                                <i class="bi bi-check-circle me-1"></i>Enriched
-                            </span>
-                            {% else %}
-                            <button class="btn btn-outline-primary btn-sm" id="enrichBtn" onclick="enrichIngredient('{{ item.ingredient_id }}')">>
-                                <i class="bi bi-download me-1"></i>Get Additional Data
-                            </button>
-                            {% endif %}
-                        </div>
-                        <div class="card-body">
-                            <div id="enrichment-content">
-                                {% if item.wikidata_entity %}
-                                <!-- Already enriched - show comprehensive data -->
-                                <div class="row">
-                                    {% if item.image_url %}
-                                    <div class="col-12 mb-3">
-                                        <h6 class="text-secondary">Image</h6>
-                                        <img src="{{ item.image_url }}" alt="{{ item.name }}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
-                                    </div>
-                                    {% endif %}
-                                    
-                                    {% if item.classification %}
-                                    <div class="col-12 mb-3">
-                                        <h6 class="text-secondary">Classification</h6>
-                                        <p class="mb-0">{{ item.classification }}</p>
-                                    </div>
-                                    {% endif %}
-                                    
-                                    {% if item.description %}
-                                    <div class="col-12 mb-3">
-                                        <h6 class="text-secondary">Description</h6>
-                                        <p class="mb-0">{{ item.description }}</p>
-                                    </div>
-                                    {% endif %}
-                                    
-                                    {% if item.material_info %}
-                                    <div class="col-12 mb-3">
-                                        <h6 class="text-secondary">Additional Information</h6>
-                                        <p class="mb-0">{{ item.material_info }}</p>
-                                    </div>
-                                    {% endif %}
-                                    
-                                    <div class="col-md-6">
-                                        <h6 class="text-secondary">Nutritional Data (per 100g)</h6>
-                                        <ul class="list-unstyled">
-                                            {% if item.calories_per_100g %}<li><strong>Calories:</strong> {{ item.calories_per_100g }} cal</li>{% endif %}
-                                            {% if item.carbohydrates_g %}<li><strong>Carbohydrates:</strong> {{ item.carbohydrates_g }} g</li>{% endif %}
-                                            {% if item.protein_g %}<li><strong>Protein:</strong> {{ item.protein_g }} g</li>{% endif %}
-                                            {% if item.fat_g %}<li><strong>Fat:</strong> {{ item.fat_g }} g</li>{% endif %}
-                                            {% if item.fiber_g %}<li><strong>Fiber:</strong> {{ item.fiber_g }} g</li>{% endif %}
-                                            {% if item.sugar_g %}<li><strong>Sugar:</strong> {{ item.sugar_g }} g</li>{% endif %}
-                                            {% if item.water_g %}<li><strong>Water:</strong> {{ item.water_g }} g</li>{% endif %}
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <h6 class="text-secondary">Vitamins & Minerals</h6>
-                                        <ul class="list-unstyled">
-                                            {% if item.vitamin_c_mg %}<li><strong>Vitamin C:</strong> {{ item.vitamin_c_mg }} mg</li>{% endif %}
-                                            {% if item.calcium_mg %}<li><strong>Calcium:</strong> {{ item.calcium_mg }} mg</li>{% endif %}
-                                            {% if item.iron_mg %}<li><strong>Iron:</strong> {{ item.iron_mg }} mg</li>{% endif %}
-                                            {% if item.sodium_mg %}<li><strong>Sodium:</strong> {{ item.sodium_mg }} mg</li>{% endif %}
-                                            {% if item.potassium_mg %}<li><strong>Potassium:</strong> {{ item.potassium_mg }} mg</li>{% endif %}
-                                            {% if item.magnesium_mg %}<li><strong>Magnesium:</strong> {{ item.magnesium_mg }} mg</li>{% endif %}
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="mt-3 pt-3 border-top">
-                                    <small class="text-muted">
-                                        <i class="bi bi-info-circle me-1"></i>
-                                        Data sourced from <a href="{{ item.wikidata_entity }}" target="_blank">Wikidata</a>
-                                    </small>
-                                </div>
-                                {% else %}
-                                <!-- Not enriched yet -->
-                                <p class="text-muted mb-0">
-                                    <i class="bi bi-info-circle me-2"></i>
-                                    Click "Get Additional Data" to fetch nutritional information and additional details from Wikidata.
-                                </p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="bg-light p-4 rounded-3 border">
                         <h6 class="fw-bold mb-3 text-uppercase text-secondary">Basic Nutrition Facts</h6>
-                        <h4 class="mb-1">{{ item.name|title }}</h4>
+                        <h4 class="mb-1 text-clamp-2">{{ item.name|title }}</h4>
+                        {% if item.calories_per_100g > 0 %}
                         <p class="text-muted mb-4">{{ item.calories_per_100g }} Calories per 100g</p>
+                        {% else %}
+                        <p class="text-muted mb-4">Calories not available</p>
+                        {% endif %}
 
                         <div class="d-flex justify-content-between py-2 border-bottom">
                             <span>Total Energy</span>
+                            {% if item.calories_per_100g > 0 %}
                             <span class="fw-bold">{{ item.calories_per_100g }} cal</span>
+                            {% else %}
+                            <span class="fw-bold">N/A</span>
+                            {% endif %}
                         </div>
                         <div class="d-flex justify-content-between py-2 border-bottom">
                             <span>Energy (kJ)</span>
+                            {% if item.kj_per_100g > 0 %}
                             <span class="fw-bold">{{ item.kj_per_100g }} kJ</span>
+                            {% else %}
+                            <span class="fw-bold">N/A</span>
+                            {% endif %}
                         </div>
                         <div class="d-flex justify-content-between py-2">
                             <span>Category</span>
@@ -253,112 +365,6 @@
                     {% endif %}
                 </div>
             </div>
-
-            <!-- Sidebar with related items -->
-            <div class="col-lg-4">
-                <div class="info-box">
-                    {% if type == 'recipe' %}
-                    <h5 class="section-title">Ingredients ({{ ingredients|length }})</h5>
-                    <div class="d-flex flex-column gap-2">
-                        {% for ingredient in ingredients %}
-                        <a href="{% url 'mbg_app:ingredient_detail' ingredient.id %}" class="related-item">
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-light p-2 me-3 text-success">
-                                    <i class="bi bi-egg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-0 fw-bold">{{ ingredient.name }}</h6>
-                                    <small class="text-muted">{{ ingredient.calories_per_100g }} cal/100g</small>
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-
-                    {% if categories %}
-                    <h5 class="section-title mt-5">Categories</h5>
-                    <div class="d-flex flex-column gap-2">
-                        {% for category in categories %}
-                        <a href="{% url 'mbg_app:category_detail' category.id %}" class="related-item">
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-light p-2 me-3 text-primary">
-                                    <i class="bi bi-tag"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-0 fw-bold">{{ category.name }}</h6>
-                                    <small class="text-muted">{{ category.type|capfirst }}</small>
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-
-                    {% elif type == 'ingredient' %}
-                    <h5 class="section-title">Recipes Using This</h5>
-                    <div class="d-flex flex-column gap-2">
-                        {% for recipe in recipes|slice:":8" %}
-                        <a href="{% url 'mbg_app:recipe_detail' recipe.id %}" class="related-item">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="rounded-circle bg-light p-2 me-3 text-primary">
-                                        <i class="bi bi-bowl"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0 fw-bold">{{ recipe.title|truncatechars:25 }}</h6>
-                                        <small class="text-muted">{{ recipe.calories|floatformat:0 }} cal</small>
-                                    </div>
-                                </div>
-                                {% if recipe.rating > 0 %}
-                                <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
-                                {% endif %}
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-
-                    {% elif type == 'category' %}
-                    <h5 class="section-title">Recipes in Category</h5>
-                    <div class="d-flex flex-column gap-2">
-                        {% for recipe in recipes|slice:":6" %}
-                        <a href="{% url 'mbg_app:recipe_detail' recipe.id %}" class="related-item">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <div class="rounded-circle bg-light p-2 me-3 text-primary">
-                                        <i class="bi bi-bowl"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="mb-0 fw-bold">{{ recipe.title|truncatechars:20 }}</h6>
-                                        <small class="text-muted">{{ recipe.calories|floatformat:0 }} cal</small>
-                                    </div>
-                                </div>
-                                {% if recipe.rating > 0 %}
-                                <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
-                                {% endif %}
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-
-                    <h5 class="section-title mt-5">Ingredients in Category</h5>
-                    <div class="d-flex flex-column gap-2">
-                        {% for ingredient in ingredients|slice:":6" %}
-                        <a href="{% url 'mbg_app:ingredient_detail' ingredient.id %}" class="related-item">
-                            <div class="d-flex align-items-center">
-                                <div class="rounded-circle bg-light p-2 me-3 text-success">
-                                    <i class="bi bi-egg"></i>
-                                </div>
-                                <div>
-                                    <h6 class="mb-0 fw-bold">{{ ingredient.name }}</h6>
-                                    <small class="text-muted">{{ ingredient.calories_per_100g }} cal/100g</small>
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
         </div>
 
         <!-- Related Items Grid -->
@@ -378,7 +384,7 @@
                                 <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
                                 {% endif %}
                             </div>
-                            <h6 class="mb-1 fw-bold">{{ recipe.title|truncatechars:40 }}</h6>
+                            <h6 class="mb-1 fw-bold text-clamp-2">{{ recipe.title }}</h6>
                             <small class="text-muted">{{ recipe.calories|floatformat:0 }} calories</small>
                         </a>
                         {% endfor %}
@@ -396,7 +402,7 @@
                                 <span class="badge bg-warning text-dark rounded-pill">{{ recipe.rating }}</span>
                                 {% endif %}
                             </div>
-                            <h6 class="mb-1 fw-bold">{{ recipe.title|truncatechars:40 }}</h6>
+                            <h6 class="mb-1 fw-bold text-clamp-2">{{ recipe.title }}</h6>
                             <small class="text-muted">{{ recipe.calories|floatformat:0 }} calories</small>
                         </a>
                         {% endfor %}
@@ -412,7 +418,7 @@
                             <div class="d-flex align-items-center mb-2">
                                 <i class="bi bi-egg text-success"></i>
                             </div>
-                            <h6 class="mb-1 fw-bold">{{ ingredient.name|truncatechars:40 }}</h6>
+                            <h6 class="mb-1 fw-bold text-clamp-1">{{ ingredient.name }}</h6>
                             <small class="text-muted">{{ ingredient.calories_per_100g }} cal/100g</small>
                         </a>
                         {% endfor %}
@@ -427,194 +433,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Wikidata enrichment functionality
-        function enrichIngredient(ingredientId) {
-            const enrichBtn = document.getElementById('enrichBtn');
-            const enrichmentContent = document.getElementById('enrichment-content');
-            
-            // Show loading state
-            enrichBtn.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Loading...';
-            enrichBtn.disabled = true;
-            
-            // Make AJAX request to enrich endpoint
-            fetch(`/api/ingredient/${ingredientId}/enrich/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'same-origin'
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Update UI with enriched data
-                    updateEnrichmentUI(data.data, data.already_enriched);
-                    
-                    // Show success message
-                    showToast('Success', data.message || 'Ingredient enriched successfully!', 'success');
-                } else {
-                    // Show error message
-                    showToast('Error', data.error || 'Failed to enrich ingredient', 'error');
-                    
-                    // Reset button
-                    enrichBtn.innerHTML = '<i class="bi bi-download me-1"></i>Get Additional Data';
-                    enrichBtn.disabled = false;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showToast('Error', 'Network error occurred', 'error');
-                
-                // Reset button
-                enrichBtn.innerHTML = '<i class="bi bi-download me-1"></i>Get Additional Data';
-                enrichBtn.disabled = false;
-            });
-        }
-        
-        function updateEnrichmentUI(data, alreadyEnriched) {
-            const enrichmentContent = document.getElementById('enrichment-content');
-            const enrichBtn = document.getElementById('enrichBtn');
-            
-            // Build comprehensive data display
-            let imageHtml = '';
-            let classificationHtml = '';
-            let descriptionHtml = '';
-            let materialInfoHtml = '';
-            let nutritionalData = '';
-            let vitaminsData = '';
-            
-            // Image
-            if (data.image_url) {
-                imageHtml = `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Image</h6>
-                        <img src="${data.image_url}" alt="${data.entity_label || 'Ingredient'}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
-                    </div>
-                `;
-            }
-            
-            // Classification
-            if (data.classification) {
-                classificationHtml = `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Classification</h6>
-                        <p class="mb-0">${data.classification}</p>
-                    </div>
-                `;
-            }
-            
-            // Description
-            if (data.description) {
-                descriptionHtml = `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Description</h6>
-                        <p class="mb-0">${data.description}</p>
-                    </div>
-                `;
-            }
-            
-            // Material and usage info
-            if (data.material_info) {
-                materialInfoHtml = `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Additional Information</h6>
-                        <p class="mb-0">${data.material_info}</p>
-                    </div>
-                `;
-            }
-            
-            // Build nutritional data HTML
-            if (data.calories_per_100g) nutritionalData += `<li><strong>Calories:</strong> ${data.calories_per_100g} cal</li>`;
-            if (data.carbohydrates_g) nutritionalData += `<li><strong>Carbohydrates:</strong> ${data.carbohydrates_g} g</li>`;
-            if (data.protein_g) nutritionalData += `<li><strong>Protein:</strong> ${data.protein_g} g</li>`;
-            if (data.fat_g) nutritionalData += `<li><strong>Fat:</strong> ${data.fat_g} g</li>`;
-            if (data.fiber_g) nutritionalData += `<li><strong>Fiber:</strong> ${data.fiber_g} g</li>`;
-            if (data.sugar_g) nutritionalData += `<li><strong>Sugar:</strong> ${data.sugar_g} g</li>`;
-            if (data.water_g) nutritionalData += `<li><strong>Water:</strong> ${data.water_g} g</li>`;
-            
-            // Build vitamins data HTML
-            if (data.vitamin_c_mg) vitaminsData += `<li><strong>Vitamin C:</strong> ${data.vitamin_c_mg} mg</li>`;
-            if (data.calcium_mg) vitaminsData += `<li><strong>Calcium:</strong> ${data.calcium_mg} mg</li>`;
-            if (data.iron_mg) vitaminsData += `<li><strong>Iron:</strong> ${data.iron_mg} mg</li>`;
-            if (data.sodium_mg) vitaminsData += `<li><strong>Sodium:</strong> ${data.sodium_mg} mg</li>`;
-            if (data.potassium_mg) vitaminsData += `<li><strong>Potassium:</strong> ${data.potassium_mg} mg</li>`;
-            if (data.magnesium_mg) vitaminsData += `<li><strong>Magnesium:</strong> ${data.magnesium_mg} mg</li>`;
-            
-            // Update content with comprehensive information
-            enrichmentContent.innerHTML = `
-                <div class="row">
-                    ${imageHtml}
-                    ${classificationHtml}
-                    ${descriptionHtml}
-                    ${materialInfoHtml}
-                    
-                    <div class="col-md-6">
-                        <h6 class="text-secondary">Nutritional Data (per 100g)</h6>
-                        <ul class="list-unstyled">
-                            ${nutritionalData || '<li class="text-muted">No nutritional data available</li>'}
-                        </ul>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <h6 class="text-secondary">Vitamins & Minerals</h6>
-                        <ul class="list-unstyled">
-                            ${vitaminsData || '<li class="text-muted">No vitamin/mineral data available</li>'}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mt-3 pt-3 border-top">
-                    <small class="text-muted">
-                        <i class="bi bi-info-circle me-1"></i>
-                        Data sourced from <a href="${data.wikidata_entity}" target="_blank">Wikidata</a>
-                        ${alreadyEnriched ? ' (previously enriched)' : ' (just enriched)'}
-                        ${data.entity_label ? ` - Entity: ${data.entity_label}` : ''}
-                    </small>
-                </div>
-            `;
-            
-            // Update button to show enriched state
-            const enrichmentHeader = enrichBtn.closest('.card-header');
-            const badge = enrichmentHeader.querySelector('.badge');
-            if (badge) {
-                badge.innerHTML = '<i class="bi bi-check-circle me-1"></i>Enriched';
-                badge.className = 'badge bg-success';
-            } else {
-                enrichmentHeader.insertAdjacentHTML('beforeend', `
-                    <span class="badge bg-success">
-                        <i class="bi bi-check-circle me-1"></i>Enriched
-                    </span>
-                `);
-            }
-            enrichBtn.style.display = 'none';
-        }
-        
-        function showToast(title, message, type) {
-            // Simple toast notification
-            const toastHtml = `
-                <div class="toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0" role="alert">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            <strong>${title}:</strong> ${message}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                    </div>
-                </div>
-            `;
-            
-            // Add toast container if not exists
-            let toastContainer = document.querySelector('.toast-container');
-            if (!toastContainer) {
-                toastContainer = document.createElement('div');
-                toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-                document.body.appendChild(toastContainer);
-            }
-            
-            // Add toast and show it
-            toastContainer.insertAdjacentHTML('beforeend', toastHtml);
-            const toast = toastContainer.lastElementChild;
-            new bootstrap.Toast(toast).show();
-        }
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     </script>
 </body>
 
