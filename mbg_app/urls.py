@@ -9,6 +9,9 @@ app_name = 'mbg_app'
 urlpatterns = [
     # Web views
     path('', views.home, name='home'),
+    path('recipe/<str:recipe_id>/', views.recipe_detail, name='recipe_detail'),
+    path('ingredient/<str:ingredient_id>/', views.ingredient_detail, name='ingredient_detail'),
+    path('category/<str:category_id>/', views.category_detail, name='category_detail'),
     
     # API endpoints
     path('api/search/', views.search_api, name='search_api'),

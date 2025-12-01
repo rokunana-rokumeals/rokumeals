@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (result.type === 'recipe') {
             return `
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 result-card" data-type="recipe" data-id="${result.id}">
+                    <div class="card h-100 result-card clickable-card" data-type="recipe" data-id="${result.id}">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <i class="fas fa-utensils text-primary me-2"></i>
@@ -304,13 +304,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ).join(' ')}
                             </div>
                         </div>
+                        <div class="card-footer bg-transparent">
+                            <small class="text-muted">Click to view details</small>
+                        </div>
                     </div>
                 </div>
             `;
         } else if (result.type === 'ingredient') {
             return `
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 result-card" data-type="ingredient" data-id="${result.id}">
+                    <div class="card h-100 result-card clickable-card" data-type="ingredient" data-id="${result.id}">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <i class="fas fa-leaf text-success me-2"></i>
@@ -328,13 +331,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="badge bg-success">${result.category}</span>
                             </div>
                         </div>
+                        <div class="card-footer bg-transparent">
+                            <small class="text-muted">Click to view details</small>
+                        </div>
                     </div>
                 </div>
             `;
         } else if (result.type === 'category') {
             return `
                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 result-card" data-type="category" data-id="${result.id}">
+                    <div class="card h-100 result-card clickable-card" data-type="category" data-id="${result.id}">
                         <div class="card-body">
                             <h5 class="card-title">
                                 <i class="fas fa-tag text-warning me-2"></i>
@@ -344,6 +350,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span class="badge bg-${result.category_type === 'recipe' ? 'primary' : 'success'}">${result.category_type}</span>
                                 <small class="text-muted">${result.item_count || 0} items</small>
                             </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <small class="text-muted">Click to view details</small>
                         </div>
                     </div>
                 </div>
@@ -362,14 +371,64 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add click handlers for result cards
     document.addEventListener('click', function(e) {
-        const card = e.target.closest('.result-card');
+        const card = e.target.closest('.clickable-card');
         if (card) {
             const type = card.getAttribute('data-type');
             const id = card.getAttribute('data-id');
-            // TODO: Navigate to detail page or show modal
-            console.log(`Clicked ${type}:`, id);
+            
+            // Navigate to detail page
+            let detailUrl;
+            switch(type) {
+                case 'recipe':
+                    detailUrl = `{% url 'mbg_app:recipe_detail' 'PLACEHOLDER' %}`.replace('PLACEHOLDER', id);
+                    break;
+                case 'ingredient':
+                    detailUrl = `{% url 'mbg_app:ingredient_detail' 'PLACEHOLDER' %}`.replace('PLACEHOLDER', id);
+                    break;
+                case 'category':
+                    detailUrl = `{% url 'mbg_app:category_detail' 'PLACEHOLDER' %}`.replace('PLACEHOLDER', id);
+                    break;
+                default:
+                    return;
+            }
+            
+            window.location.href = detailUrl;
         }
     });
+    
+    // Add CSS for clickable cards
+    const style = document.createElement('style');
+    style.textContent = `
+        .clickable-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+        
+        .clickable-card:hover .card-title {
+            color: #007bff;
+        }
+        
+        .result-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+        }
+        
+        .result-card .card-body {
+            padding: 1.25rem;
+        }
+        
+        .result-card .card-footer {
+            padding: 0.5rem 1.25rem;
+            font-style: italic;
+        }
+    `;
+    document.head.appendChild(style);
 });
 </script>
 {% endblock %}

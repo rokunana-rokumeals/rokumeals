@@ -2,7 +2,7 @@
 MBG Knowledge Graph Views
 Views untuk search functionality dan API endpoints
 """
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
@@ -260,3 +260,179 @@ def stats_api(request):
             'status': 'error',
             'message': str(e)
         })
+
+
+def recipe_detail(request, recipe_id):
+    """Recipe detail page"""
+    try:
+        recipe = Recipe.nodes.get(recipe_id=recipe_id)
+        
+        # Get related ingredients
+        ingredients = []
+        for ingredient in recipe.contains.all():
+            ingredients.append({
+                'id': ingredient.ingredient_id,
+                'name': ingredient.name,
+                'category': ingredient.category,
+                'calories_per_100g': ingredient.calories_per_100g,
+            })
+        
+        # Get related categories
+        categories = []
+        for category in recipe.belongs_to.all():
+            categories.append({
+                'id': category.category_id,
+                'name': category.name,
+                'type': category.type,
+            })
+        
+        context = {
+            'item': recipe,
+            'ingredients': ingredients,
+            'categories': categories,
+            'related_items': ingredients + categories,
+            'type': 'recipe',
+            'title': recipe.title,
+        }
+        
+        return render(request, 'mbg_app/detail.html', context)
+        
+    except Recipe.DoesNotExist:
+        context = {
+            'error': 'Recipe not found',
+            'message': f'Recipe with ID "{recipe_id}" does not exist.'
+        }
+        return render(request, 'mbg_app/404.html', context, status=404)
+
+
+def ingredient_detail(request, ingredient_id):
+    """Ingredient detail page"""
+    try:
+        ingredient = Ingredient.nodes.get(ingredient_id=ingredient_id)
+        
+        # Get recipes that contain this ingredient
+        recipes = []
+        for recipe in ingredient.used_in.all():
+            recipes.append({
+                'id': recipe.recipe_id,
+                'title': recipe.title,
+                'rating': recipe.rating,
+                'calories': recipe.calories,
+            })
+        
+        # Get related categories (try both direct classification and category from name)
+        categories = []
+        try:
+            for category in ingredient.classified_as.all():
+                categories.append({
+                    'id': category.category_id,
+                    'name': category.name,
+                    'type': category.type,
+                })
+        except:
+            # If no direct relationship, try to find category by name
+            try:
+                category_nodes = Category.nodes.filter(name__icontains=ingredient.category)
+                for cat in category_nodes[:3]:
+                    categories.append({
+                        'id': cat.category_id,
+                        'name': cat.name,
+                        'type': cat.type,
+                    })
+            except:
+                pass
+        
+        context = {
+            'item': ingredient,
+            'recipes': recipes[:12],  # Limit to 12 recipes
+            'categories': categories,
+            'related_items': recipes[:8] + categories,
+            'type': 'ingredient',
+            'title': ingredient.name,
+        }
+        
+        return render(request, 'mbg_app/detail.html', context)
+        
+    except Ingredient.DoesNotExist:
+        context = {
+            'error': 'Ingredient not found',
+            'message': f'Ingredient with ID "{ingredient_id}" does not exist.'
+        }
+        return render(request, 'mbg_app/404.html', context, status=404)
+
+
+def category_detail(request, category_id):
+    """Category detail page"""
+    try:
+        category = Category.nodes.get(category_id=category_id)
+        
+        # Get recipes in this category using Cypher query
+        recipes = []
+        try:
+            # Try direct relationship first
+            for recipe in category.recipe_set.all():
+                recipes.append({
+                    'id': recipe.recipe_id,
+                    'title': recipe.title,
+                    'rating': recipe.rating,
+                    'calories': recipe.calories,
+                })
+        except:
+            # If no direct relationship, use Cypher query
+            from neomodel import db
+            results, meta = db.cypher_query(
+                "MATCH (c:Category {category_id: $category_id})<-[:BELONGS_TO]-(r:Recipe) "
+                "RETURN r.recipe_id as recipe_id, r.title as title, r.rating as rating, r.calories as calories "
+                "LIMIT 12",
+                {'category_id': category_id}
+            )
+            for result in results:
+                recipes.append({
+                    'id': result[0],
+                    'title': result[1], 
+                    'rating': result[2] or 0,
+                    'calories': result[3] or 0,
+                })
+        
+        # Get ingredients in this category
+        ingredients = []
+        try:
+            for ingredient in category.ingredient_set.all():
+                ingredients.append({
+                    'id': ingredient.ingredient_id,
+                    'name': ingredient.name,
+                    'calories_per_100g': ingredient.calories_per_100g,
+                })
+        except:
+            # Use Cypher query for ingredients
+            from neomodel import db
+            results, meta = db.cypher_query(
+                "MATCH (c:Category {category_id: $category_id})<-[:CLASSIFIED_AS]-(i:Ingredient) "
+                "RETURN i.ingredient_id as ingredient_id, i.name as name, i.calories_per_100g as calories "
+                "LIMIT 12",
+                {'category_id': category_id}
+            )
+            for result in results:
+                ingredients.append({
+                    'id': result[0],
+                    'name': result[1],
+                    'calories_per_100g': result[2] or 0,
+                })
+        
+        context = {
+            'item': category,
+            'recipes': recipes[:12],  # Limit to 12 recipes
+            'ingredients': ingredients[:12],  # Limit to 12 ingredients
+            'related_items': recipes[:6] + ingredients[:6],
+            'type': 'category',
+            'title': category.name,
+        }
+        
+        return render(request, 'mbg_app/detail.html', context)
+        
+    except Category.DoesNotExist:
+        context = {
+            'error': 'Category not found',
+            'message': f'Category with ID "{category_id}" does not exist.'
+        }
+        return render(request, 'mbg_app/404.html', context, status=404)
