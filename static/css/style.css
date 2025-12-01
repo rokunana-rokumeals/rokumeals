@@ -34,6 +34,7 @@ body {
     background-color: var(--body-bg);
     color: var(--dark-color);
     line-height: 1.6;
+    padding-top: 80px; /* Add padding to prevent navbar overlap */
 }
 
 h1, h2, h3, h4, h5, h6, .navbar-brand {
@@ -47,6 +48,10 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar-brand {
@@ -74,9 +79,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand {
     position: relative;
     overflow: hidden;
     color: white;
-    padding: 4rem 0;
-    margin-top: -76px; /* Offset navbar height */
-    padding-top: 116px; /* Add padding for content */
+    padding: 6rem 0 4rem 0; /* Adjusted padding for fixed navbar */
 }
 
 .hero-section::before {
