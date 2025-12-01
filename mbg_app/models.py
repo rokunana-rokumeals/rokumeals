@@ -46,6 +46,32 @@ class Ingredient(StructuredNode):
     calories_per_100g = IntegerProperty(default=0)
     kj_per_100g = IntegerProperty(default=0)
     
+    # Enhanced nutritional data from DBpedia
+    carbohydrates_g = FloatProperty()      # Carbohydrates per 100g
+    fat_g = FloatProperty()                # Fat content per 100g  
+    protein_g = FloatProperty()            # Protein per 100g
+    energy_kcal = FloatProperty()          # Energy in kcal
+    fiber_g = FloatProperty()              # Dietary fiber per 100g
+    sugar_g = FloatProperty()              # Sugar content per 100g
+    
+    # Vitamins (mg/μg per 100g)
+    vitamin_c_mg = FloatProperty()         # Vitamin C in mg
+    vitamin_a_ug = FloatProperty()         # Vitamin A in μg
+    vitamin_b6_mg = FloatProperty()        # Vitamin B6 in mg
+    
+    # Minerals (mg per 100g)
+    calcium_mg = FloatProperty()           # Calcium content
+    iron_mg = FloatProperty()              # Iron content
+    sodium_mg = FloatProperty()            # Sodium content
+    potassium_mg = FloatProperty()         # Potassium content
+    magnesium_mg = FloatProperty()         # Magnesium content
+    zinc_mg = FloatProperty()              # Zinc content
+    
+    # DBpedia metadata
+    dbpedia_uri = StringProperty()         # DBpedia resource URI
+    dbpedia_label = StringProperty()       # DBpedia label
+    enriched_at = StringProperty()         # Timestamp of enrichment
+    
     # Relationships
     used_in = RelationshipFrom('Recipe', 'CONTAINS')
     classified_as = RelationshipTo('Category', 'CLASSIFIED_AS')
@@ -57,6 +83,45 @@ class Ingredient(StructuredNode):
     def recipe_count(self):
         """Count berapa recipe menggunakan ingredient ini"""
         return len(self.used_in.all())
+    
+    @property
+    def is_enriched(self):
+        """Check if ingredient has been enriched with DBpedia data"""
+        return bool(self.dbpedia_uri)
+    
+    @property
+    def nutritional_completeness(self):
+        """Calculate percentage of nutritional data available (0-100)"""
+        nutritional_fields = [
+            'carbohydrates_g', 'fat_g', 'protein_g', 'energy_kcal', 'fiber_g', 'sugar_g',
+            'vitamin_c_mg', 'vitamin_a_ug', 'vitamin_b6_mg', 
+            'calcium_mg', 'iron_mg', 'sodium_mg', 'potassium_mg', 'magnesium_mg', 'zinc_mg'
+        ]
+        
+        filled_fields = sum(1 for field in nutritional_fields if getattr(self, field, None) is not None)
+        return (filled_fields / len(nutritional_fields)) * 100
+    
+    def get_nutritional_summary(self):
+        """Get a summary of available nutritional data"""
+        summary = {}
+        
+        # Macronutrients
+        if self.carbohydrates_g: summary['Carbohydrates'] = f"{self.carbohydrates_g}g"
+        if self.protein_g: summary['Protein'] = f"{self.protein_g}g"
+        if self.fat_g: summary['Fat'] = f"{self.fat_g}g"
+        if self.energy_kcal: summary['Energy'] = f"{self.energy_kcal} kcal"
+        if self.fiber_g: summary['Fiber'] = f"{self.fiber_g}g"
+        
+        # Key vitamins
+        if self.vitamin_c_mg: summary['Vitamin C'] = f"{self.vitamin_c_mg}mg"
+        if self.vitamin_a_ug: summary['Vitamin A'] = f"{self.vitamin_a_ug}μg"
+        
+        # Key minerals  
+        if self.calcium_mg: summary['Calcium'] = f"{self.calcium_mg}mg"
+        if self.iron_mg: summary['Iron'] = f"{self.iron_mg}mg"
+        if self.potassium_mg: summary['Potassium'] = f"{self.potassium_mg}mg"
+        
+        return summary
 
 
 class Category(StructuredNode):
