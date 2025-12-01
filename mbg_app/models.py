@@ -46,7 +46,7 @@ class Ingredient(StructuredNode):
     calories_per_100g = IntegerProperty(default=0)
     kj_per_100g = IntegerProperty(default=0)
     
-    # Enhanced nutritional data from DBpedia
+    # Enhanced nutritional data from Wikidata
     carbohydrates_g = FloatProperty()      # Carbohydrates per 100g
     fat_g = FloatProperty()                # Fat content per 100g  
     protein_g = FloatProperty()            # Protein per 100g
@@ -67,9 +67,15 @@ class Ingredient(StructuredNode):
     magnesium_mg = FloatProperty()         # Magnesium content
     zinc_mg = FloatProperty()              # Zinc content
     
-    # DBpedia metadata
-    dbpedia_uri = StringProperty()         # DBpedia resource URI
-    dbpedia_label = StringProperty()       # DBpedia label
+    # Wikidata comprehensive data
+    wikidata_entity = StringProperty()     # Wikidata entity URI
+    description = StringProperty()         # Description/abstract
+    image_url = StringProperty()           # Image URL from Wikidata
+    instance_of = StringProperty()         # What this ingredient is (instance of)
+    subclass_of = StringProperty()         # What category it belongs to
+    made_from = StringProperty()           # What it's made from
+    natural_product_of = StringProperty()  # Natural product of which organism
+    commons_gallery = StringProperty()     # Commons gallery link
     enriched_at = StringProperty()         # Timestamp of enrichment
     
     # Relationships
@@ -86,8 +92,8 @@ class Ingredient(StructuredNode):
     
     @property
     def is_enriched(self):
-        """Check if ingredient has been enriched with DBpedia data"""
-        return bool(self.dbpedia_uri)
+        """Check if ingredient has been enriched with Wikidata data"""
+        return bool(self.wikidata_entity)
     
     @property
     def nutritional_completeness(self):

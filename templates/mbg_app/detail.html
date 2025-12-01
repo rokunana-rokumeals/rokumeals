@@ -139,12 +139,33 @@
                         <div class="card-body">
                             <div id="enrichment-content">
                                 {% if item.wikidata_entity %}
-                                <!-- Already enriched - show data -->
+                                <!-- Already enriched - show comprehensive data -->
                                 <div class="row">
+                                    {% if item.image_url %}
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-secondary">Image</h6>
+                                        <img src="{{ item.image_url }}" alt="{{ item.name }}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if item.classification %}
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-secondary">Classification</h6>
+                                        <p class="mb-0">{{ item.classification }}</p>
+                                    </div>
+                                    {% endif %}
+                                    
                                     {% if item.description %}
                                     <div class="col-12 mb-3">
                                         <h6 class="text-secondary">Description</h6>
                                         <p class="mb-0">{{ item.description }}</p>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if item.material_info %}
+                                    <div class="col-12 mb-3">
+                                        <h6 class="text-secondary">Additional Information</h6>
+                                        <p class="mb-0">{{ item.material_info }}</p>
                                     </div>
                                     {% endif %}
                                     
@@ -156,6 +177,8 @@
                                             {% if item.protein_g %}<li><strong>Protein:</strong> {{ item.protein_g }} g</li>{% endif %}
                                             {% if item.fat_g %}<li><strong>Fat:</strong> {{ item.fat_g }} g</li>{% endif %}
                                             {% if item.fiber_g %}<li><strong>Fiber:</strong> {{ item.fiber_g }} g</li>{% endif %}
+                                            {% if item.sugar_g %}<li><strong>Sugar:</strong> {{ item.sugar_g }} g</li>{% endif %}
+                                            {% if item.water_g %}<li><strong>Water:</strong> {{ item.water_g }} g</li>{% endif %}
                                         </ul>
                                     </div>
                                     
@@ -167,6 +190,7 @@
                                             {% if item.iron_mg %}<li><strong>Iron:</strong> {{ item.iron_mg }} mg</li>{% endif %}
                                             {% if item.sodium_mg %}<li><strong>Sodium:</strong> {{ item.sodium_mg }} mg</li>{% endif %}
                                             {% if item.potassium_mg %}<li><strong>Potassium:</strong> {{ item.potassium_mg }} mg</li>{% endif %}
+                                            {% if item.magnesium_mg %}<li><strong>Magnesium:</strong> {{ item.magnesium_mg }} mg</li>{% endif %}
                                         </ul>
                                     </div>
                                 </div>
@@ -451,8 +475,53 @@
             const enrichmentContent = document.getElementById('enrichment-content');
             const enrichBtn = document.getElementById('enrichBtn');
             
+            // Build comprehensive data display
+            let imageHtml = '';
+            let classificationHtml = '';
+            let descriptionHtml = '';
+            let materialInfoHtml = '';
             let nutritionalData = '';
             let vitaminsData = '';
+            
+            // Image
+            if (data.image_url) {
+                imageHtml = `
+                    <div class="col-12 mb-3">
+                        <h6 class="text-secondary">Image</h6>
+                        <img src="${data.image_url}" alt="${data.entity_label || 'Ingredient'}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+                    </div>
+                `;
+            }
+            
+            // Classification
+            if (data.classification) {
+                classificationHtml = `
+                    <div class="col-12 mb-3">
+                        <h6 class="text-secondary">Classification</h6>
+                        <p class="mb-0">${data.classification}</p>
+                    </div>
+                `;
+            }
+            
+            // Description
+            if (data.description) {
+                descriptionHtml = `
+                    <div class="col-12 mb-3">
+                        <h6 class="text-secondary">Description</h6>
+                        <p class="mb-0">${data.description}</p>
+                    </div>
+                `;
+            }
+            
+            // Material and usage info
+            if (data.material_info) {
+                materialInfoHtml = `
+                    <div class="col-12 mb-3">
+                        <h6 class="text-secondary">Additional Information</h6>
+                        <p class="mb-0">${data.material_info}</p>
+                    </div>
+                `;
+            }
             
             // Build nutritional data HTML
             if (data.calories_per_100g) nutritionalData += `<li><strong>Calories:</strong> ${data.calories_per_100g} cal</li>`;
@@ -460,6 +529,8 @@
             if (data.protein_g) nutritionalData += `<li><strong>Protein:</strong> ${data.protein_g} g</li>`;
             if (data.fat_g) nutritionalData += `<li><strong>Fat:</strong> ${data.fat_g} g</li>`;
             if (data.fiber_g) nutritionalData += `<li><strong>Fiber:</strong> ${data.fiber_g} g</li>`;
+            if (data.sugar_g) nutritionalData += `<li><strong>Sugar:</strong> ${data.sugar_g} g</li>`;
+            if (data.water_g) nutritionalData += `<li><strong>Water:</strong> ${data.water_g} g</li>`;
             
             // Build vitamins data HTML
             if (data.vitamin_c_mg) vitaminsData += `<li><strong>Vitamin C:</strong> ${data.vitamin_c_mg} mg</li>`;
@@ -467,16 +538,15 @@
             if (data.iron_mg) vitaminsData += `<li><strong>Iron:</strong> ${data.iron_mg} mg</li>`;
             if (data.sodium_mg) vitaminsData += `<li><strong>Sodium:</strong> ${data.sodium_mg} mg</li>`;
             if (data.potassium_mg) vitaminsData += `<li><strong>Potassium:</strong> ${data.potassium_mg} mg</li>`;
+            if (data.magnesium_mg) vitaminsData += `<li><strong>Magnesium:</strong> ${data.magnesium_mg} mg</li>`;
             
-            // Update content
+            // Update content with comprehensive information
             enrichmentContent.innerHTML = `
                 <div class="row">
-                    ${data.description ? `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Description</h6>
-                        <p class="mb-0">${data.description}</p>
-                    </div>
-                    ` : ''}
+                    ${imageHtml}
+                    ${classificationHtml}
+                    ${descriptionHtml}
+                    ${materialInfoHtml}
                     
                     <div class="col-md-6">
                         <h6 class="text-secondary">Nutritional Data (per 100g)</h6>
@@ -498,6 +568,7 @@
                         <i class="bi bi-info-circle me-1"></i>
                         Data sourced from <a href="${data.wikidata_entity}" target="_blank">Wikidata</a>
                         ${alreadyEnriched ? ' (previously enriched)' : ' (just enriched)'}
+                        ${data.entity_label ? ` - Entity: ${data.entity_label}` : ''}
                     </small>
                 </div>
             `;

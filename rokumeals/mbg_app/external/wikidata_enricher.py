@@ -162,106 +162,154 @@ class WikidataEnricher:
 
     def get_nutritional_data(self, entity_uri: str) -> Dict:
         """
-        Get nutritional information for a Wikidata entity
+        Get comprehensive information for a Wikidata entity
+        Including image, class, description, source, and nutritional facts
         """
         try:
             # Extract entity ID from URI
             entity_id = entity_uri.split('/')[-1]
             
+            # Comprehensive query for general information
             query = f"""
-            SELECT DISTINCT ?property ?propertyLabel ?value ?unitLabel ?valueLabel WHERE {{
-              wd:{entity_id} ?property ?value .
+            SELECT DISTINCT ?itemLabel ?description ?image ?instanceOfLabel ?subclassOfLabel 
+                   ?madeFromLabel ?hasUseLabel ?hasCharacteristicLabel ?hasPartLabel
+                   ?calories ?carbs ?protein ?fat ?fiber ?water ?sugar
+                   ?vitaminC ?calcium ?iron ?sodium ?potassium ?magnesium
+            WHERE {{
+              wd:{entity_id} rdfs:label ?itemLabel .
+              FILTER(LANG(?itemLabel) = "en")
               
-              # Nutritional properties
-              VALUES ?property {{
-                wdt:P2043    # length/size
-                wdt:P2067    # mass  
-                wdt:P2076    # energy value
-                wdt:P2844    # carbohydrate content
-                wdt:P2864    # protein content
-                wdt:P2887    # fat content
-                wdt:P3074    # fiber content
-                wdt:P3078    # vitamin C content
-                wdt:P3082    # calcium content
-                wdt:P3083    # iron content
-                wdt:P3087    # sodium content
-                wdt:P3088    # potassium content
-                wdt:P527     # has part/ingredient
+              # Basic information
+              OPTIONAL {{ wd:{entity_id} schema:description ?description . FILTER(LANG(?description) = "en") }}
+              OPTIONAL {{ wd:{entity_id} wdt:P18 ?image . }}
+              
+              # Classification
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P31 ?instanceOf .
+                ?instanceOf rdfs:label ?instanceOfLabel .
+                FILTER(LANG(?instanceOfLabel) = "en")
+              }}
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P279 ?subclassOf .
+                ?subclassOf rdfs:label ?subclassOfLabel .
+                FILTER(LANG(?subclassOfLabel) = "en")
               }}
               
-              OPTIONAL {{ ?value wdt:P31 ?valueType . }}
-              OPTIONAL {{ ?value wdt:P2044 ?unit . }}
-              
-              SERVICE wikibase:label {{ 
-                bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". 
-                ?property rdfs:label ?propertyLabel .
-                ?value rdfs:label ?valueLabel .
-                ?unit rdfs:label ?unitLabel .
+              # Material and usage
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P186 ?madeFrom .
+                ?madeFrom rdfs:label ?madeFromLabel .
+                FILTER(LANG(?madeFromLabel) = "en")
               }}
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P366 ?hasUse .
+                ?hasUse rdfs:label ?hasUseLabel .
+                FILTER(LANG(?hasUseLabel) = "en")
+              }}
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P1552 ?hasCharacteristic .
+                ?hasCharacteristic rdfs:label ?hasCharacteristicLabel .
+                FILTER(LANG(?hasCharacteristicLabel) = "en")
+              }}
+              OPTIONAL {{ 
+                wd:{entity_id} wdt:P527 ?hasPart .
+                ?hasPart rdfs:label ?hasPartLabel .
+                FILTER(LANG(?hasPartLabel) = "en")
+              }}
+              
+              # Nutritional information (various properties)
+              OPTIONAL {{ wd:{entity_id} wdt:P2076 ?calories . }}        # energy value
+              OPTIONAL {{ wd:{entity_id} wdt:P2844 ?carbs . }}           # carbohydrate content
+              OPTIONAL {{ wd:{entity_id} wdt:P2864 ?protein . }}         # protein content  
+              OPTIONAL {{ wd:{entity_id} wdt:P2887 ?fat . }}             # fat content
+              OPTIONAL {{ wd:{entity_id} wdt:P3074 ?fiber . }}           # dietary fiber content
+              OPTIONAL {{ wd:{entity_id} wdt:P527/wdt:P2067 ?water . }}  # water content
+              OPTIONAL {{ wd:{entity_id} wdt:P5138 ?sugar . }}           # sugar content
+              
+              # Vitamins and minerals
+              OPTIONAL {{ wd:{entity_id} wdt:P3078 ?vitaminC . }}        # vitamin C content
+              OPTIONAL {{ wd:{entity_id} wdt:P3082 ?calcium . }}         # calcium content
+              OPTIONAL {{ wd:{entity_id} wdt:P3083 ?iron . }}            # iron content
+              OPTIONAL {{ wd:{entity_id} wdt:P3087 ?sodium . }}          # sodium content
+              OPTIONAL {{ wd:{entity_id} wdt:P3088 ?potassium . }}       # potassium content
+              OPTIONAL {{ wd:{entity_id} wdt:P3089 ?magnesium . }}       # magnesium content
+              
+              SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
             }}
+            LIMIT 1
             """
             
             self.sparql.setQuery(query)
             result = self.sparql.query().convert()
             
-            nutritional_data = {}
-            entity_label = entity_id  # Default fallback
+            enriched_data = {}
             
-            # Also get basic info about the entity
-            info_query = f"""
-            SELECT ?itemLabel ?description WHERE {{
-              wd:{entity_id} rdfs:label ?itemLabel .
-              OPTIONAL {{ wd:{entity_id} schema:description ?description . }}
-              FILTER(LANG(?itemLabel) = "en")
-              FILTER(LANG(?description) = "en")
-            }}
-            LIMIT 1
-            """
-            
-            self.sparql.setQuery(info_query)
-            info_result = self.sparql.query().convert()
-            
-            if info_result.get('results', {}).get('bindings'):
-                info_binding = info_result['results']['bindings'][0]
-                entity_label = info_binding.get('itemLabel', {}).get('value', entity_id)
-                if 'description' in info_binding:
-                    nutritional_data['description'] = info_binding['description']['value']
-            
-            # Process nutritional properties
             bindings = result.get('results', {}).get('bindings', [])
-            
-            # Map Wikidata properties to our fields
-            property_mapping = {
-                'P2076': 'calories_per_100g',    # energy value
-                'P2844': 'carbohydrates_g',      # carbohydrate content  
-                'P2864': 'protein_g',            # protein content
-                'P2887': 'fat_g',                # fat content
-                'P3074': 'fiber_g',              # fiber content
-                'P3078': 'vitamin_c_mg',         # vitamin C content
-                'P3082': 'calcium_mg',           # calcium content
-                'P3083': 'iron_mg',              # iron content
-                'P3087': 'sodium_mg',            # sodium content
-                'P3088': 'potassium_mg'          # potassium content
-            }
-            
-            for binding in bindings:
-                property_uri = binding.get('property', {}).get('value', '')
-                property_id = property_uri.split('/')[-1] if property_uri else ''
-                value = binding.get('value', {}).get('value', '')
+            if bindings:
+                binding = bindings[0]
                 
-                if property_id in property_mapping and value:
-                    field_name = property_mapping[property_id]
-                    numeric_value = self._extract_numeric_value(value)
-                    if numeric_value is not None:
-                        nutritional_data[field_name] = numeric_value
+                # Basic information
+                if 'itemLabel' in binding:
+                    enriched_data['entity_label'] = binding['itemLabel']['value']
+                
+                if 'description' in binding:
+                    enriched_data['description'] = binding['description']['value']
+                
+                if 'image' in binding:
+                    enriched_data['image_url'] = binding['image']['value']
+                
+                # Classification information
+                classifications = []
+                if 'instanceOfLabel' in binding:
+                    classifications.append(f"Instance of: {binding['instanceOfLabel']['value']}")
+                if 'subclassOfLabel' in binding:
+                    classifications.append(f"Subclass of: {binding['subclassOfLabel']['value']}")
+                if classifications:
+                    enriched_data['classification'] = "; ".join(classifications)
+                
+                # Material and usage information
+                material_info = []
+                if 'madeFromLabel' in binding:
+                    material_info.append(f"Made from: {binding['madeFromLabel']['value']}")
+                if 'hasUseLabel' in binding:
+                    material_info.append(f"Used as: {binding['hasUseLabel']['value']}")
+                if 'hasCharacteristicLabel' in binding:
+                    material_info.append(f"Characteristic: {binding['hasCharacteristicLabel']['value']}")
+                if 'hasPartLabel' in binding:
+                    material_info.append(f"Contains: {binding['hasPartLabel']['value']}")
+                if material_info:
+                    enriched_data['material_info'] = "; ".join(material_info)
+                
+                # Nutritional data with proper extraction
+                nutritional_fields = {
+                    'calories': 'calories_per_100g',
+                    'carbs': 'carbohydrates_g',
+                    'protein': 'protein_g',
+                    'fat': 'fat_g',
+                    'fiber': 'fiber_g',
+                    'water': 'water_g',
+                    'sugar': 'sugar_g',
+                    'vitaminC': 'vitamin_c_mg',
+                    'calcium': 'calcium_mg',
+                    'iron': 'iron_mg',
+                    'sodium': 'sodium_mg',
+                    'potassium': 'potassium_mg',
+                    'magnesium': 'magnesium_mg'
+                }
+                
+                for wikidata_field, our_field in nutritional_fields.items():
+                    if wikidata_field in binding and binding[wikidata_field]:
+                        value = binding[wikidata_field]['value']
+                        numeric_value = self._extract_numeric_value(value)
+                        if numeric_value is not None:
+                            enriched_data[our_field] = numeric_value
             
-            nutritional_data['wikidata_entity'] = entity_uri
-            nutritional_data['entity_label'] = entity_label
+            enriched_data['wikidata_entity'] = entity_uri
             
-            return nutritional_data
+            return enriched_data
             
         except Exception as e:
-            logger.error(f"Error getting nutritional data from {entity_uri}: {e}")
+            logger.error(f"Error getting comprehensive data from {entity_uri}: {e}")
             return {}
 
     def _extract_numeric_value(self, value_str: str) -> Optional[float]:

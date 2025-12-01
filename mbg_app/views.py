@@ -465,14 +465,22 @@ def enrich_ingredient(request, ingredient_id):
                 'data': {
                     'wikidata_entity': ingredient.wikidata_entity,
                     'description': getattr(ingredient, 'description', ''),
+                    'image_url': getattr(ingredient, 'image_url', ''),
+                    'classification': getattr(ingredient, 'classification', ''),
+                    'material_info': getattr(ingredient, 'material_info', ''),
                     'calories_per_100g': getattr(ingredient, 'calories_per_100g', None),
                     'carbohydrates_g': getattr(ingredient, 'carbohydrates_g', None),
                     'protein_g': getattr(ingredient, 'protein_g', None),
                     'fat_g': getattr(ingredient, 'fat_g', None),
                     'fiber_g': getattr(ingredient, 'fiber_g', None),
+                    'sugar_g': getattr(ingredient, 'sugar_g', None),
+                    'water_g': getattr(ingredient, 'water_g', None),
                     'vitamin_c_mg': getattr(ingredient, 'vitamin_c_mg', None),
                     'calcium_mg': getattr(ingredient, 'calcium_mg', None),
                     'iron_mg': getattr(ingredient, 'iron_mg', None),
+                    'sodium_mg': getattr(ingredient, 'sodium_mg', None),
+                    'potassium_mg': getattr(ingredient, 'potassium_mg', None),
+                    'magnesium_mg': getattr(ingredient, 'magnesium_mg', None),
                 }
             })
         
@@ -498,11 +506,14 @@ def enrich_ingredient(request, ingredient_id):
                 'protein_g': 'protein_g',
                 'fat_g': 'fat_g',
                 'fiber_g': 'fiber_g',
+                'sugar_g': 'sugar_g',
+                'water_g': 'water_g',
                 'vitamin_c_mg': 'vitamin_c_mg',
                 'calcium_mg': 'calcium_mg',
                 'iron_mg': 'iron_mg',
                 'sodium_mg': 'sodium_mg',
-                'potassium_mg': 'potassium_mg'
+                'potassium_mg': 'potassium_mg',
+                'magnesium_mg': 'magnesium_mg'
             }
             
             updated_fields = []
@@ -511,14 +522,22 @@ def enrich_ingredient(request, ingredient_id):
                     setattr(ingredient, target_field, enrichment_result[source_field])
                     updated_fields.append(target_field)
             
-            # Update other fields
-            if 'description' in enrichment_result:
-                ingredient.description = enrichment_result['description'][:500]
-                updated_fields.append('description')
+            # Update other comprehensive fields
+            comprehensive_fields = {
+                'description': 'description',
+                'image_url': 'image_url',
+                'classification': 'classification',
+                'material_info': 'material_info',
+                'wikidata_entity': 'wikidata_entity'
+            }
             
-            if 'wikidata_entity' in enrichment_result:
-                ingredient.wikidata_entity = enrichment_result['wikidata_entity']
-                updated_fields.append('wikidata_entity')
+            for source_field, target_field in comprehensive_fields.items():
+                if source_field in enrichment_result and enrichment_result[source_field]:
+                    if source_field == 'description':
+                        setattr(ingredient, target_field, enrichment_result[source_field][:500])
+                    else:
+                        setattr(ingredient, target_field, enrichment_result[source_field])
+                    updated_fields.append(target_field)
             
             # Save changes
             ingredient.save()
@@ -533,14 +552,22 @@ def enrich_ingredient(request, ingredient_id):
                     'entity_label': enrichment_result.get('entity_label', ''),
                     'wikidata_entity': enrichment_result.get('wikidata_entity', ''),
                     'description': enrichment_result.get('description', ''),
+                    'image_url': enrichment_result.get('image_url', ''),
+                    'classification': enrichment_result.get('classification', ''),
+                    'material_info': enrichment_result.get('material_info', ''),
                     'calories_per_100g': enrichment_result.get('calories_per_100g'),
                     'carbohydrates_g': enrichment_result.get('carbohydrates_g'),
                     'protein_g': enrichment_result.get('protein_g'),
                     'fat_g': enrichment_result.get('fat_g'),
                     'fiber_g': enrichment_result.get('fiber_g'),
+                    'sugar_g': enrichment_result.get('sugar_g'),
+                    'water_g': enrichment_result.get('water_g'),
                     'vitamin_c_mg': enrichment_result.get('vitamin_c_mg'),
                     'calcium_mg': enrichment_result.get('calcium_mg'),
                     'iron_mg': enrichment_result.get('iron_mg'),
+                    'sodium_mg': enrichment_result.get('sodium_mg'),
+                    'potassium_mg': enrichment_result.get('potassium_mg'),
+                    'magnesium_mg': enrichment_result.get('magnesium_mg'),
                 }
             })
         else:
