@@ -14,10 +14,15 @@ from .models import Recipe, Ingredient, Category
 
 def home(request):
     """Homepage dengan search interface"""
+    # Use efficient Cypher queries instead of nodes.all()
+    recipe_count, _ = db.cypher_query("MATCH (r:Recipe) RETURN count(r) as count")
+    ingredient_count, _ = db.cypher_query("MATCH (i:Ingredient) RETURN count(i) as count")
+    category_count, _ = db.cypher_query("MATCH (c:Category) RETURN count(c) as count")
+    
     context = {
-        'total_recipes': len(Recipe.nodes.all()),
-        'total_ingredients': len(Ingredient.nodes.all()),
-        'total_categories': len(Category.nodes.all()),
+        'total_recipes': recipe_count[0][0],
+        'total_ingredients': ingredient_count[0][0],
+        'total_categories': category_count[0][0],
     }
     return render(request, 'mbg_app/home.html', context)
 
