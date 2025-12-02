@@ -75,6 +75,15 @@
                                     <option value="ingredient">Ingredients</option>
                                     <option value="category">Categories</option>
                                 </select>
+                                <!-- Semantic Search Toggle -->
+                                <div class="input-group-text">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="semanticSearchToggle">
+                                        <label class="form-check-label" for="semanticSearchToggle">
+                                            <i class="bi bi-brain"></i> Semantic
+                                        </label>
+                                    </div>
+                                </div>
                                 <button class="btn btn-primary px-4" type="submit">
                                     <i class="fas fa-search me-2"></i> Search
                                 </button>
@@ -181,6 +190,7 @@
         const loadingSpinner = document.getElementById('loadingSpinner');
         const searchResults = document.getElementById('searchResults');
         const autocompleteDropdown = document.getElementById('autocompleteDropdown');
+        const semanticSearchToggle = document.getElementById('semanticSearchToggle');
 
         // Search form submission
         searchForm.addEventListener('submit', function (e) {
@@ -222,6 +232,7 @@
         async function performSearch() {
             const query = searchInput.value.trim();
             const type = searchType.value;
+            const useSemanticSearch = semanticSearchToggle.checked;
 
             if (!query) {
                 alert('Please enter a search query');
@@ -233,13 +244,22 @@
             autocompleteDropdown.style.display = 'none';
 
             try {
-                const response = await fetch(`/api/search/?q=${encodeURIComponent(query)}&type=${type}&limit=20`);
+                // Choose search endpoint based on semantic search toggle
+                const endpoint = useSemanticSearch ? '/api/semantic-search/' : '/api/search/';
+                let url = `${endpoint}?q=${encodeURIComponent(query)}&type=${type}&limit=20`;
+                
+                // Add threshold for semantic search
+                if (useSemanticSearch) {
+                    url += '&threshold=0.6';
+                }
+                
+                const response = await fetch(url);
                 const data = await response.json();
 
                 loadingSpinner.style.display = 'none';
 
                 if (data.status === 'success') {
-                    displaySearchResults(data.data, query);
+                    displaySearchResults(data.data, query, useSemanticSearch);
                 } else {
                     searchResults.innerHTML = `<div class="alert alert-warning">${data.message}</div>`;
                 }
@@ -287,29 +307,43 @@
             });
         }
 
-        function displaySearchResults(results, query) {
+        function displaySearchResults(results, query, isSemanticSearch = false) {
             if (results.length === 0) {
+                const suggestion = isSemanticSearch ? 'Try different keywords or disable semantic search' : 'Try different keywords or enable semantic search';
                 searchResults.innerHTML = `
                 <div class="text-center">
                     <i class="fas fa-search fa-3x text-muted mb-3"></i>
                     <h4>No results found for "${query}"</h4>
-                    <p class="text-muted">Try different keywords or check your spelling.</p>
+                    <p class="text-muted">${suggestion}</p>
                 </div>
             `;
                 return;
             }
 
+            const searchMethod = isSemanticSearch ? 
+                '<span class="badge bg-warning text-dark me-2"><i class="bi bi-brain"></i> Semantic</span>' : 
+                '<span class="badge bg-info me-2"><i class="fas fa-search"></i> Keyword</span>';
+
             const html = `
-            <h3>Search Results for "${query}" (${results.length} found)</h3>
-            <div class="row">
-                ${results.map(result => createResultCard(result)).join('')}
-            </div>
-        `;
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Search Results for "${query}"</h3>
+                    <div>
+                        ${searchMethod}
+                        <span class="badge bg-secondary">${results.length} results</span>
+                    </div>
+                </div>
+                <div class="row">
+                    ${results.map(result => createResultCard(result, isSemanticSearch)).join('')}
+                </div>
+            `;
 
             searchResults.innerHTML = html;
         }
 
-        function createResultCard(result) {
+        function createResultCard(result, showSimilarityScore = false) {
+            const similarityBadge = showSimilarityScore && result.similarity_score ? 
+                `<span class="badge bg-success ms-2">${(result.similarity_score * 100).toFixed(1)}% match</span>` : '';
+                
             if (result.type === 'recipe') {
                 return `
                 <div class="col-md-6 col-lg-4 mb-4">
@@ -318,6 +352,7 @@
                             <h5 class="card-title">
                                 <i class="fas fa-utensils text-primary me-2"></i>
                                 ${result.title}
+                                ${similarityBadge}
                             </h5>
                             <p class="card-text text-muted">${result.description || 'No description available'}</p>
                             <div class="d-flex justify-content-between align-items-center">

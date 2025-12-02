@@ -1,0 +1,5682 @@
+[
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nut. Type: recipe. Contains: .",
+    "name": "Nut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Halibut. Type: recipe. Contains: .",
+    "name": "Halibut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Emeril Lagasse. Type: recipe. Contains: .",
+    "name": "Emeril Lagasse",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Winter. Type: recipe. Contains: .",
+    "name": "Winter",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vegetarian. Type: recipe. Contains: .",
+    "name": "Vegetarian",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nectarine. Type: recipe. Contains: .",
+    "name": "Nectarine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Thyme. Type: recipe. Contains: .",
+    "name": "Thyme",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lime. Type: recipe. Contains: .",
+    "name": "Lime",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Monterey Jack. Type: recipe. Contains: .",
+    "name": "Monterey Jack",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brine. Type: recipe. Contains: .",
+    "name": "Brine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kale. Type: recipe. Contains: .",
+    "name": "Kale",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Smoker. Type: recipe. Contains: .",
+    "name": "Smoker",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Windsor. Type: recipe. Contains: .",
+    "name": "Windsor",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cornmeal. Type: recipe. Contains: .",
+    "name": "Cornmeal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pasadena. Type: recipe. Contains: .",
+    "name": "Pasadena",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kansas City. Type: recipe. Contains: .",
+    "name": "Kansas City",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pork. Type: ingredient. Contains: .",
+    "name": "Pork",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tart. Type: recipe. Contains: .",
+    "name": "Tart",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Persimmon. Type: recipe. Contains: .",
+    "name": "Persimmon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "White Wine. Type: recipe. Contains: .",
+    "name": "White Wine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Scallop. Type: recipe. Contains: .",
+    "name": "Scallop",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Seattle. Type: recipe. Contains: .",
+    "name": "Seattle",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tree Nut Free. Type: recipe. Contains: .",
+    "name": "Tree Nut Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Game. Type: recipe. Contains: .",
+    "name": "Game",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chile Pepper. Type: recipe. Contains: .",
+    "name": "Chile Pepper",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Super Bowl. Type: recipe. Contains: .",
+    "name": "Super Bowl",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sake. Type: recipe. Contains: .",
+    "name": "Sake",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Plantain. Type: recipe. Contains: .",
+    "name": "Plantain",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fruit. Type: recipe. Contains: .",
+    "name": "Fruit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fall. Type: recipe. Contains: .",
+    "name": "Fall",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "22-Minute Meals. Type: recipe. Contains: .",
+    "name": "22-Minute Meals",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Semolina. Type: recipe. Contains: .",
+    "name": "Semolina",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oregon. Type: recipe. Contains: .",
+    "name": "Oregon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Shrimp. Type: recipe. Contains: .",
+    "name": "Shrimp",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Coffee Grinder. Type: recipe. Contains: .",
+    "name": "Coffee Grinder",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Edible Gift. Type: recipe. Contains: .",
+    "name": "Edible Gift",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pork Chop. Type: recipe. Contains: .",
+    "name": "Pork Chop",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Yogurt. Type: ingredient. Contains: .",
+    "name": "Yogurt",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pickles. Type: recipe. Contains: .",
+    "name": "Pickles",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "AlcoholicDrinks&Beverages. Type: ingredient. Contains: .",
+    "name": "AlcoholicDrinks&Beverages",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Sodium. Type: recipe. Contains: .",
+    "name": "Low Sodium",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Eau de Vie. Type: recipe. Contains: .",
+    "name": "Eau de Vie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Deep-Fry. Type: recipe. Contains: .",
+    "name": "Deep-Fry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Marinate. Type: recipe. Contains: .",
+    "name": "Marinate",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Freeze/Chill. Type: recipe. Contains: .",
+    "name": "Freeze/Chill",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Waffle. Type: recipe. Contains: .",
+    "name": "Waffle",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hamburger. Type: recipe. Contains: .",
+    "name": "Hamburger",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chestnut. Type: recipe. Contains: .",
+    "name": "Chestnut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Camping. Type: recipe. Contains: .",
+    "name": "Camping",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soy. Type: recipe. Contains: .",
+    "name": "Soy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Snapper. Type: recipe. Contains: .",
+    "name": "Snapper",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Anchovy. Type: recipe. Contains: .",
+    "name": "Anchovy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sweet Potato/Yam. Type: recipe. Contains: .",
+    "name": "Sweet Potato/Yam",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Australia. Type: recipe. Contains: .",
+    "name": "Australia",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sherry. Type: recipe. Contains: .",
+    "name": "Sherry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fish&Seafood. Type: ingredient. Contains: .",
+    "name": "Fish&Seafood",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rice. Type: recipe. Contains: .",
+    "name": "Rice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vinegar. Type: recipe. Contains: .",
+    "name": "Vinegar",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Gouda. Type: recipe. Contains: .",
+    "name": "Gouda",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poultry. Type: recipe. Contains: .",
+    "name": "Poultry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cantaloupe. Type: recipe. Contains: .",
+    "name": "Cantaloupe",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Christmas Eve. Type: recipe. Contains: .",
+    "name": "Christmas Eve",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Saffron. Type: recipe. Contains: .",
+    "name": "Saffron",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grappa. Type: recipe. Contains: .",
+    "name": "Grappa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "SlicedCheese. Type: ingredient. Contains: .",
+    "name": "SlicedCheese",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hors D'Oeuvre. Type: recipe. Contains: .",
+    "name": "Hors D'Oeuvre",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Simmer. Type: recipe. Contains: .",
+    "name": "Simmer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cheddar. Type: recipe. Contains: .",
+    "name": "Cheddar",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "#WasteLess. Type: recipe. Contains: .",
+    "name": "#WasteLess",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Anthony Bourdain. Type: recipe. Contains: .",
+    "name": "Anthony Bourdain",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cook Like a Diner. Type: recipe. Contains: .",
+    "name": "Cook Like a Diner",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Alcoholic. Type: recipe. Contains: .",
+    "name": "Alcoholic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fourth of July. Type: recipe. Contains: .",
+    "name": "Fourth of July",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Friendsgiving. Type: recipe. Contains: .",
+    "name": "Friendsgiving",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fruit Juice. Type: recipe. Contains: .",
+    "name": "Fruit Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "St. Patrick's Day. Type: recipe. Contains: .",
+    "name": "St. Patrick's Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Gourmet. Type: recipe. Contains: .",
+    "name": "Gourmet",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Orange Juice. Type: recipe. Contains: .",
+    "name": "Orange Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chile. Type: recipe. Contains: .",
+    "name": "Chile",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chickpea. Type: recipe. Contains: .",
+    "name": "Chickpea",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Texas. Type: recipe. Contains: .",
+    "name": "Texas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rabbit. Type: recipe. Contains: .",
+    "name": "Rabbit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cookie. Type: recipe. Contains: .",
+    "name": "Cookie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Gin. Type: recipe. Contains: .",
+    "name": "Gin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Margarita. Type: recipe. Contains: .",
+    "name": "Margarita",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beer. Type: ingredient. Contains: .",
+    "name": "Beer",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Frittata. Type: recipe. Contains: .",
+    "name": "Frittata",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Port. Type: recipe. Contains: .",
+    "name": "Port",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kosher for Passover. Type: recipe. Contains: .",
+    "name": "Kosher for Passover",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Prune. Type: recipe. Contains: .",
+    "name": "Prune",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cheese. Type: ingredient. Contains: .",
+    "name": "Cheese",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Sugar. Type: recipe. Contains: .",
+    "name": "Low Sugar",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kahlúa. Type: recipe. Contains: .",
+    "name": "Kahlúa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Mexico. Type: recipe. Contains: .",
+    "name": "New Mexico",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Birthday. Type: recipe. Contains: .",
+    "name": "Birthday",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ice Cream. Type: recipe. Contains: .",
+    "name": "Ice Cream",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Currant. Type: recipe. Contains: .",
+    "name": "Currant",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vermont. Type: recipe. Contains: .",
+    "name": "Vermont",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Feta. Type: recipe. Contains: .",
+    "name": "Feta",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Punch. Type: recipe. Contains: .",
+    "name": "Punch",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "30 Days of Groceries. Type: recipe. Contains: .",
+    "name": "30 Days of Groceries",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Offal&Giblets. Type: ingredient. Contains: .",
+    "name": "Offal&Giblets",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kiwi. Type: recipe. Contains: .",
+    "name": "Kiwi",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rum. Type: recipe. Contains: .",
+    "name": "Rum",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Skewer. Type: recipe. Contains: .",
+    "name": "Skewer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Candy Thermometer. Type: recipe. Contains: .",
+    "name": "Candy Thermometer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Passover. Type: recipe. Contains: .",
+    "name": "Passover",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Paprika. Type: recipe. Contains: .",
+    "name": "Paprika",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Octopus. Type: recipe. Contains: .",
+    "name": "Octopus",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Peach. Type: recipe. Contains: .",
+    "name": "Peach",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chicken. Type: recipe. Contains: .",
+    "name": "Chicken",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Washington, D.C.. Type: recipe. Contains: .",
+    "name": "Washington, D.C.",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rye. Type: recipe. Contains: .",
+    "name": "Rye",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Marinade. Type: recipe. Contains: .",
+    "name": "Marinade",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Caviar. Type: recipe. Contains: .",
+    "name": "Caviar",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grand Marnier. Type: recipe. Contains: .",
+    "name": "Grand Marnier",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vegetable. Type: recipe. Contains: .",
+    "name": "Vegetable",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Year's Day. Type: recipe. Contains: .",
+    "name": "New Year's Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pacific Palisades. Type: recipe. Contains: .",
+    "name": "Pacific Palisades",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chive. Type: recipe. Contains: .",
+    "name": "Chive",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mardi Gras. Type: recipe. Contains: .",
+    "name": "Mardi Gras",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "France. Type: recipe. Contains: .",
+    "name": "France",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Prosciutto. Type: recipe. Contains: .",
+    "name": "Prosciutto",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Butter. Type: recipe. Contains: .",
+    "name": "Butter",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Salad. Type: recipe. Contains: .",
+    "name": "Salad",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Minnesota. Type: recipe. Contains: .",
+    "name": "Minnesota",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dallas. Type: recipe. Contains: .",
+    "name": "Dallas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pasta. Type: recipe. Contains: .",
+    "name": "Pasta",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Blackberry. Type: recipe. Contains: .",
+    "name": "Blackberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sausage. Type: ingredient. Contains: .",
+    "name": "Sausage",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Frozen Dessert. Type: recipe. Contains: .",
+    "name": "Frozen Dessert",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Frangelico. Type: recipe. Contains: .",
+    "name": "Frangelico",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brown Rice. Type: recipe. Contains: .",
+    "name": "Brown Rice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Missouri. Type: recipe. Contains: .",
+    "name": "Missouri",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lamb Shank. Type: recipe. Contains: .",
+    "name": "Lamb Shank",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cr��me de Cacao. Type: recipe. Contains: .",
+    "name": "Cr��me de Cacao",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spinach. Type: recipe. Contains: .",
+    "name": "Spinach",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spirit. Type: recipe. Contains: .",
+    "name": "Spirit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Coffee. Type: recipe. Contains: .",
+    "name": "Coffee",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sesame Oil. Type: recipe. Contains: .",
+    "name": "Sesame Oil",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "North Carolina. Type: recipe. Contains: .",
+    "name": "North Carolina",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nancy Silverton. Type: recipe. Contains: .",
+    "name": "Nancy Silverton",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tropical&ExoticFruits. Type: ingredient. Contains: .",
+    "name": "Tropical&ExoticFruits",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Steam. Type: recipe. Contains: .",
+    "name": "Steam",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dorie Greenspan. Type: recipe. Contains: .",
+    "name": "Dorie Greenspan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sugar Conscious. Type: recipe. Contains: .",
+    "name": "Sugar Conscious",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bulgaria. Type: recipe. Contains: .",
+    "name": "Bulgaria",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Back to School. Type: recipe. Contains: .",
+    "name": "Back to School",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Green Bean. Type: recipe. Contains: .",
+    "name": "Green Bean",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Venison&Game. Type: ingredient. Contains: .",
+    "name": "Venison&Game",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bulgur. Type: recipe. Contains: .",
+    "name": "Bulgur",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Milk/Cream. Type: recipe. Contains: .",
+    "name": "Milk/Cream",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fontina. Type: recipe. Contains: .",
+    "name": "Fontina",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Marshmallow. Type: recipe. Contains: .",
+    "name": "Marshmallow",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Clam. Type: recipe. Contains: .",
+    "name": "Clam",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poultry Sausage. Type: recipe. Contains: .",
+    "name": "Poultry Sausage",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Capers. Type: recipe. Contains: .",
+    "name": "Capers",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Avocado. Type: recipe. Contains: .",
+    "name": "Avocado",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mississippi. Type: recipe. Contains: .",
+    "name": "Mississippi",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Cholesterol. Type: recipe. Contains: .",
+    "name": "Low Cholesterol",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cookies. Type: recipe. Contains: .",
+    "name": "Cookies",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vermouth. Type: recipe. Contains: .",
+    "name": "Vermouth",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Marsala. Type: recipe. Contains: .",
+    "name": "Marsala",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Salmon. Type: recipe. Contains: .",
+    "name": "Salmon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Champagne. Type: recipe. Contains: .",
+    "name": "Champagne",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Louisville. Type: recipe. Contains: .",
+    "name": "Louisville",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "ColdCuts&LunchMeat. Type: ingredient. Contains: .",
+    "name": "ColdCuts&LunchMeat",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Carrot. Type: recipe. Contains: .",
+    "name": "Carrot",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pancake. Type: recipe. Contains: .",
+    "name": "Pancake",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cumin. Type: recipe. Contains: .",
+    "name": "Cumin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fortified Wine. Type: recipe. Contains: .",
+    "name": "Fortified Wine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Legume. Type: recipe. Contains: .",
+    "name": "Legume",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Venison. Type: recipe. Contains: .",
+    "name": "Venison",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bass. Type: recipe. Contains: .",
+    "name": "Bass",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lentil. Type: recipe. Contains: .",
+    "name": "Lentil",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fish. Type: recipe. Contains: .",
+    "name": "Fish",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Passion Fruit. Type: recipe. Contains: .",
+    "name": "Passion Fruit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Watercress. Type: recipe. Contains: .",
+    "name": "Watercress",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pine Nut. Type: recipe. Contains: .",
+    "name": "Pine Nut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Melon. Type: recipe. Contains: .",
+    "name": "Melon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Meatloaf. Type: recipe. Contains: .",
+    "name": "Meatloaf",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soda&SoftDrinks. Type: ingredient. Contains: .",
+    "name": "Soda&SoftDrinks",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sourdough. Type: recipe. Contains: .",
+    "name": "Sourdough",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oregano. Type: recipe. Contains: .",
+    "name": "Oregano",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cakes&Pies. Type: ingredient. Contains: .",
+    "name": "Cakes&Pies",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "No Sugar Added. Type: recipe. Contains: .",
+    "name": "No Sugar Added",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sukkot. Type: recipe. Contains: .",
+    "name": "Sukkot",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Leafy Green. Type: recipe. Contains: .",
+    "name": "Leafy Green",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pennsylvania. Type: recipe. Contains: .",
+    "name": "Pennsylvania",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fruits. Type: ingredient. Contains: .",
+    "name": "Fruits",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Radish. Type: recipe. Contains: .",
+    "name": "Radish",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quinoa. Type: recipe. Contains: .",
+    "name": "Quinoa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fry. Type: recipe. Contains: .",
+    "name": "Fry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spain. Type: recipe. Contains: .",
+    "name": "Spain",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bell Pepper. Type: recipe. Contains: .",
+    "name": "Bell Pepper",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rosemary. Type: recipe. Contains: .",
+    "name": "Rosemary",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pineapple. Type: recipe. Contains: .",
+    "name": "Pineapple",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Okra. Type: recipe. Contains: .",
+    "name": "Okra",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mortar and Pestle. Type: recipe. Contains: .",
+    "name": "Mortar and Pestle",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Picnic. Type: recipe. Contains: .",
+    "name": "Picnic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Crab. Type: recipe. Contains: .",
+    "name": "Crab",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cake. Type: recipe. Contains: .",
+    "name": "Cake",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cabbage. Type: recipe. Contains: .",
+    "name": "Cabbage",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Flaming Hot Summer. Type: recipe. Contains: .",
+    "name": "Flaming Hot Summer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low/No Sugar. Type: recipe. Contains: .",
+    "name": "Low/No Sugar",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Side. Type: recipe. Contains: .",
+    "name": "Side",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ramadan. Type: recipe. Contains: .",
+    "name": "Ramadan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beef Shank. Type: recipe. Contains: .",
+    "name": "Beef Shank",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lasagna. Type: recipe. Contains: .",
+    "name": "Lasagna",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Potato. Type: recipe. Contains: .",
+    "name": "Potato",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cream Cheese. Type: recipe. Contains: .",
+    "name": "Cream Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cocktail Party. Type: recipe. Contains: .",
+    "name": "Cocktail Party",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Apple Juice. Type: recipe. Contains: .",
+    "name": "Apple Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Michigan. Type: recipe. Contains: .",
+    "name": "Michigan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sardine. Type: recipe. Contains: .",
+    "name": "Sardine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Peanut. Type: recipe. Contains: .",
+    "name": "Peanut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Custard. Type: recipe. Contains: .",
+    "name": "Custard",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Hampshire. Type: recipe. Contains: .",
+    "name": "New Hampshire",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Clove. Type: recipe. Contains: .",
+    "name": "Clove",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quince. Type: recipe. Contains: .",
+    "name": "Quince",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Paris. Type: recipe. Contains: .",
+    "name": "Paris",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quick & Easy. Type: recipe. Contains: .",
+    "name": "Quick & Easy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "St. Louis. Type: recipe. Contains: .",
+    "name": "St. Louis",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Paleo. Type: recipe. Contains: .",
+    "name": "Paleo",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Egg. Type: recipe. Contains: .",
+    "name": "Egg",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Orleans. Type: recipe. Contains: .",
+    "name": "New Orleans",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pork Tenderloin. Type: recipe. Contains: .",
+    "name": "Pork Tenderloin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cashew. Type: recipe. Contains: .",
+    "name": "Cashew",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Christmas. Type: recipe. Contains: .",
+    "name": "Christmas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Whole Wheat. Type: recipe. Contains: .",
+    "name": "Whole Wheat",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Raisin. Type: recipe. Contains: .",
+    "name": "Raisin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lemon Juice. Type: recipe. Contains: .",
+    "name": "Lemon Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Broccoli. Type: recipe. Contains: .",
+    "name": "Broccoli",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Colorado. Type: recipe. Contains: .",
+    "name": "Colorado",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cinco de Mayo. Type: recipe. Contains: .",
+    "name": "Cinco de Mayo",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Steak. Type: recipe. Contains: .",
+    "name": "Steak",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tennessee. Type: recipe. Contains: .",
+    "name": "Tennessee",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Shower. Type: recipe. Contains: .",
+    "name": "Shower",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dinner. Type: recipe. Contains: .",
+    "name": "Dinner",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dairy. Type: recipe. Contains: .",
+    "name": "Dairy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Triple Sec. Type: recipe. Contains: .",
+    "name": "Triple Sec",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mezcal. Type: recipe. Contains: .",
+    "name": "Mezcal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lobster. Type: recipe. Contains: .",
+    "name": "Lobster",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pepper. Type: recipe. Contains: .",
+    "name": "Pepper",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Orzo. Type: recipe. Contains: .",
+    "name": "Orzo",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Party. Type: recipe. Contains: .",
+    "name": "Party",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poblano. Type: recipe. Contains: .",
+    "name": "Poblano",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Arizona. Type: recipe. Contains: .",
+    "name": "Arizona",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Epi + USHG. Type: recipe. Contains: .",
+    "name": "Epi + USHG",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wild Rice. Type: recipe. Contains: .",
+    "name": "Wild Rice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Iced Tea. Type: recipe. Contains: .",
+    "name": "Iced Tea",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Yellow Squash. Type: recipe. Contains: .",
+    "name": "Yellow Squash",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pasta Maker. Type: recipe. Contains: .",
+    "name": "Pasta Maker",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ground Lamb. Type: recipe. Contains: .",
+    "name": "Ground Lamb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Papaya. Type: recipe. Contains: .",
+    "name": "Papaya",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Philippines. Type: recipe. Contains: .",
+    "name": "Philippines",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Zucchini. Type: recipe. Contains: .",
+    "name": "Zucchini",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Leek. Type: recipe. Contains: .",
+    "name": "Leek",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tequila. Type: recipe. Contains: .",
+    "name": "Tequila",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "House Cocktail. Type: recipe. Contains: .",
+    "name": "House Cocktail",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Virginia. Type: recipe. Contains: .",
+    "name": "Virginia",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "England. Type: recipe. Contains: .",
+    "name": "England",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Drinks. Type: recipe. Contains: .",
+    "name": "Drinks",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chill. Type: recipe. Contains: .",
+    "name": "Chill",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Swiss Cheese. Type: recipe. Contains: .",
+    "name": "Swiss Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Entertaining. Type: recipe. Contains: .",
+    "name": "Entertaining",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Anniversary. Type: recipe. Contains: .",
+    "name": "Anniversary",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Jamaica. Type: recipe. Contains: .",
+    "name": "Jamaica",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rhubarb. Type: recipe. Contains: .",
+    "name": "Rhubarb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hominy/Cornmeal/Masa. Type: recipe. Contains: .",
+    "name": "Hominy/Cornmeal/Masa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kumquat. Type: recipe. Contains: .",
+    "name": "Kumquat",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Biscuit. Type: recipe. Contains: .",
+    "name": "Biscuit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Non-AlcoholicDrinks&Beverages. Type: ingredient. Contains: .",
+    "name": "Non-AlcoholicDrinks&Beverages",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Butternut Squash. Type: recipe. Contains: .",
+    "name": "Butternut Squash",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vodka. Type: recipe. Contains: .",
+    "name": "Vodka",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Aspen. Type: recipe. Contains: .",
+    "name": "Aspen",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hawaii. Type: recipe. Contains: .",
+    "name": "Hawaii",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Campari. Type: recipe. Contains: .",
+    "name": "Campari",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Year's Eve. Type: recipe. Contains: .",
+    "name": "New Year's Eve",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fritter. Type: recipe. Contains: .",
+    "name": "Fritter",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cinnamon. Type: recipe. Contains: .",
+    "name": "Cinnamon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Non-Alcoholic. Type: recipe. Contains: .",
+    "name": "Non-Alcoholic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Squid. Type: recipe. Contains: .",
+    "name": "Squid",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Banana. Type: recipe. Contains: .",
+    "name": "Banana",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lunar New Year. Type: recipe. Contains: .",
+    "name": "Lunar New Year",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Family Reunion. Type: recipe. Contains: .",
+    "name": "Family Reunion",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Date. Type: recipe. Contains: .",
+    "name": "Date",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dishes&Meals. Type: ingredient. Contains: .",
+    "name": "Dishes&Meals",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Noodle. Type: recipe. Contains: .",
+    "name": "Noodle",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Honey. Type: recipe. Contains: .",
+    "name": "Honey",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cherry. Type: recipe. Contains: .",
+    "name": "Cherry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pea. Type: recipe. Contains: .",
+    "name": "Pea",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Summer. Type: recipe. Contains: .",
+    "name": "Summer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kentucky. Type: recipe. Contains: .",
+    "name": "Kentucky",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Squash. Type: recipe. Contains: .",
+    "name": "Squash",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tea. Type: recipe. Contains: .",
+    "name": "Tea",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Providence. Type: recipe. Contains: .",
+    "name": "Providence",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Garlic. Type: recipe. Contains: .",
+    "name": "Garlic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poppy. Type: recipe. Contains: .",
+    "name": "Poppy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Aperitif. Type: recipe. Contains: .",
+    "name": "Aperitif",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Buttermilk. Type: recipe. Contains: .",
+    "name": "Buttermilk",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bread. Type: recipe. Contains: .",
+    "name": "Bread",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Israel. Type: recipe. Contains: .",
+    "name": "Israel",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Purim. Type: recipe. Contains: .",
+    "name": "Purim",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kid-Friendly. Type: recipe. Contains: .",
+    "name": "Kid-Friendly",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Shallot. Type: recipe. Contains: .",
+    "name": "Shallot",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Japan. Type: recipe. Contains: .",
+    "name": "Japan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Blue Cheese. Type: recipe. Contains: .",
+    "name": "Blue Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Graduation. Type: recipe. Contains: .",
+    "name": "Graduation",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "West Virginia. Type: recipe. Contains: .",
+    "name": "West Virginia",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lettuce. Type: recipe. Contains: .",
+    "name": "Lettuce",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wine. Type: ingredient. Contains: .",
+    "name": "Wine",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Buffalo. Type: recipe. Contains: .",
+    "name": "Buffalo",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "House & Garden. Type: recipe. Contains: .",
+    "name": "House & Garden",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Martini. Type: recipe. Contains: .",
+    "name": "Martini",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sandwich. Type: recipe. Contains: .",
+    "name": "Sandwich",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Boil. Type: recipe. Contains: .",
+    "name": "Boil",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Anise. Type: recipe. Contains: .",
+    "name": "Anise",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Whiskey. Type: recipe. Contains: .",
+    "name": "Whiskey",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Self. Type: recipe. Contains: .",
+    "name": "Self",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bok Choy. Type: recipe. Contains: .",
+    "name": "Bok Choy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Westwood. Type: recipe. Contains: .",
+    "name": "Westwood",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pastries,Breads&Rolls. Type: ingredient. Contains: .",
+    "name": "Pastries,Breads&Rolls",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Peanut Free. Type: recipe. Contains: .",
+    "name": "Peanut Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Endive. Type: recipe. Contains: .",
+    "name": "Endive",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pork Rib. Type: recipe. Contains: .",
+    "name": "Pork Rib",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Peanut Butter. Type: recipe. Contains: .",
+    "name": "Peanut Butter",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wheat/Gluten-Free. Type: recipe. Contains: .",
+    "name": "Wheat/Gluten-Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fat Free. Type: recipe. Contains: .",
+    "name": "Fat Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Scotch. Type: recipe. Contains: .",
+    "name": "Scotch",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Condiment. Type: recipe. Contains: .",
+    "name": "Condiment",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Crêpe. Type: recipe. Contains: .",
+    "name": "Crêpe",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Yuca. Type: recipe. Contains: .",
+    "name": "Yuca",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Potato Salad. Type: recipe. Contains: .",
+    "name": "Potato Salad",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Créme de Cacao. Type: recipe. Contains: .",
+    "name": "Créme de Cacao",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "California. Type: recipe. Contains: .",
+    "name": "California",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cottage Cheese. Type: recipe. Contains: .",
+    "name": "Cottage Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tamarind. Type: recipe. Contains: .",
+    "name": "Tamarind",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sugar Snap Pea. Type: recipe. Contains: .",
+    "name": "Sugar Snap Pea",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tomatillo. Type: recipe. Contains: .",
+    "name": "Tomatillo",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Watermelon. Type: recipe. Contains: .",
+    "name": "Watermelon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lunch. Type: recipe. Contains: .",
+    "name": "Lunch",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Florida. Type: recipe. Contains: .",
+    "name": "Florida",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dip. Type: recipe. Contains: .",
+    "name": "Dip",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Seafood. Type: recipe. Contains: .",
+    "name": "Seafood",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pittsburgh. Type: recipe. Contains: .",
+    "name": "Pittsburgh",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bitters. Type: recipe. Contains: .",
+    "name": "Bitters",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tropical Fruit. Type: recipe. Contains: .",
+    "name": "Tropical Fruit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dried Fruit. Type: recipe. Contains: .",
+    "name": "Dried Fruit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cranberry Sauce. Type: recipe. Contains: .",
+    "name": "Cranberry Sauce",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Epi Loves the Microwave. Type: recipe. Contains: .",
+    "name": "Epi Loves the Microwave",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grape. Type: recipe. Contains: .",
+    "name": "Grape",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Citrus. Type: recipe. Contains: .",
+    "name": "Citrus",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Switzerland. Type: recipe. Contains: .",
+    "name": "Switzerland",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Granola. Type: recipe. Contains: .",
+    "name": "Granola",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bake. Type: recipe. Contains: .",
+    "name": "Bake",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "cookbooks. Type: recipe. Contains: .",
+    "name": "cookbooks",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Marscarpone. Type: recipe. Contains: .",
+    "name": "Marscarpone",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grill/Barbecue. Type: recipe. Contains: .",
+    "name": "Grill/Barbecue",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Connecticut. Type: recipe. Contains: .",
+    "name": "Connecticut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Salad Dressing. Type: recipe. Contains: .",
+    "name": "Salad Dressing",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spice. Type: recipe. Contains: .",
+    "name": "Spice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cilantro. Type: recipe. Contains: .",
+    "name": "Cilantro",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pie. Type: recipe. Contains: .",
+    "name": "Pie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Suzanne Goin. Type: recipe. Contains: .",
+    "name": "Suzanne Goin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cardamom. Type: recipe. Contains: .",
+    "name": "Cardamom",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ramekin. Type: recipe. Contains: .",
+    "name": "Ramekin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Midori. Type: recipe. Contains: .",
+    "name": "Midori",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "High Fiber. Type: recipe. Contains: .",
+    "name": "High Fiber",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sorbet. Type: recipe. Contains: .",
+    "name": "Sorbet",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Swordfish. Type: recipe. Contains: .",
+    "name": "Swordfish",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Coriander. Type: recipe. Contains: .",
+    "name": "Coriander",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kansas. Type: recipe. Contains: .",
+    "name": "Kansas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brunch. Type: recipe. Contains: .",
+    "name": "Brunch",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mustard Greens. Type: recipe. Contains: .",
+    "name": "Mustard Greens",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quiche. Type: recipe. Contains: .",
+    "name": "Quiche",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mushroom. Type: recipe. Contains: .",
+    "name": "Mushroom",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Goose. Type: recipe. Contains: .",
+    "name": "Goose",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Costa Mesa. Type: recipe. Contains: .",
+    "name": "Costa Mesa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Muffin. Type: recipe. Contains: .",
+    "name": "Muffin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Italy. Type: recipe. Contains: .",
+    "name": "Italy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chili. Type: recipe. Contains: .",
+    "name": "Chili",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hanukkah. Type: recipe. Contains: .",
+    "name": "Hanukkah",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bon App��tit. Type: recipe. Contains: .",
+    "name": "Bon App��tit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "BakingIngredients. Type: ingredient. Contains: .",
+    "name": "BakingIngredients",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wok. Type: recipe. Contains: .",
+    "name": "Wok",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Seed. Type: recipe. Contains: .",
+    "name": "Seed",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Minneapolis. Type: recipe. Contains: .",
+    "name": "Minneapolis",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "FastFood. Type: ingredient. Contains: .",
+    "name": "FastFood",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Backyard BBQ. Type: recipe. Contains: .",
+    "name": "Backyard BBQ",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Coconut. Type: recipe. Contains: .",
+    "name": "Coconut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Turnip. Type: recipe. Contains: .",
+    "name": "Turnip",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oat. Type: recipe. Contains: .",
+    "name": "Oat",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Washington. Type: recipe. Contains: .",
+    "name": "Washington",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dessert. Type: recipe. Contains: .",
+    "name": "Dessert",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poach. Type: recipe. Contains: .",
+    "name": "Poach",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Digestif. Type: recipe. Contains: .",
+    "name": "Digestif",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pistachio. Type: recipe. Contains: .",
+    "name": "Pistachio",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Collard Greens. Type: recipe. Contains: .",
+    "name": "Collard Greens",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brooklyn. Type: recipe. Contains: .",
+    "name": "Brooklyn",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Father's Day. Type: recipe. Contains: .",
+    "name": "Father's Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oyster. Type: recipe. Contains: .",
+    "name": "Oyster",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tortillas. Type: recipe. Contains: .",
+    "name": "Tortillas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Raspberry. Type: recipe. Contains: .",
+    "name": "Raspberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Easter. Type: recipe. Contains: .",
+    "name": "Easter",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Parsnip. Type: recipe. Contains: .",
+    "name": "Parsnip",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Berry. Type: recipe. Contains: .",
+    "name": "Berry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mixer. Type: recipe. Contains: .",
+    "name": "Mixer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Asian Pear. Type: recipe. Contains: .",
+    "name": "Asian Pear",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Macaroni and Cheese. Type: recipe. Contains: .",
+    "name": "Macaroni and Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Asparagus. Type: recipe. Contains: .",
+    "name": "Asparagus",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bacon. Type: recipe. Contains: .",
+    "name": "Bacon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Portland. Type: recipe. Contains: .",
+    "name": "Portland",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kosher. Type: recipe. Contains: .",
+    "name": "Kosher",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Iowa. Type: recipe. Contains: .",
+    "name": "Iowa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soy Sauce. Type: recipe. Contains: .",
+    "name": "Soy Sauce",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hummus. Type: recipe. Contains: .",
+    "name": "Hummus",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Juicer. Type: recipe. Contains: .",
+    "name": "Juicer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Onion. Type: recipe. Contains: .",
+    "name": "Onion",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Appetizer. Type: recipe. Contains: .",
+    "name": "Appetizer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vegetables. Type: ingredient. Contains: .",
+    "name": "Vegetables",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Macadamia Nut. Type: recipe. Contains: .",
+    "name": "Macadamia Nut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Labor Day. Type: recipe. Contains: .",
+    "name": "Labor Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brie. Type: recipe. Contains: .",
+    "name": "Brie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Fat. Type: recipe. Contains: .",
+    "name": "Low Fat",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beverly Hills. Type: recipe. Contains: .",
+    "name": "Beverly Hills",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hot Drink. Type: recipe. Contains: .",
+    "name": "Hot Drink",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "One-Pot Meal. Type: recipe. Contains: .",
+    "name": "One-Pot Meal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Taco. Type: recipe. Contains: .",
+    "name": "Taco",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hot Pepper. Type: recipe. Contains: .",
+    "name": "Hot Pepper",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fig. Type: recipe. Contains: .",
+    "name": "Fig",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "San Francisco. Type: recipe. Contains: .",
+    "name": "San Francisco",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Los Angeles. Type: recipe. Contains: .",
+    "name": "Los Angeles",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bran. Type: recipe. Contains: .",
+    "name": "Bran",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cambridge. Type: recipe. Contains: .",
+    "name": "Cambridge",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beef Tenderloin. Type: recipe. Contains: .",
+    "name": "Beef Tenderloin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Haiti. Type: recipe. Contains: .",
+    "name": "Haiti",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spring. Type: recipe. Contains: .",
+    "name": "Spring",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Thanksgiving. Type: recipe. Contains: .",
+    "name": "Thanksgiving",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oatmeal. Type: recipe. Contains: .",
+    "name": "Oatmeal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Guam. Type: recipe. Contains: .",
+    "name": "Guam",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Basil. Type: recipe. Contains: .",
+    "name": "Basil",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pastry. Type: recipe. Contains: .",
+    "name": "Pastry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Breakfast. Type: recipe. Contains: .",
+    "name": "Breakfast",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Molasses. Type: recipe. Contains: .",
+    "name": "Molasses",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tapioca. Type: recipe. Contains: .",
+    "name": "Tapioca",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Stew. Type: recipe. Contains: .",
+    "name": "Stew",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "IceCream. Type: ingredient. Contains: .",
+    "name": "IceCream",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Parmesan. Type: recipe. Contains: .",
+    "name": "Parmesan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Organic. Type: recipe. Contains: .",
+    "name": "Organic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Valentine's Day. Type: recipe. Contains: .",
+    "name": "Valentine's Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "snack week. Type: recipe. Contains: .",
+    "name": "snack week",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nebraska. Type: recipe. Contains: .",
+    "name": "Nebraska",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Potluck. Type: recipe. Contains: .",
+    "name": "Potluck",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oils&Fats. Type: ingredient. Contains: .",
+    "name": "Oils&Fats",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cod. Type: recipe. Contains: .",
+    "name": "Cod",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Healthy. Type: recipe. Contains: .",
+    "name": "Healthy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pear. Type: recipe. Contains: .",
+    "name": "Pear",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nutmeg. Type: recipe. Contains: .",
+    "name": "Nutmeg",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Stuffing/Dressing. Type: recipe. Contains: .",
+    "name": "Stuffing/Dressing",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kentucky Derby. Type: recipe. Contains: .",
+    "name": "Kentucky Derby",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Casserole/Gratin. Type: recipe. Contains: .",
+    "name": "Casserole/Gratin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lemon. Type: recipe. Contains: .",
+    "name": "Lemon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tilapia. Type: recipe. Contains: .",
+    "name": "Tilapia",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cocktail. Type: recipe. Contains: .",
+    "name": "Cocktail",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pumpkin. Type: recipe. Contains: .",
+    "name": "Pumpkin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cupcake. Type: recipe. Contains: .",
+    "name": "Cupcake",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Nuts&Seeds. Type: ingredient. Contains: .",
+    "name": "Nuts&Seeds",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Maryland. Type: recipe. Contains: .",
+    "name": "Maryland",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Eggplant. Type: recipe. Contains: .",
+    "name": "Eggplant",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Couscous. Type: recipe. Contains: .",
+    "name": "Couscous",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sesame. Type: recipe. Contains: .",
+    "name": "Sesame",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tailgating. Type: recipe. Contains: .",
+    "name": "Tailgating",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mango. Type: recipe. Contains: .",
+    "name": "Mango",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Buffet. Type: recipe. Contains: .",
+    "name": "Buffet",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rhode Island. Type: recipe. Contains: .",
+    "name": "Rhode Island",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Germany. Type: recipe. Contains: .",
+    "name": "Germany",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beef. Type: recipe. Contains: .",
+    "name": "Beef",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beef Rib. Type: recipe. Contains: .",
+    "name": "Beef Rib",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oscars. Type: recipe. Contains: .",
+    "name": "Oscars",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quick and Healthy. Type: recipe. Contains: .",
+    "name": "Quick and Healthy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Jerusalem Artichoke. Type: recipe. Contains: .",
+    "name": "Jerusalem Artichoke",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mexico. Type: recipe. Contains: .",
+    "name": "Mexico",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lancaster. Type: recipe. Contains: .",
+    "name": "Lancaster",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Idaho. Type: recipe. Contains: .",
+    "name": "Idaho",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brussel Sprout. Type: recipe. Contains: .",
+    "name": "Brussel Sprout",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soups. Type: ingredient. Contains: .",
+    "name": "Soups",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tree Nut. Type: recipe. Contains: .",
+    "name": "Tree Nut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Persian New Year. Type: recipe. Contains: .",
+    "name": "Persian New Year",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Alaska. Type: recipe. Contains: .",
+    "name": "Alaska",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grill. Type: recipe. Contains: .",
+    "name": "Grill",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kitchen Olympics. Type: recipe. Contains: .",
+    "name": "Kitchen Olympics",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Plum. Type: recipe. Contains: .",
+    "name": "Plum",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soy Free. Type: recipe. Contains: .",
+    "name": "Soy Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sandwich Theory. Type: recipe. Contains: .",
+    "name": "Sandwich Theory",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Legumes. Type: ingredient. Contains: .",
+    "name": "Legumes",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bon Appétit. Type: recipe. Contains: .",
+    "name": "Bon Appétit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mozzarella. Type: recipe. Contains: .",
+    "name": "Mozzarella",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tuna. Type: recipe. Contains: .",
+    "name": "Tuna",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Goat Cheese. Type: recipe. Contains: .",
+    "name": "Goat Cheese",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "turkey. Type: recipe. Contains: .",
+    "name": "turkey",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Braise. Type: recipe. Contains: .",
+    "name": "Braise",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "CannedFruit. Type: ingredient. Contains: .",
+    "name": "CannedFruit",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poultry&Fowl. Type: ingredient. Contains: .",
+    "name": "Poultry&Fowl",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Jícama. Type: recipe. Contains: .",
+    "name": "Jícama",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Quail. Type: recipe. Contains: .",
+    "name": "Quail",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grains. Type: recipe. Contains: .",
+    "name": "Grains",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ohio. Type: recipe. Contains: .",
+    "name": "Ohio",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ground Beef. Type: recipe. Contains: .",
+    "name": "Ground Beef",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Egg Nog. Type: recipe. Contains: .",
+    "name": "Egg Nog",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sauce. Type: recipe. Contains: .",
+    "name": "Sauce",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beet. Type: recipe. Contains: .",
+    "name": "Beet",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Long Beach. Type: recipe. Contains: .",
+    "name": "Long Beach",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Peru. Type: recipe. Contains: .",
+    "name": "Peru",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Phyllo/Puff Pastry Dough. Type: recipe. Contains: .",
+    "name": "Phyllo/Puff Pastry Dough",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pomegranate Juice. Type: recipe. Contains: .",
+    "name": "Pomegranate Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dairy Free. Type: recipe. Contains: .",
+    "name": "Dairy Free",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Maple Syrup. Type: recipe. Contains: .",
+    "name": "Maple Syrup",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Cal. Type: recipe. Contains: .",
+    "name": "Low Cal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pescatarian. Type: recipe. Contains: .",
+    "name": "Pescatarian",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "3-Ingredient Recipes. Type: recipe. Contains: .",
+    "name": "3-Ingredient Recipes",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Weelicious. Type: recipe. Contains: .",
+    "name": "Weelicious",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pressure Cooker. Type: recipe. Contains: .",
+    "name": "Pressure Cooker",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Denver. Type: recipe. Contains: .",
+    "name": "Denver",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Radicchio. Type: recipe. Contains: .",
+    "name": "Radicchio",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Arugula. Type: recipe. Contains: .",
+    "name": "Arugula",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wisconsin. Type: recipe. Contains: .",
+    "name": "Wisconsin",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tofu. Type: recipe. Contains: .",
+    "name": "Tofu",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Drink. Type: recipe. Contains: .",
+    "name": "Drink",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "snack. Type: recipe. Contains: .",
+    "name": "snack",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cranberry. Type: recipe. Contains: .",
+    "name": "Cranberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Curry. Type: recipe. Contains: .",
+    "name": "Curry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oatmeal,Muesli&Cereals. Type: ingredient. Contains: .",
+    "name": "Oatmeal,Muesli&Cereals",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sauté. Type: recipe. Contains: .",
+    "name": "Sauté",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lamb. Type: recipe. Contains: .",
+    "name": "Lamb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "leftovers. Type: recipe. Contains: .",
+    "name": "leftovers",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Jam or Jelly. Type: recipe. Contains: .",
+    "name": "Jam or Jelly",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sour Cream. Type: recipe. Contains: .",
+    "name": "Sour Cream",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Miami. Type: recipe. Contains: .",
+    "name": "Miami",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spritzer. Type: recipe. Contains: .",
+    "name": "Spritzer",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Frankenrecipe. Type: recipe. Contains: .",
+    "name": "Frankenrecipe",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Broccoli Rabe. Type: recipe. Contains: .",
+    "name": "Broccoli Rabe",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Stock. Type: recipe. Contains: .",
+    "name": "Stock",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Alabama. Type: recipe. Contains: .",
+    "name": "Alabama",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sangria. Type: recipe. Contains: .",
+    "name": "Sangria",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ham. Type: recipe. Contains: .",
+    "name": "Ham",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pernod. Type: recipe. Contains: .",
+    "name": "Pernod",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Healdsburg. Type: recipe. Contains: .",
+    "name": "Healdsburg",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lingonberry. Type: recipe. Contains: .",
+    "name": "Lingonberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "PotatoProducts. Type: ingredient. Contains: .",
+    "name": "PotatoProducts",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oktoberfest. Type: recipe. Contains: .",
+    "name": "Oktoberfest",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Engagement Party. Type: recipe. Contains: .",
+    "name": "Engagement Party",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lime Juice. Type: recipe. Contains: .",
+    "name": "Lime Juice",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ireland. Type: recipe. Contains: .",
+    "name": "Ireland",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Strawberry. Type: recipe. Contains: .",
+    "name": "Strawberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New Jersey. Type: recipe. Contains: .",
+    "name": "New Jersey",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Massachusetts. Type: recipe. Contains: .",
+    "name": "Massachusetts",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Breadcrumbs. Type: recipe. Contains: .",
+    "name": "Breadcrumbs",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lychee. Type: recipe. Contains: .",
+    "name": "Lychee",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Utah. Type: recipe. Contains: .",
+    "name": "Utah",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Poker/Game Night. Type: recipe. Contains: .",
+    "name": "Poker/Game Night",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Advance Prep Required. Type: recipe. Contains: .",
+    "name": "Advance Prep Required",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cobbler/Crumble. Type: recipe. Contains: .",
+    "name": "Cobbler/Crumble",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ginger. Type: recipe. Contains: .",
+    "name": "Ginger",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rub. Type: recipe. Contains: .",
+    "name": "Rub",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mustard. Type: recipe. Contains: .",
+    "name": "Mustard",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chicago. Type: recipe. Contains: .",
+    "name": "Chicago",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Duck. Type: recipe. Contains: .",
+    "name": "Duck",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tarragon. Type: recipe. Contains: .",
+    "name": "Tarragon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pomegranate. Type: recipe. Contains: .",
+    "name": "Pomegranate",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tangerine. Type: recipe. Contains: .",
+    "name": "Tangerine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "No Meat, No Problem. Type: recipe. Contains: .",
+    "name": "No Meat, No Problem",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chartreuse. Type: recipe. Contains: .",
+    "name": "Chartreuse",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sparkling Wine. Type: recipe. Contains: .",
+    "name": "Sparkling Wine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Jalapeño. Type: recipe. Contains: .",
+    "name": "Jalapeño",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Herb. Type: recipe. Contains: .",
+    "name": "Herb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Meatball. Type: recipe. Contains: .",
+    "name": "Meatball",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mint. Type: recipe. Contains: .",
+    "name": "Mint",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Trout. Type: recipe. Contains: .",
+    "name": "Trout",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rosé. Type: recipe. Contains: .",
+    "name": "Rosé",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Almond. Type: recipe. Contains: .",
+    "name": "Almond",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sage. Type: recipe. Contains: .",
+    "name": "Sage",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Orange. Type: recipe. Contains: .",
+    "name": "Orange",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mussel. Type: recipe. Contains: .",
+    "name": "Mussel",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "South Carolina. Type: recipe. Contains: .",
+    "name": "South Carolina",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bean. Type: recipe. Contains: .",
+    "name": "Bean",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pecan. Type: recipe. Contains: .",
+    "name": "Pecan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Atlanta. Type: recipe. Contains: .",
+    "name": "Atlanta",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Canada. Type: recipe. Contains: .",
+    "name": "Canada",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tested & Improved. Type: recipe. Contains: .",
+    "name": "Tested & Improved",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kidney Friendly. Type: recipe. Contains: .",
+    "name": "Kidney Friendly",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Shavuot. Type: recipe. Contains: .",
+    "name": "Shavuot",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "London. Type: recipe. Contains: .",
+    "name": "London",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "VegetableOils. Type: ingredient. Contains: .",
+    "name": "VegetableOils",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Barley. Type: recipe. Contains: .",
+    "name": "Barley",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Broil. Type: recipe. Contains: .",
+    "name": "Broil",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Raw. Type: recipe. Contains: .",
+    "name": "Raw",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bastille Day. Type: recipe. Contains: .",
+    "name": "Bastille Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wedding. Type: recipe. Contains: .",
+    "name": "Wedding",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Grapefruit. Type: recipe. Contains: .",
+    "name": "Grapefruit",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Sauces&Dressings. Type: ingredient. Contains: .",
+    "name": "Sauces&Dressings",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Beef&Veal. Type: ingredient. Contains: .",
+    "name": "Beef&Veal",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Columbus. Type: recipe. Contains: .",
+    "name": "Columbus",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Fennel. Type: recipe. Contains: .",
+    "name": "Fennel",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Food Processor. Type: recipe. Contains: .",
+    "name": "Food Processor",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Low Carb. Type: recipe. Contains: .",
+    "name": "Low Carb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Shellfish. Type: recipe. Contains: .",
+    "name": "Shellfish",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Slow Cooker. Type: recipe. Contains: .",
+    "name": "Slow Cooker",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Herbs&Spices. Type: ingredient. Contains: .",
+    "name": "Herbs&Spices",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Root Vegetable. Type: recipe. Contains: .",
+    "name": "Root Vegetable",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Spreads. Type: ingredient. Contains: .",
+    "name": "Spreads",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kwanzaa. Type: recipe. Contains: .",
+    "name": "Kwanzaa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Butterscotch/Caramel. Type: recipe. Contains: .",
+    "name": "Butterscotch/Caramel",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Tomato. Type: recipe. Contains: .",
+    "name": "Tomato",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Louisiana. Type: recipe. Contains: .",
+    "name": "Louisiana",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Corn. Type: recipe. Contains: .",
+    "name": "Corn",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Microwave. Type: recipe. Contains: .",
+    "name": "Microwave",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Illinois. Type: recipe. Contains: .",
+    "name": "Illinois",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soufflé/Meringue. Type: recipe. Contains: .",
+    "name": "Soufflé/Meringue",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pan-Fry. Type: recipe. Contains: .",
+    "name": "Pan-Fry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Candy&Sweets. Type: ingredient. Contains: .",
+    "name": "Candy&Sweets",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hollywood. Type: recipe. Contains: .",
+    "name": "Hollywood",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Olive. Type: recipe. Contains: .",
+    "name": "Olive",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Guava. Type: recipe. Contains: .",
+    "name": "Guava",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Wasabi. Type: recipe. Contains: .",
+    "name": "Wasabi",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ricotta. Type: recipe. Contains: .",
+    "name": "Ricotta",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Yonkers. Type: recipe. Contains: .",
+    "name": "Yonkers",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Indiana. Type: recipe. Contains: .",
+    "name": "Indiana",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Calvados. Type: recipe. Contains: .",
+    "name": "Calvados",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Liqueur. Type: recipe. Contains: .",
+    "name": "Liqueur",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pasta&Noodles. Type: ingredient. Contains: .",
+    "name": "Pasta&Noodles",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Egypt. Type: recipe. Contains: .",
+    "name": "Egypt",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mayonnaise. Type: recipe. Contains: .",
+    "name": "Mayonnaise",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lamb Chop. Type: recipe. Contains: .",
+    "name": "Lamb Chop",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Milk&DairyProducts. Type: ingredient. Contains: .",
+    "name": "Milk&DairyProducts",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "No-Cook. Type: recipe. Contains: .",
+    "name": "No-Cook",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "CerealProducts. Type: ingredient. Contains: .",
+    "name": "CerealProducts",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cognac/Armagnac. Type: recipe. Contains: .",
+    "name": "Cognac/Armagnac",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Oklahoma. Type: recipe. Contains: .",
+    "name": "Oklahoma",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cauliflower. Type: recipe. Contains: .",
+    "name": "Cauliflower",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Halloween. Type: recipe. Contains: .",
+    "name": "Halloween",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Green Onion/Scallion. Type: recipe. Contains: .",
+    "name": "Green Onion/Scallion",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Iced Coffee. Type: recipe. Contains: .",
+    "name": "Iced Coffee",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Candy. Type: recipe. Contains: .",
+    "name": "Candy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cucumber. Type: recipe. Contains: .",
+    "name": "Cucumber",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Meat. Type: ingredient. Contains: .",
+    "name": "Meat",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "New York. Type: recipe. Contains: .",
+    "name": "New York",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pot Pie. Type: recipe. Contains: .",
+    "name": "Pot Pie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Red Wine. Type: recipe. Contains: .",
+    "name": "Red Wine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Stir-Fry. Type: recipe. Contains: .",
+    "name": "Stir-Fry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lemongrass. Type: recipe. Contains: .",
+    "name": "Lemongrass",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Condiment/Spread. Type: recipe. Contains: .",
+    "name": "Condiment/Spread",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Ice Cream Machine. Type: recipe. Contains: .",
+    "name": "Ice Cream Machine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brownie. Type: recipe. Contains: .",
+    "name": "Brownie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mother's Day. Type: recipe. Contains: .",
+    "name": "Mother's Day",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Maine. Type: recipe. Contains: .",
+    "name": "Maine",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rack of Lamb. Type: recipe. Contains: .",
+    "name": "Rack of Lamb",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "#CAKEWEEK. Type: recipe. Contains: .",
+    "name": "#CAKEWEEK",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Santa Monica. Type: recipe. Contains: .",
+    "name": "Santa Monica",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Salsa. Type: recipe. Contains: .",
+    "name": "Salsa",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "CreamCheese. Type: ingredient. Contains: .",
+    "name": "CreamCheese",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Lima Bean. Type: recipe. Contains: .",
+    "name": "Lima Bean",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rosh Hashanah/Yom Kippur. Type: recipe. Contains: .",
+    "name": "Rosh Hashanah/Yom Kippur",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "(Fruit)Juices. Type: ingredient. Contains: .",
+    "name": "(Fruit)Juices",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vegan. Type: recipe. Contains: .",
+    "name": "Vegan",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Vanilla. Type: recipe. Contains: .",
+    "name": "Vanilla",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Blender. Type: recipe. Contains: .",
+    "name": "Blender",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Diwali. Type: recipe. Contains: .",
+    "name": "Diwali",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Apple. Type: recipe. Contains: .",
+    "name": "Apple",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Soup/Stew. Type: recipe. Contains: .",
+    "name": "Soup/Stew",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Horseradish. Type: recipe. Contains: .",
+    "name": "Horseradish",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brisket. Type: recipe. Contains: .",
+    "name": "Brisket",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Rutabaga. Type: recipe. Contains: .",
+    "name": "Rutabaga",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Kirsch. Type: recipe. Contains: .",
+    "name": "Kirsch",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Blueberry. Type: recipe. Contains: .",
+    "name": "Blueberry",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Las Vegas. Type: recipe. Contains: .",
+    "name": "Las Vegas",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Parsley. Type: recipe. Contains: .",
+    "name": "Parsley",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cookbook Critic. Type: recipe. Contains: .",
+    "name": "Cookbook Critic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Burrito. Type: recipe. Contains: .",
+    "name": "Burrito",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chard. Type: recipe. Contains: .",
+    "name": "Chard",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Boston. Type: recipe. Contains: .",
+    "name": "Boston",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Parade. Type: recipe. Contains: .",
+    "name": "Parade",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Walnut. Type: recipe. Contains: .",
+    "name": "Walnut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Flat Bread. Type: recipe. Contains: .",
+    "name": "Flat Bread",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Houston. Type: recipe. Contains: .",
+    "name": "Houston",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Pizza. Type: ingredient. Contains: .",
+    "name": "Pizza",
+    "category_type": "ingredient",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chambord. Type: recipe. Contains: .",
+    "name": "Chambord",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Bourbon. Type: recipe. Contains: .",
+    "name": "Bourbon",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Escarole. Type: recipe. Contains: .",
+    "name": "Escarole",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Double Boiler. Type: recipe. Contains: .",
+    "name": "Double Boiler",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dominican Republic. Type: recipe. Contains: .",
+    "name": "Dominican Republic",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Freezer Food. Type: recipe. Contains: .",
+    "name": "Freezer Food",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Mandoline. Type: recipe. Contains: .",
+    "name": "Mandoline",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Veal. Type: recipe. Contains: .",
+    "name": "Veal",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Cuba. Type: recipe. Contains: .",
+    "name": "Cuba",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Caraway. Type: recipe. Contains: .",
+    "name": "Caraway",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Georgia. Type: recipe. Contains: .",
+    "name": "Georgia",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "HarperCollins. Type: recipe. Contains: .",
+    "name": "HarperCollins",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Hazelnut. Type: recipe. Contains: .",
+    "name": "Hazelnut",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Dill. Type: recipe. Contains: .",
+    "name": "Dill",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Celery. Type: recipe. Contains: .",
+    "name": "Celery",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Omelet. Type: recipe. Contains: .",
+    "name": "Omelet",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Brandy. Type: recipe. Contains: .",
+    "name": "Brandy",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Artichoke. Type: recipe. Contains: .",
+    "name": "Artichoke",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Apricot. Type: recipe. Contains: .",
+    "name": "Apricot",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Smoothie. Type: recipe. Contains: .",
+    "name": "Smoothie",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Roast. Type: recipe. Contains: .",
+    "name": "Roast",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Amaretto. Type: recipe. Contains: .",
+    "name": "Amaretto",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Chocolate. Type: recipe. Contains: .",
+    "name": "Chocolate",
+    "category_type": "recipe",
+    "sample_items": ""
+  },
+  {
+    "id": "None",
+    "type": "category",
+    "text": "Honeydew. Type: recipe. Contains: .",
+    "name": "Honeydew",
+    "category_type": "recipe",
+    "sample_items": ""
+  }
+]
