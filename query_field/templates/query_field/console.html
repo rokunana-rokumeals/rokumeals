@@ -1,0 +1,366 @@
+{% extends 'mbg_app/base.html' %}
+
+{% block content %}
+<div class="detail-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="d-flex align-items-center mb-4">
+                    <a href="{% url 'mbg_app:home' %}" class="back-button me-3">
+                        <i class="bi bi-arrow-left me-2"></i> Back to Home
+                    </a>
+                    <span class="badge badge-light text-dark bg-white bg-opacity-25">Developer Tools</span>
+                </div>
+                <h1 class="display-4 fw-bold mb-3">Query Console</h1>
+                <p class="lead text-white opacity-75 mb-0">
+                    Execute SPARQL and Cypher queries directly against the knowledge graph database.
+                </p>
+            </div>
+            <div class="col-md-4 d-none d-md-block">
+                <div class="text-center text-white opacity-50">
+                    <i class="bi bi-terminal-fill display-1"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container detail-content-wrapper">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <!-- Query Editor Section -->
+            <div class="info-box mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="section-title mb-0 border-0 p-0">Query Editor</h3>
+                    <span class="badge bg-primary bg-opacity-10 text-primary">Cypher / SPARQL</span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="queryInput" class="form-label text-secondary fw-bold small text-uppercase">Input
+                        Query</label>
+                    <div class="position-relative">
+                        <textarea class="form-control font-monospace bg-light border-0 p-3" id="queryInput" rows="8"
+                            style="font-size: 14px; resize: vertical; min-height: 150px;" placeholder="// Example Query
+MATCH (n:Recipe) 
+RETURN n.title, n.calories 
+ORDER BY n.calories DESC 
+LIMIT 5"></textarea>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button id="runQueryBtn" class="btn btn-primary px-4 py-2">
+                        <i class="bi bi-play-fill me-1"></i> Run Query
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error Alert -->
+            <div id="errorAlert" class="alert alert-danger border-0 shadow-sm d-none mb-4" role="alert">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <i class="bi bi-exclamation-circle-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="alert-heading fw-bold mb-1">Execution Error</h5>
+                        <p id="errorMessage" class="mb-0 opacity-75"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="text-center d-none my-5 py-5">
+                <div class="spinner-border text-primary mb-3" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="text-muted fw-medium">Executing query against database...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsArea" class="d-none">
+                <div class="info-box">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="section-title mb-0 border-0 p-0">Query Results</h3>
+                        <div class="d-flex align-items-center gap-3">
+                            <span id="resultCount" class="text-muted small"></span>
+                            <button class="btn btn-sm btn-outline-secondary"
+                                onclick="document.getElementById('resultsArea').scrollIntoView({behavior: 'smooth'})">
+                                <i class="bi bi-arrow-down"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive rounded border mb-3">
+                        <table class="table table-hover mb-0" id="resultsTable">
+                            <thead class="bg-light text-secondary text-uppercase small fw-bold">
+                                <tr id="tableHeadRow">
+                                    <!-- Columns will be injected here -->
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody" class="bg-white">
+                                <!-- Data will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div id="paginationControls"
+                        class="d-flex justify-content-between align-items-center border-top pt-3">
+                        <div class="d-flex align-items-center">
+                            <select id="rowsPerPage" class="form-select form-select-sm me-2" style="width: auto;">
+                                <option value="10">10 rows</option>
+                                <option value="25">25 rows</option>
+                                <option value="50">50 rows</option>
+                                <option value="100">100 rows</option>
+                            </select>
+                            <span class="text-muted small">per page</span>
+                        </div>
+                        <nav aria-label="Query results navigation">
+                            <ul class="pagination pagination-sm mb-0" id="paginationList">
+                                <!-- Pagination items will be injected here -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const runBtn = document.getElementById('runQueryBtn');
+        const queryInput = document.getElementById('queryInput');
+        const errorAlert = document.getElementById('errorAlert');
+        const errorMessage = document.getElementById('errorMessage');
+        const resultsArea = document.getElementById('resultsArea');
+        const tableHeadRow = document.getElementById('tableHeadRow');
+        const tableBody = document.getElementById('tableBody');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const resultCount = document.getElementById('resultCount');
+        const paginationList = document.getElementById('paginationList');
+        const rowsPerPageSelect = document.getElementById('rowsPerPage');
+
+        // Pagination State
+        let currentData = [];
+        let currentColumns = [];
+        let currentPage = 1;
+        let rowsPerPage = 10;
+
+        // Auto-focus the query input
+        queryInput.focus();
+
+        // Event Listeners
+        rowsPerPageSelect.addEventListener('change', function () {
+            rowsPerPage = parseInt(this.value);
+            currentPage = 1;
+            renderPage();
+        });
+
+        runBtn.addEventListener('click', function () {
+            const query = queryInput.value.trim();
+            if (!query) {
+                showError('Please enter a valid query before executing.');
+                return;
+            }
+
+            // Reset UI
+            hideError();
+            resultsArea.classList.add('d-none');
+            loadingSpinner.classList.remove('d-none');
+            runBtn.disabled = true;
+            runBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Running...';
+
+            fetch('{% url "query_field:execute_query" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ query: query })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    loadingSpinner.classList.add('d-none');
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = '<i class="bi bi-play-fill me-1"></i> Run Query';
+
+                    if (data.status === 'success') {
+                        // Initialize Pagination State
+                        currentData = data.data;
+                        currentColumns = data.columns;
+                        currentPage = 1;
+
+                        renderTableStructure();
+                        renderPage();
+
+                        // Smooth scroll to results
+                        setTimeout(() => {
+                            resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    } else {
+                        showError(data.message || 'An unknown error occurred during execution.');
+                    }
+                })
+                .catch(error => {
+                    loadingSpinner.classList.add('d-none');
+                    runBtn.disabled = false;
+                    runBtn.innerHTML = '<i class="bi bi-play-fill me-1"></i> Run Query';
+                    showError('Network error: ' + error.message);
+                });
+        });
+
+        function renderTableStructure() {
+            // Clear existing header
+            tableHeadRow.innerHTML = '';
+
+            // Build Header
+            currentColumns.forEach(col => {
+                const th = document.createElement('th');
+                th.className = 'py-3 px-4 border-bottom';
+                th.textContent = col;
+                tableHeadRow.appendChild(th);
+            });
+
+            resultsArea.classList.remove('d-none');
+        }
+
+        function renderPage() {
+            // Calculate slice
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = Math.min(startIndex + rowsPerPage, currentData.length);
+            const pageData = currentData.slice(startIndex, endIndex);
+
+            // Update Result Count Text
+            resultCount.textContent = `Showing ${startIndex + 1}-${endIndex} of ${currentData.length} results`;
+
+            // Clear Body
+            tableBody.innerHTML = '';
+
+            // Build Body
+            if (currentData.length === 0) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.colSpan = currentColumns.length;
+                td.innerHTML = '<div class="text-center py-5 text-muted"><i class="bi bi-search display-6 d-block mb-3"></i>No results found for this query.</div>';
+                tr.appendChild(td);
+                tableBody.appendChild(tr);
+                // Hide pagination if no results
+                document.getElementById('paginationControls').classList.add('d-none');
+            } else {
+                document.getElementById('paginationControls').classList.remove('d-none');
+
+                pageData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    currentColumns.forEach(col => {
+                        const td = document.createElement('td');
+                        td.className = 'py-3 px-4 align-middle';
+                        const val = row[col];
+
+                        // Simple formatting for objects/arrays
+                        if (typeof val === 'object' && val !== null) {
+                            td.innerHTML = `<code class="text-primary bg-light px-2 py-1 rounded">${JSON.stringify(val)}</code>`;
+                        } else {
+                            td.textContent = val;
+                        }
+                        tr.appendChild(td);
+                    });
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            renderPaginationControls();
+        }
+
+        function renderPaginationControls() {
+            const totalPages = Math.ceil(currentData.length / rowsPerPage);
+            paginationList.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Previous Button
+            const prevLi = document.createElement('li');
+            prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+            prevLi.innerHTML = `<a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+            prevLi.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderPage();
+                }
+            };
+            paginationList.appendChild(prevLi);
+
+            // Page Numbers
+            // Logic to show limited page numbers (e.g., 1, 2, ..., 10)
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+
+            if (startPage > 1) {
+                paginationList.appendChild(createPageItem(1));
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('li');
+                    ellipsis.className = 'page-item disabled';
+                    ellipsis.innerHTML = '<span class="page-link">...</span>';
+                    paginationList.appendChild(ellipsis);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                paginationList.appendChild(createPageItem(i));
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = document.createElement('li');
+                    ellipsis.className = 'page-item disabled';
+                    ellipsis.innerHTML = '<span class="page-link">...</span>';
+                    paginationList.appendChild(ellipsis);
+                }
+                paginationList.appendChild(createPageItem(totalPages));
+            }
+
+            // Next Button
+            const nextLi = document.createElement('li');
+            nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextLi.innerHTML = `<a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+            nextLi.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderPage();
+                }
+            };
+            paginationList.appendChild(nextLi);
+        }
+
+        function createPageItem(page) {
+            const li = document.createElement('li');
+            li.className = `page-item ${currentPage === page ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#">${page}</a>`;
+            li.onclick = (e) => {
+                e.preventDefault();
+                currentPage = page;
+                renderPage();
+            };
+            return li;
+        }
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorAlert.classList.remove('d-none');
+            errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hideError() {
+            errorAlert.classList.add('d-none');
+        }
+    });
+</script>
+{% endblock %}

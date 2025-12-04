@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'mbg_app',
+    'query_field'
 ]
 
 MIDDLEWARE = [

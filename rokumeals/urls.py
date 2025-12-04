@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mbg_app.urls')),
+    path('query/', include('query_field.urls')),
 ]
 
 # Serve static files during development
