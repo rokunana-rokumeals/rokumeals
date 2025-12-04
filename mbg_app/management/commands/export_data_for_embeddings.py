@@ -65,7 +65,7 @@ class Command(BaseCommand):
         WITH r, 
              collect(DISTINCT i.name) as ingredients,
              collect(DISTINCT c.name) as categories
-        RETURN r.id as id, r.title as title, r.description as description,
+        RETURN r.recipe_id as id, r.title as title, r.description as description,
                ingredients, categories
         """
         
@@ -107,7 +107,7 @@ class Command(BaseCommand):
         OPTIONAL MATCH (r:Recipe)-[:HAS_INGREDIENT]->(i)
         WITH i,
              collect(DISTINCT r.title)[..5] as recipe_names
-        RETURN i.id as id, i.name as name,
+        RETURN i.ingredient_id as id, i.name as name,
                i.calories_per_100g as calories,
                i.protein_g as protein,
                i.carbohydrates_g as carbs,
@@ -160,7 +160,7 @@ class Command(BaseCommand):
         WITH c, 
              collect(DISTINCT item.title)[..10] as recipe_items,
              collect(DISTINCT item.name)[..10] as ingredient_items
-        RETURN c.id as id, c.name as name, c.type as type,
+        RETURN c.category_id as id, c.name as name, c.type as type,
                recipe_items, ingredient_items
         """
         
