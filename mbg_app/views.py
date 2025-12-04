@@ -12,6 +12,8 @@ import json
 import logging
 
 from .models import Recipe, Ingredient, Category
+from .simple_semantic_search import simple_semantic_search
+from .services import embedding_service
 
 logger = logging.getLogger(__name__)
 
@@ -100,6 +102,88 @@ def search_api(request):
                 'message': f'Search error: {str(e)}',
                 'data': []
             })
+    
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
+
+@csrf_exempt
+def semantic_search_api(request):
+    """
+    API endpoint for semantic search using Gemini embeddings
+    """
+    if request.method == 'GET':
+        query = request.GET.get('q', '').strip()
+        search_type = request.GET.get('type', 'all').lower()
+        limit = int(request.GET.get('limit', 20))
+        # Threshold: 0.4 is usually a good starting point for Qwen embeddings
+        threshold = float(request.GET.get('threshold', 0.1))
+        
+        if not query:
+            return JsonResponse({'status': 'error', 'message': 'Query required', 'data': []})
+        
+        try:
+            # 1. Generate Query Vector (Using our new service)
+            # This turns the user's text into a list of floats [0.23, -0.1...]
+            # We use 'recipe' task by default if searching all, otherwise specific type
+            target_type = 'recipe' if search_type == 'all' else search_type
+            query_vector = embedding_service.generate_embedding(query, target_type)
+            
+            if not query_vector:
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Failed to generate embedding. The model might still be loading.'
+                })
+
+            # 2. Fetch from Neo4j using the vector
+            results = []
+            if search_type == 'all':
+                # Search all 3 indexes
+                for stype in ['recipe', 'ingredient', 'category']:
+                    sub = simple_semantic_search.search_by_embedding(query_vector, stype, 5, threshold)
+                    results.extend(sub)
+                
+                # Sort combined results by score
+                results.sort(key=lambda x: x['similarity_score'], reverse=True)
+                results = results[:limit]
+            else:
+                # Search specific index
+                results = simple_semantic_search.search_by_embedding(query_vector, search_type, limit, threshold)
+            
+            return JsonResponse({
+                'status': 'success',
+                'data': results,
+                'total': len(results)
+            })
+            
+        except Exception as e:
+            logger.error(f'Semantic search error: {e}')
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
+    
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
+
+
+@csrf_exempt
+def similar_items_api(request, item_type, item_id):
+    """
+    Find similar items based on EXISTING database vectors.
+    """
+    if request.method == 'GET':
+        limit = int(request.GET.get('limit', 5))
+        threshold = float(request.GET.get('threshold', 0.1))
+        
+        try:
+            results = simple_semantic_search.find_similar_items(
+                item_id, item_type, limit, threshold
+            )
+            
+            return JsonResponse({
+                'status': 'success',
+                'data': results,
+                'total': len(results)
+            })
+            
+        except Exception as e:
+            logger.error(f'Similar items error: {e}')
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
     
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
 
