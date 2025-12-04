@@ -8,6 +8,7 @@ db.sqlite3
 db.sqlite3-journal
 media/
 staticfiles/
+embed data kg02-20251203T154807Z-1-001/
 
 # Virtual Environment
 .venv/
@@ -65,4 +66,4 @@ coverage.xml
 
 # Neo4j
 *.db
-*.log.*
+*.log.*embed data kg02-20251203T154807Z-1-001/

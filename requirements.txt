@@ -18,3 +18,8 @@ tqdm==4.66.1
 # For external knowledge integration
 SPARQLWrapper==2.0.0
 requests==2.31.0
+
+# Note: For semantic search, generate embeddings externally then import
+# See: EXTERNAL_EMBEDDING_WORKFLOW.md for detailed instructions
+
+google-generativeai

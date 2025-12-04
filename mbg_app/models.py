@@ -20,6 +20,9 @@ class Recipe(StructuredNode):
     directions = StringProperty()
     ingredients_raw = StringProperty()
     
+    # Vector embedding field for semantic search
+    embedding = StringProperty()  # JSON string of vector array
+    
     # Relationships
     contains = RelationshipTo('Ingredient', 'CONTAINS')
     belongs_to = RelationshipTo('Category', 'BELONGS_TO')
@@ -45,6 +48,9 @@ class Ingredient(StructuredNode):
     category = StringProperty(default='Unknown')
     calories_per_100g = IntegerProperty(default=0)
     kj_per_100g = IntegerProperty(default=0)
+    
+    # Vector embedding field for semantic search
+    embedding = StringProperty()  # JSON string of vector array
     
     # Enhanced nutritional data from Wikidata
     carbohydrates_g = FloatProperty()      # Carbohydrates per 100g
@@ -135,6 +141,9 @@ class Category(StructuredNode):
     category_id = StringProperty(unique_index=True, required=True)
     name = StringProperty(required=True, index=True)
     type = StringProperty(required=True)  # 'recipe' or 'ingredient'
+    
+    # Vector embedding field for semantic search
+    embedding = StringProperty()  # JSON string of vector array
     
     # Relationships
     has_recipes = RelationshipFrom('Recipe', 'BELONGS_TO')

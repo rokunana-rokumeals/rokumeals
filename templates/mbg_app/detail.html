@@ -425,6 +425,37 @@
         {% endif %}
     </div>
 
+    <!-- Similar Items Section for Semantic Search -->
+    {% if type == 'recipe' or type == 'ingredient' %}
+    <div class="container mt-5">
+        <div class="similar-items-section">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="section-title">
+                    <i class="bi bi-stars me-2"></i>
+                    {% if type == 'recipe' %}
+                        Similar Recipes
+                    {% else %}
+                        Ingredient Substitutes
+                    {% endif %}
+                </h4>
+                <span class="badge bg-warning text-dark">
+                    <i class="bi bi-brain me-1"></i>AI Powered
+                </span>
+            </div>
+            
+            <div id="similar-items-container" class="row">
+                <!-- Similar items will be loaded here via JavaScript -->
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading similar items...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Finding similar items...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Wikidata enrichment functionality
@@ -625,6 +656,92 @@
             const toast = toastContainer.lastElementChild;
             new bootstrap.Toast(toast).show();
         }
+        
+        // Load similar items functionality
+        function loadSimilarItems() {
+            const itemType = '{{ type }}';
+            const itemId = '{{ item.recipe_id|default:item.ingredient_id }}';
+            const container = document.getElementById('similar-items-container');
+            
+            if (!itemType || !itemId || (itemType !== 'recipe' && itemType !== 'ingredient')) {
+                return;
+            }
+            
+            fetch(`/api/similar/${itemType}/${itemId}/?limit=6&threshold=0.6`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success' && data.data && data.data.length > 0) {
+                        displaySimilarItems(data.data, itemType);
+                    } else {
+                        container.innerHTML = `
+                            <div class="col-12 text-center py-4">
+                                <i class="bi bi-search display-4 text-muted mb-3"></i>
+                                <p class="text-muted">No similar ${itemType}s found</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading similar items:', error);
+                    container.innerHTML = `
+                        <div class="col-12">
+                            <div class="alert alert-warning" role="alert">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                Could not load similar items at this time
+                            </div>
+                        </div>
+                    `;
+                });
+        }
+        
+        function displaySimilarItems(items, itemType) {
+            const container = document.getElementById('similar-items-container');
+            
+            let html = '';
+            items.forEach(item => {
+                const detailUrl = `/${itemType}/${item.id}/`;
+                const icon = itemType === 'recipe' ? 'bi-bowl' : 'bi-egg';
+                const iconColor = itemType === 'recipe' ? 'text-primary' : 'text-success';
+                
+                let subtitle = '';
+                if (itemType === 'recipe') {
+                    subtitle = `${item.rating || 'N/A'}/5 ⭐ • ${item.calories || 'N/A'} cal`;
+                } else {
+                    subtitle = `${item.category} • ${item.calories_per_100g || 'N/A'} cal/100g`;
+                }
+                
+                const similarityScore = item.similarity_score ? 
+                    `<span class="badge bg-success ms-2">${(item.similarity_score * 100).toFixed(1)}% match</span>` : '';
+                
+                html += `
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <a href="${detailUrl}" class="text-decoration-none">
+                            <div class="card h-100 similar-item-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-start mb-2">
+                                        <i class="bi ${icon} ${iconColor} me-3 mt-1"></i>
+                                        <div class="flex-grow-1">
+                                            <h6 class="card-title mb-1">${item.title || item.name}</h6>
+                                            <small class="text-muted">${subtitle}</small>
+                                            ${similarityScore}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Load similar items when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('similar-items-container')) {
+                loadSimilarItems();
+            }
+        });
     </script>
 </body>
 
