@@ -1,45 +1,31 @@
-"""
-Lightweight semantic search implementation using imported embeddings
-This module handles semantic search after embeddings are imported via external generation
-"""
-import json
 import logging
-from typing import List, Dict, Optional
+import json
+from typing import List, Dict
 from neomodel import db
 
 logger = logging.getLogger(__name__)
 
 class SimpleSemanticSearch:
     """
-    Simple semantic search using imported embeddings and Neo4j queries
-    No heavy dependencies - just uses the embeddings that were imported
+    Semantic search implementation using Gemini embeddings and Neo4j.
     """
     
     @staticmethod
     def has_embeddings(node_type: str = 'recipe') -> bool:
-        """
-        Check if embeddings are available in the database
-        
-        Args:
-            node_type: Type of node to check ('recipe', 'ingredient', 'category')
-        
-        Returns:
-            True if embeddings are available
-        """
+        """Check if embeddings are available in the database"""
         try:
             node_label = node_type.capitalize()
             query = f"""
             MATCH (n:{node_label})
-            WHERE n.embedding IS NOT NULL AND n.embedding <> ''
-            RETURN count(n) as count
-            LIMIT 1
+            WHERE n.embedding IS NOT NULL AND size(n.embedding) > 0
+            RETURN count(n) > 0
             """
             results, _ = db.cypher_query(query)
-            return results[0][0] > 0
+            return results[0][0]
         except Exception as e:
             logger.error(f"Error checking embeddings: {e}")
             return False
-    
+
     @staticmethod
     def get_embedding_stats() -> Dict:
         """Get statistics about available embeddings"""
@@ -49,9 +35,8 @@ class SimpleSemanticSearch:
                 node_label = node_type.capitalize()
                 query = f"""
                 MATCH (n:{node_label})
-                WHERE n.embedding IS NOT NULL AND n.embedding <> ''
-                RETURN count(n) as with_embeddings,
-                       count(*) as total
+                WHERE n.embedding IS NOT NULL
+                RETURN count(n) as with_embeddings, count(*) as total
                 """
                 results, _ = db.cypher_query(query)
                 with_emb, total = results[0]
@@ -60,115 +45,94 @@ class SimpleSemanticSearch:
                     'total': total,
                     'percentage': round((with_emb / total * 100) if total > 0 else 0, 1)
                 }
-            except Exception as e:
-                logger.error(f"Error getting stats for {node_type}: {e}")
-                stats[node_type] = {'error': str(e)}
-        
+            except Exception:
+                stats[node_type] = {'error': 'Could not fetch stats'}
         return stats
-    
+
     @staticmethod
-    def search_by_embedding(query_embedding: List[float], 
-                          node_type: str = 'recipe',
-                          limit: int = 20,
-                          threshold: float = 0.7) -> List[Dict]:
+    def search_by_embedding(query_embedding: list, node_type: str = 'recipe', limit: int = 20, threshold: float = 0.5) -> List[Dict]:
         """
-        Search using vector similarity with imported embeddings
-        
-        Args:
-            query_embedding: The query embedding vector
-            node_type: Type of nodes to search
-            limit: Maximum results to return
-            threshold: Minimum similarity threshold
-        
-        Returns:
-            List of similar nodes with similarity scores
+        Perform vector search using direct float-list vectors in Neo4j (Manual Cosine).
         """
         try:
+            # DEBUG: Print dimensions
+            print(f"DEBUG: Query Vector Length: {len(query_embedding)}")
+            
             node_label = node_type.capitalize()
             
-            # Use Neo4j's cosine similarity for vector search
-            query = f"""
+            # Using manual Cosine Similarity query
+            # We explicitly return specific ID/Name fields to handle different node types
+            cypher = f"""
             MATCH (n:{node_label})
-            WHERE n.embedding IS NOT NULL AND n.embedding <> ''
-            WITH n, gds.similarity.cosine(
-                $query_embedding, 
-                [x IN apoc.convert.fromJsonList(n.embedding) | toFloat(x)]
-            ) AS similarity
+            WHERE n.embedding IS NOT NULL
+            WITH n, gds.similarity.cosine($query_embedding, n.embedding) AS similarity
             WHERE similarity >= $threshold
-            RETURN n.id as id,
-                   n.title as title,
-                   n.name as name,
-                   n.description as description,
-                   similarity
+            RETURN n.recipe_id, n.ingredient_id, n.category_id, 
+                   n.title, n.name, n.description, similarity
             ORDER BY similarity DESC
             LIMIT $limit
             """
-            
-            results, _ = db.cypher_query(query, {
-                'query_embedding': query_embedding,
-                'threshold': threshold,
-                'limit': limit
+
+            results, _ = db.cypher_query(cypher, {
+                "query_embedding": query_embedding,
+                "limit": limit,
+                "threshold": threshold
             })
             
+            # DEBUG: Print result count
+            print(f"DEBUG: Found {len(results)} matches for {node_type}")
+
             formatted_results = []
-            for result in results:
-                node_id, title, name, description, similarity = result
+            for row in results:
+                # Unpack the polymorphic return fields
+                r_id, i_id, c_id, title, name, desc, score = row
+                
+                # Determine the correct ID and Title based on what isn't None
+                final_id = r_id or i_id or c_id
+                final_title = title or name
+                
                 formatted_results.append({
-                    'id': node_id,
-                    'title': title or name,
-                    'description': description,
+                    'id': final_id,
+                    'title': final_title,
+                    'description': desc,
                     'type': node_type,
-                    'similarity_score': round(float(similarity), 3)
+                    'similarity_score': round(float(score), 3)
                 })
             
             return formatted_results
-            
+
         except Exception as e:
+            # CRITICAL: Print the actual error to your terminal so you can see it in logs
+            print(f"CRITICAL SEARCH ERROR: {e}")
             logger.error(f"Error in semantic search: {e}")
             return []
-    
+
     @staticmethod
-    def find_similar_items(item_id: str, 
-                          item_type: str,
-                          limit: int = 5,
-                          threshold: float = 0.7) -> List[Dict]:
-        """
-        Find items similar to a given item using its embedding
-        
-        Args:
-            item_id: ID of the reference item
-            item_type: Type of item ('recipe', 'ingredient', 'category')
-            limit: Maximum results
-            threshold: Minimum similarity threshold
-        
-        Returns:
-            List of similar items
-        """
+    def find_similar_items(item_id: str, item_type: str, limit: int = 5, threshold: float = 0.5) -> List[Dict]:
+        """Find similar nodes given a reference node ID."""
         try:
             node_label = item_type.capitalize()
+            id_field = f"{item_type}_id" # e.g. recipe_id
             
-            # Get the embedding of the reference item
-            query = f"""
-            MATCH (ref:{node_label} {{id: $item_id}})
-            WHERE ref.embedding IS NOT NULL AND ref.embedding <> ''
-            RETURN ref.embedding as embedding
+            # Fetch the embedding from the database
+            cypher = f"""
+            MATCH (n:{node_label} {{{id_field}: $ref_id}})
+            RETURN n.embedding AS embedding
             """
+
+            results, _ = db.cypher_query(cypher, {"ref_id": item_id})
             
-            results, _ = db.cypher_query(query, {'item_id': item_id})
-            
-            if not results:
+            # Check if embedding exists
+            if not results or not results[0][0]:
                 return []
-            
-            ref_embedding = json.loads(results[0][0])
-            
-            # Find similar items
-            return SimpleSemanticSearch.search_by_embedding(
-                ref_embedding, item_type, limit, threshold
-            )
+
+            ref_embedding = results[0][0] # this comes back as a list<float> from import_vectors
+
+            return SimpleSemanticSearch.search_by_embedding(ref_embedding, item_type, limit, threshold)
             
         except Exception as e:
             logger.error(f"Error finding similar items: {e}")
             return []
 
-# Global instance for easy import
+# Global instance
 simple_semantic_search = SimpleSemanticSearch()

@@ -116,7 +116,7 @@ def semantic_search_api(request):
         search_type = request.GET.get('type', 'all').lower()
         limit = int(request.GET.get('limit', 20))
         # Threshold: 0.4 is usually a good starting point for Qwen embeddings
-        threshold = float(request.GET.get('threshold', 0.4))
+        threshold = float(request.GET.get('threshold', 0.1))
         
         if not query:
             return JsonResponse({'status': 'error', 'message': 'Query required', 'data': []})
@@ -169,7 +169,7 @@ def similar_items_api(request, item_type, item_id):
     """
     if request.method == 'GET':
         limit = int(request.GET.get('limit', 5))
-        threshold = float(request.GET.get('threshold', 0.5))
+        threshold = float(request.GET.get('threshold', 0.1))
         
         try:
             results = simple_semantic_search.find_similar_items(
