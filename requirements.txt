@@ -21,3 +21,5 @@ requests==2.31.0
 
 # Note: For semantic search, generate embeddings externally then import
 # See: EXTERNAL_EMBEDDING_WORKFLOW.md for detailed instructions
+
+openai

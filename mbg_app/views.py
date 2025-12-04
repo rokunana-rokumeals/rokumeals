@@ -13,6 +13,7 @@ import logging
 
 from .models import Recipe, Ingredient, Category
 from .simple_semantic_search import simple_semantic_search
+from .services import embedding_service
 
 logger = logging.getLogger(__name__)
 
@@ -108,55 +109,55 @@ def search_api(request):
 @csrf_exempt
 def semantic_search_api(request):
     """
-    API endpoint untuk semantic search menggunakan vector embeddings
-    Supports: /api/semantic-search/?q=query&type=recipe|ingredient|category&limit=20&threshold=0.7
+    API endpoint for semantic search using Qwen embeddings
     """
     if request.method == 'GET':
         query = request.GET.get('q', '').strip()
         search_type = request.GET.get('type', 'all').lower()
         limit = int(request.GET.get('limit', 20))
-        threshold = float(request.GET.get('threshold', 0.7))
+        # Threshold: 0.4 is usually a good starting point for Qwen embeddings
+        threshold = float(request.GET.get('threshold', 0.4))
         
         if not query:
-            return JsonResponse({
-                'status': 'error',
-                'message': 'Query parameter is required',
-                'data': []
-            })
+            return JsonResponse({'status': 'error', 'message': 'Query required', 'data': []})
         
         try:
-            # Check if embeddings are available
-            if not simple_semantic_search.has_embeddings('recipe'):
-                stats = simple_semantic_search.get_embedding_stats()
+            # 1. Generate Query Vector (Using our new service)
+            # This turns the user's text into a list of floats [0.23, -0.1...]
+            # We use 'recipe' task by default if searching all, otherwise specific type
+            target_type = 'recipe' if search_type == 'all' else search_type
+            query_vector = embedding_service.generate_embedding(query, target_type)
+            
+            if not query_vector:
                 return JsonResponse({
-                    'status': 'info',
-                    'message': 'Semantic search requires embeddings to be imported first.',
-                    'embedding_stats': stats,
-                    'instructions': {
-                        'step_1': 'Export data: python manage.py export_data_for_embeddings',
-                        'step_2': 'Generate embeddings externally using external_embedding_generator.py',
-                        'step_3': 'Import embeddings: python manage.py import_embeddings --embedding-file <file>'
-                    }
+                    'status': 'error',
+                    'message': 'Failed to generate embedding. The model might still be loading.'
                 })
-            
-            # For now, return message that query embedding generation needs to be implemented
-            # This will be handled when user provides their own query embedding mechanism
-            return JsonResponse({
-                'status': 'info', 
-                'message': 'Semantic search is configured but requires query embedding generation.',
-                'available_embeddings': simple_semantic_search.get_embedding_stats(),
-                'note': 'Implement query embedding generation in your external environment and pass embedding vector to search API.'
-            })
-            
 
+            # 2. Fetch from Neo4j using the vector
+            results = []
+            if search_type == 'all':
+                # Search all 3 indexes
+                for stype in ['recipe', 'ingredient', 'category']:
+                    sub = simple_semantic_search.search_by_embedding(query_vector, stype, 5, threshold)
+                    results.extend(sub)
+                
+                # Sort combined results by score
+                results.sort(key=lambda x: x['similarity_score'], reverse=True)
+                results = results[:limit]
+            else:
+                # Search specific index
+                results = simple_semantic_search.search_by_embedding(query_vector, search_type, limit, threshold)
+            
+            return JsonResponse({
+                'status': 'success',
+                'data': results,
+                'total': len(results)
+            })
             
         except Exception as e:
             logger.error(f'Semantic search error: {e}')
-            return JsonResponse({
-                'status': 'error',
-                'message': f'Semantic search error: {str(e)}',
-                'data': []
-            })
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
     
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
 
@@ -164,59 +165,28 @@ def semantic_search_api(request):
 @csrf_exempt
 def similar_items_api(request, item_type, item_id):
     """
-    API endpoint untuk mencari item yang mirip berdasarkan vector similarity
-    Supports: /api/similar/<type>/<id>/?limit=5&threshold=0.7
+    Find similar items based on EXISTING database vectors.
     """
     if request.method == 'GET':
         limit = int(request.GET.get('limit', 5))
-        threshold = float(request.GET.get('threshold', 0.7))
+        threshold = float(request.GET.get('threshold', 0.5))
         
         try:
-            # Check if embeddings are available
-            if not simple_semantic_search.has_embeddings(item_type):
-                return JsonResponse({
-                    'status': 'info',
-                    'message': f'Similar {item_type} search requires embeddings to be imported first.',
-                    'instructions': {
-                        'required': 'Import embeddings using: python manage.py import_embeddings --embedding-file <file>'
-                    }
-                })
-            
-            # Find similar items using imported embeddings
             results = simple_semantic_search.find_similar_items(
                 item_id, item_type, limit, threshold
             )
             
             return JsonResponse({
                 'status': 'success',
-                'message': f'Found {len(results)} similar {item_type}s',
                 'data': results,
-                'total': len(results),
-                'source_type': item_type,
-                'source_id': item_id,
-                'threshold': threshold
-            })
-            
-            return JsonResponse({
-                'status': 'success',
-                'message': f'Found {len(results)} similar {item_type}s',
-                'data': results,
-                'total': len(results),
-                'source_type': item_type,
-                'source_id': item_id,
-                'threshold': threshold
+                'total': len(results)
             })
             
         except Exception as e:
             logger.error(f'Similar items error: {e}')
-            return JsonResponse({
-                'status': 'error',
-                'message': f'Error finding similar items: {str(e)}',
-                'data': []
-            })
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
     
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
-
 
 def recipe_detail_api(request, recipe_id):
     """API endpoint untuk detail recipe"""
