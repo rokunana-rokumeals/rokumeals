@@ -488,7 +488,7 @@
                 imageHtml = `
                     <div class="col-12 mb-3">
                         <h6 class="text-secondary">Image</h6>
-                        <img src="${data.image_url}" alt="${data.entity_label || 'Ingredient'}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+                        <img src="${data.image_url}" alt="${data.entity_label || data.label || 'Ingredient'}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
                     </div>
                 `;
             }
@@ -513,14 +513,24 @@
                 `;
             }
             
-            // Material and usage info
-            if (data.material_info) {
-                materialInfoHtml = `
-                    <div class="col-12 mb-3">
-                        <h6 class="text-secondary">Additional Information</h6>
-                        <p class="mb-0">${data.material_info}</p>
-                    </div>
-                `;
+            // Additional attributes from Wikidata
+            if (data.attributes && Object.keys(data.attributes).length > 0) {
+                let attributesList = '';
+                Object.entries(data.attributes).forEach(([key, value]) => {
+                    if (key !== 'instance of' && key !== 'subclass of') { // Skip classification attributes
+                        attributesList += `<li><strong>${key}:</strong> ${value}</li>`;
+                    }
+                });
+                if (attributesList) {
+                    materialInfoHtml = `
+                        <div class="col-12 mb-3">
+                            <h6 class="text-secondary">Additional Information</h6>
+                            <ul class="list-unstyled">
+                                ${attributesList}
+                            </ul>
+                        </div>
+                    `;
+                }
             }
             
             // Build nutritional data HTML
@@ -568,7 +578,7 @@
                         <i class="bi bi-info-circle me-1"></i>
                         Data sourced from <a href="${data.wikidata_entity}" target="_blank">Wikidata</a>
                         ${alreadyEnriched ? ' (previously enriched)' : ' (just enriched)'}
-                        ${data.entity_label ? ` - Entity: ${data.entity_label}` : ''}
+                        ${data.entity_label || data.label ? ` - Entity: ${data.entity_label || data.label}` : ''}
                     </small>
                 </div>
             `;

@@ -241,21 +241,34 @@ def autocomplete_api(request):
 def stats_api(request):
     """API endpoint untuk statistik database"""
     try:
+        # Use efficient Cypher queries instead of loading all data
+        recipe_count, _ = db.cypher_query("MATCH (r:Recipe) RETURN count(r) as count")
+        ingredient_count, _ = db.cypher_query("MATCH (i:Ingredient) RETURN count(i) as count")
+        category_count, _ = db.cypher_query("MATCH (c:Category) RETURN count(c) as count")
+        
         stats = {
-            'total_recipes': len(Recipe.nodes.all()),
-            'total_ingredients': len(Ingredient.nodes.all()),
-            'total_categories': len(Category.nodes.all()),
+            'total_recipes': recipe_count[0][0],
+            'total_ingredients': ingredient_count[0][0],
+            'total_categories': category_count[0][0],
             'top_rated_recipes': [],
             'popular_ingredients': []
         }
         
-        # Top rated recipes
-        top_recipes = Recipe.nodes.filter(rating__gt=0).order_by('-rating')[:5]
-        for recipe in top_recipes:
+        # Top rated recipes - using efficient query with LIMIT
+        top_recipes_query = """
+        MATCH (r:Recipe) 
+        WHERE r.rating > 0 
+        RETURN r.recipe_id, r.title, r.rating 
+        ORDER BY r.rating DESC 
+        LIMIT 5
+        """
+        top_recipes_result, _ = db.cypher_query(top_recipes_query)
+        
+        for row in top_recipes_result:
             stats['top_rated_recipes'].append({
-                'title': recipe.title,
-                'rating': recipe.rating,
-                'id': recipe.recipe_id
+                'id': row[0],
+                'title': row[1],
+                'rating': row[2]
             })
         
         return JsonResponse({
@@ -496,48 +509,58 @@ def enrich_ingredient(request, ingredient_id):
             })
         
         # Enrich the ingredient
-        enrichment_result = enricher.enrich_ingredient(ingredient.name)
+        enrichment_result = enricher.enrich(ingredient.name)
         
-        if enrichment_result['wikidata_found']:
-            # Update ingredient with enriched data
-            nutritional_fields = {
-                'calories_per_100g': 'calories_per_100g',
-                'carbohydrates_g': 'carbohydrates_g',
-                'protein_g': 'protein_g',
-                'fat_g': 'fat_g',
-                'fiber_g': 'fiber_g',
-                'sugar_g': 'sugar_g',
-                'water_g': 'water_g',
-                'vitamin_c_mg': 'vitamin_c_mg',
-                'calcium_mg': 'calcium_mg',
-                'iron_mg': 'iron_mg',
-                'sodium_mg': 'sodium_mg',
-                'potassium_mg': 'potassium_mg',
-                'magnesium_mg': 'magnesium_mg'
+        if enrichment_result['found']:
+            # Update ingredient with enriched data - get from attributes
+            attributes = enrichment_result.get('attributes', {})
+            
+            # Map common nutritional attributes from Wikidata to our fields
+            nutritional_mapping = {
+                'energy per unit mass': 'calories_per_100g',
+                'carbohydrate': 'carbohydrates_g',
+                'protein': 'protein_g',
+                'fat': 'fat_g',
+                'dietary fiber': 'fiber_g',
+                'sugar': 'sugar_g',
+                'water': 'water_g',
+                'vitamin C': 'vitamin_c_mg',
+                'calcium': 'calcium_mg',
+                'iron': 'iron_mg',
+                'sodium': 'sodium_mg',
+                'potassium': 'potassium_mg',
+                'magnesium': 'magnesium_mg'
             }
             
             updated_fields = []
-            for source_field, target_field in nutritional_fields.items():
-                if source_field in enrichment_result and enrichment_result[source_field]:
-                    setattr(ingredient, target_field, enrichment_result[source_field])
-                    updated_fields.append(target_field)
+            
+            # Process nutritional attributes
+            for attr_name, field_name in nutritional_mapping.items():
+                if attr_name in attributes:
+                    # Extract numeric value from string (e.g., "1.5 gram per 100 gram" -> 1.5)
+                    attr_value = attributes[attr_name]
+                    import re
+                    numbers = re.findall(r'\d+(?:\.\d+)?', str(attr_value))
+                    if numbers:
+                        setattr(ingredient, field_name, float(numbers[0]))
+                        updated_fields.append(field_name)
             
             # Update other comprehensive fields
-            comprehensive_fields = {
-                'description': 'description',
-                'image_url': 'image_url',
-                'classification': 'classification',
-                'material_info': 'material_info',
-                'wikidata_entity': 'wikidata_entity'
-            }
+            if 'description' in enrichment_result and enrichment_result['description']:
+                setattr(ingredient, 'description', enrichment_result['description'][:500])
+                updated_fields.append('description')
             
-            for source_field, target_field in comprehensive_fields.items():
-                if source_field in enrichment_result and enrichment_result[source_field]:
-                    if source_field == 'description':
-                        setattr(ingredient, target_field, enrichment_result[source_field][:500])
-                    else:
-                        setattr(ingredient, target_field, enrichment_result[source_field])
-                    updated_fields.append(target_field)
+            if 'image_url' in enrichment_result and enrichment_result['image_url']:
+                setattr(ingredient, 'image_url', enrichment_result['image_url'])
+                updated_fields.append('image_url')
+            
+            if 'uri' in enrichment_result:
+                setattr(ingredient, 'wikidata_entity', enrichment_result['uri'])
+                updated_fields.append('wikidata_entity')
+            
+            if 'category' in enrichment_result:
+                setattr(ingredient, 'classification', enrichment_result['category'])
+                updated_fields.append('classification')
             
             # Save changes
             ingredient.save()
@@ -549,32 +572,35 @@ def enrich_ingredient(request, ingredient_id):
                 'message': f'Successfully enriched {ingredient.name} with Wikidata data',
                 'updated_fields': updated_fields,
                 'data': {
-                    'entity_label': enrichment_result.get('entity_label', ''),
-                    'wikidata_entity': enrichment_result.get('wikidata_entity', ''),
+                    'entity_label': enrichment_result.get('label', ''),
+                    'wikidata_entity': enrichment_result.get('uri', ''),
                     'description': enrichment_result.get('description', ''),
                     'image_url': enrichment_result.get('image_url', ''),
-                    'classification': enrichment_result.get('classification', ''),
-                    'material_info': enrichment_result.get('material_info', ''),
-                    'calories_per_100g': enrichment_result.get('calories_per_100g'),
-                    'carbohydrates_g': enrichment_result.get('carbohydrates_g'),
-                    'protein_g': enrichment_result.get('protein_g'),
-                    'fat_g': enrichment_result.get('fat_g'),
-                    'fiber_g': enrichment_result.get('fiber_g'),
-                    'sugar_g': enrichment_result.get('sugar_g'),
-                    'water_g': enrichment_result.get('water_g'),
-                    'vitamin_c_mg': enrichment_result.get('vitamin_c_mg'),
-                    'calcium_mg': enrichment_result.get('calcium_mg'),
-                    'iron_mg': enrichment_result.get('iron_mg'),
-                    'sodium_mg': enrichment_result.get('sodium_mg'),
-                    'potassium_mg': enrichment_result.get('potassium_mg'),
-                    'magnesium_mg': enrichment_result.get('magnesium_mg'),
+                    'classification': enrichment_result.get('category', ''),
+                    'attributes': enrichment_result.get('attributes', {}),
+                    'clean_name': enrichment_result.get('clean_name', ''),
+                    # Include some nutritional data if available
+                    'calories_per_100g': getattr(ingredient, 'calories_per_100g', None),
+                    'carbohydrates_g': getattr(ingredient, 'carbohydrates_g', None),
+                    'protein_g': getattr(ingredient, 'protein_g', None),
+                    'fat_g': getattr(ingredient, 'fat_g', None),
+                    'fiber_g': getattr(ingredient, 'fiber_g', None),
+                    'sugar_g': getattr(ingredient, 'sugar_g', None),
+                    'water_g': getattr(ingredient, 'water_g', None),
+                    'vitamin_c_mg': getattr(ingredient, 'vitamin_c_mg', None),
+                    'calcium_mg': getattr(ingredient, 'calcium_mg', None),
+                    'iron_mg': getattr(ingredient, 'iron_mg', None),
+                    'sodium_mg': getattr(ingredient, 'sodium_mg', None),
+                    'potassium_mg': getattr(ingredient, 'potassium_mg', None),
+                    'magnesium_mg': getattr(ingredient, 'magnesium_mg', None),
                 }
             })
         else:
             return JsonResponse({
                 'success': False,
-                'error': enrichment_result.get('error', 'No Wikidata entity found'),
-                'message': f'Could not find Wikidata data for {ingredient.name}'
+                'error': 'No Wikidata entity found',
+                'message': f'Could not find Wikidata data for {ingredient.name}',
+                'clean_name': enrichment_result.get('clean_name', ingredient.name)
             })
             
     except Ingredient.DoesNotExist:

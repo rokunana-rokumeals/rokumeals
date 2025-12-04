@@ -83,26 +83,27 @@ class Command(BaseCommand):
             
             try:
                 # Enrich ingredient
-                enrichment_result = enricher.enrich_ingredient(ingredient.name)
+                enrichment_result = enricher.enrich(ingredient.name)
                 
-                if enrichment_result['wikidata_found']:
+                if enrichment_result['found']:
                     self.stdout.write(
                         self.style.SUCCESS(f"  ✅ Found Wikidata data")
                     )
                     
                     # Print found data
-                    if 'entity_label' in enrichment_result:
-                        self.stdout.write(f"  Entity: {enrichment_result['entity_label']}")
-                    if 'wikidata_entity' in enrichment_result:
-                        self.stdout.write(f"  URI: {enrichment_result['wikidata_entity']}")
+                    if 'label' in enrichment_result:
+                        self.stdout.write(f"  Entity: {enrichment_result['label']}")
+                    if 'uri' in enrichment_result:
+                        self.stdout.write(f"  URI: {enrichment_result['uri']}")
+                    if 'description' in enrichment_result:
+                        self.stdout.write(f"  Description: {enrichment_result['description'][:100]}...")
                     
-                    nutritional_info = []
-                    for key, value in enrichment_result.items():
-                        if key.endswith('_g') or key.endswith('_mg') or 'calories' in key:
-                            nutritional_info.append(f"{key}: {value}")
-                    
-                    if nutritional_info:
-                        self.stdout.write(f"  Nutrition: {', '.join(nutritional_info[:3])}")
+                    # Show available attributes
+                    attributes = enrichment_result.get('attributes', {})
+                    if attributes:
+                        self.stdout.write(f"  Found {len(attributes)} attributes:")
+                        for attr_name in list(attributes.keys())[:5]:  # Show first 5
+                            self.stdout.write(f"    - {attr_name}: {attributes[attr_name][:50]}...")
                     
                     # Update ingredient if not dry run
                     if not options['dry_run']:
@@ -117,8 +118,7 @@ class Command(BaseCommand):
                     self.stdout.write(
                         self.style.WARNING(f"  ❌ No Wikidata data found")
                     )
-                    if 'error' in enrichment_result:
-                        self.stdout.write(f"  Error: {enrichment_result['error']}")
+                    self.stdout.write(f"  Searched for: '{enrichment_result.get('clean_name', ingredient.name)}'")
                     failed_enrichments += 1
                 
             except Exception as e:
@@ -161,34 +161,53 @@ class Command(BaseCommand):
     def _update_ingredient(self, ingredient, enrichment_data):
         """Update ingredient with enriched data"""
         try:
-            # Update nutritional fields
-            nutritional_fields = {
-                'calories_per_100g': 'calories_per_100g',
-                'carbohydrates_g': 'carbohydrates_g',
-                'protein_g': 'protein_g',
-                'fat_g': 'fat_g',
-                'fiber_g': 'fiber_g',
-                'vitamin_c_mg': 'vitamin_c_mg',
-                'calcium_mg': 'calcium_mg',
-                'iron_mg': 'iron_mg',
-                'sodium_mg': 'sodium_mg',
-                'potassium_mg': 'potassium_mg'
+            updated_fields = []
+            attributes = enrichment_data.get('attributes', {})
+            
+            # Map common nutritional attributes from Wikidata to our fields
+            nutritional_mapping = {
+                'energy per unit mass': 'calories_per_100g',
+                'carbohydrate': 'carbohydrates_g',
+                'protein': 'protein_g',
+                'fat': 'fat_g',
+                'dietary fiber': 'fiber_g',
+                'sugar': 'sugar_g',
+                'water': 'water_g',
+                'vitamin C': 'vitamin_c_mg',
+                'calcium': 'calcium_mg',
+                'iron': 'iron_mg',
+                'sodium': 'sodium_mg',
+                'potassium': 'potassium_mg',
+                'magnesium': 'magnesium_mg'
             }
             
-            updated_fields = []
-            for source_field, target_field in nutritional_fields.items():
-                if source_field in enrichment_data and enrichment_data[source_field]:
-                    setattr(ingredient, target_field, enrichment_data[source_field])
-                    updated_fields.append(target_field)
+            # Process nutritional attributes
+            import re
+            for attr_name, field_name in nutritional_mapping.items():
+                if attr_name in attributes:
+                    # Extract numeric value from string (e.g., "1.5 gram per 100 gram" -> 1.5)
+                    attr_value = attributes[attr_name]
+                    numbers = re.findall(r'\d+(?:\.\d+)?', str(attr_value))
+                    if numbers:
+                        setattr(ingredient, field_name, float(numbers[0]))
+                        updated_fields.append(field_name)
             
             # Update other fields
-            if 'description' in enrichment_data:
+            if 'description' in enrichment_data and enrichment_data['description']:
                 ingredient.description = enrichment_data['description'][:500]
                 updated_fields.append('description')
             
-            if 'wikidata_entity' in enrichment_data:
-                ingredient.wikidata_entity = enrichment_data['wikidata_entity']
+            if 'image_url' in enrichment_data and enrichment_data['image_url']:
+                ingredient.image_url = enrichment_data['image_url']
+                updated_fields.append('image_url')
+            
+            if 'uri' in enrichment_data:
+                ingredient.wikidata_entity = enrichment_data['uri']
                 updated_fields.append('wikidata_entity')
+            
+            if 'category' in enrichment_data:
+                ingredient.classification = enrichment_data['category']
+                updated_fields.append('classification')
             
             # Save changes
             ingredient.save()
