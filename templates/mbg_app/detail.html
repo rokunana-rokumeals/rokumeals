@@ -45,7 +45,13 @@
                     </div>
                     {% elif type == 'ingredient' %}
                     <div class="d-flex align-items-center gap-3">
-                        <span class="badge bg-info text-white px-3 py-2 rounded-pill">{{ item.category }}</span>
+                        <span class="badge bg-info text-white px-3 py-2 rounded-pill">
+                            {% if item.category and item.category != 'Unknown' and item.category != '' %}
+                                {{ item.category }}
+                            {% else %}
+                                Uncategorized
+                            {% endif %}
+                        </span>
                         <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">
                             <i class="bi bi-fire me-1"></i> {{ item.calories_per_100g }} cal/100g
                         </span>
@@ -115,9 +121,13 @@
 
                     {% elif type == 'ingredient' %}
                     <h3 class="section-title">Nutrition Information</h3>
-                    <p class="lead text-muted mb-4">The <strong>{{ item.name }}</strong>, classified under <strong>{{
-                            item.category }}</strong> category, provides essential nutritional information for meal
-                        planning and dietary considerations.</p>
+                    <p class="lead text-muted mb-4">The <strong>{{ item.name }}</strong>, 
+                        {% if item.category and item.category != 'Unknown' and item.category != '' %}
+                            classified under <strong>{{ item.category }}</strong> category,
+                        {% else %}
+                            currently uncategorized,
+                        {% endif %}
+                        provides essential nutritional information for meal planning and dietary considerations.</p>
 
                     <!-- Wikidata Enrichment Section -->
                     <div class="card mb-4" id="enrichment-section">
@@ -227,7 +237,13 @@
                         </div>
                         <div class="d-flex justify-content-between py-2">
                             <span>Category</span>
-                            <span class="fw-bold text-primary">{{ item.category }}</span>
+                            <span class="fw-bold text-primary">
+                                {% if item.category and item.category != 'Unknown' and item.category != '' %}
+                                    {{ item.category }}
+                                {% else %}
+                                    Uncategorized
+                                {% endif %}
+                            </span>
                         </div>
                     </div>
 

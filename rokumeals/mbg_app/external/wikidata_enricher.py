@@ -234,7 +234,7 @@ if __name__ == "__main__":
     enricher = WikidataEnricher()
     
     # Test items: Honey (Kaya fitur), Salt (Non-food class), Chicken (Nutrisi)
-    test_items = ["pepper","honey", "salt", "chicken breast", "apple"]
+    test_items = ["quinoa","pepper","honey", "salt", "chicken breast", "apple"]
     
     print(f"\n{'ITEM':<15} | {'FOUND':<5} | {'ATTRS':<5} | {'DETAILS (Sample)'}")
     print("-" * 80)
