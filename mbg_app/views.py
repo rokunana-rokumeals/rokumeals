@@ -14,6 +14,8 @@ import logging
 from .models import Recipe, Ingredient, Category
 from .simple_semantic_search import simple_semantic_search
 from .services import embedding_service
+from rokumeals.mbg_app.external.wikidata_enricher import WikidataEnricher
+from rokumeals.mbg_app.external.wikidata_category_enricher import WikidataCategoryEnricher
 
 logger = logging.getLogger(__name__)
 
@@ -608,6 +610,9 @@ def category_detail(request, category_id):
                     'calories_per_100g': result[2] or 0,
                 })
         
+        # Check if category has been enriched with Wikidata
+        has_wikidata = hasattr(category, 'wikidata_entity') and category.wikidata_entity
+        
         context = {
             'item': category,
             'recipes': recipes[:12],  # Limit to 12 recipes
@@ -615,6 +620,7 @@ def category_detail(request, category_id):
             'related_items': recipes[:6] + ingredients[:6],
             'type': 'category',
             'title': category.name,
+            'has_wikidata': has_wikidata,
         }
         
         return render(request, 'mbg_app/detail.html', context)
@@ -778,6 +784,77 @@ def enrich_ingredient(request, ingredient_id):
         })
     except Exception as e:
         logger.error(f"Error enriching ingredient {ingredient_id}: {e}")
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })
+
+
+@require_http_methods(["POST"])
+@csrf_exempt
+def enrich_category(request, category_id):
+    """
+    Enrich category with Wikidata data on-demand
+    """
+    try:
+        # Get category
+        category = Category.nodes.get(category_id=category_id)
+        
+        # Check if already enriched recently (to avoid duplicate calls)
+        if hasattr(category, 'wikidata_entity') and category.wikidata_entity:
+            return JsonResponse({
+                'success': True,
+                'already_enriched': True,
+                'message': 'Category already has Wikidata data',
+                'data': {
+                    'wikidata_entity': category.wikidata_entity,
+                    'description': getattr(category, 'description', ''),
+                    'image_url': getattr(category, 'image_url', ''),
+                    'classification': getattr(category, 'classification', ''),
+                }
+            })
+        
+        # Use WikidataCategoryEnricher
+        enricher = WikidataCategoryEnricher()
+        enriched_data = enricher.enrich(category.name)
+        
+        if enriched_data['found']:
+            # Update category with enriched data
+            category.wikidata_entity = enriched_data['uri']
+            category.description = enriched_data['description']
+            category.image_url = enriched_data['image_url']
+            category.classification = enriched_data.get('type', '')
+            
+            # Store additional attributes as JSON
+            if enriched_data['attributes']:
+                category.material_info = json.dumps(enriched_data['attributes'])
+            
+            category.save()
+            
+            return JsonResponse({
+                'success': True,
+                'message': f'Successfully enriched {category.name} with Wikidata',
+                'data': {
+                    'wikidata_entity': category.wikidata_entity,
+                    'description': category.description,
+                    'image_url': category.image_url,
+                    'classification': category.classification,
+                    'attributes': enriched_data['attributes'],
+                }
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'message': f'No Wikidata entry found for category: {category.name}'
+            })
+            
+    except Category.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'error': 'Category not found'
+        })
+    except Exception as e:
+        logger.error(f"Error enriching category {category_id}: {e}")
         return JsonResponse({
             'success': False,
             'error': str(e)
