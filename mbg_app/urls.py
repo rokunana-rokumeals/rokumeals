@@ -15,6 +15,8 @@ urlpatterns = [
     
     # API endpoints
     path('api/search/', views.search_api, name='search_api'),
+    path('api/semantic-search/', views.semantic_search_api, name='semantic_search_api'),
+    path('api/similar/<str:item_type>/<str:item_id>/', views.similar_items_api, name='similar_items_api'),
     path('api/autocomplete/', views.autocomplete_api, name='autocomplete_api'),
     path('api/stats/', views.stats_api, name='stats_api'),
     path('api/recipe/<str:recipe_id>/', views.recipe_detail_api, name='recipe_detail_api'),

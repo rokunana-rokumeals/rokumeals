@@ -1,405 +1,254 @@
 """
-Wikidata SPARQL Integration for Ingredient Nutritional Enrichment
+Wikidata Comprehensive Enricher
 ================================================================
-
-This module queries Wikidata to enrich ingredient data with additional nutritional information.
-Wikidata has excellent structured data about food items with nutritional properties.
+Strategi: 2-Step Fetching (Search ID -> Get Details).
+Mengambil 10-15 Atribut umum (Image, Class, Parts, Nutrients, dll).
+Sangat Cepat & Anti-Timeout.
 """
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 import logging
 import re
-from typing import Dict, List, Optional
+from typing import Dict, List
 
+# Konfigurasi Logging
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class WikidataEnricher:
-    """
-    Enriches ingredient data using Wikidata SPARQL endpoint
-    """
     
     def __init__(self):
         self.sparql = SPARQLWrapper("https://query.wikidata.org/sparql")
         self.sparql.setReturnFormat(JSON)
-        # Set user agent as required by Wikidata
-        self.sparql.addCustomHttpHeader("User-Agent", "MBG-Knowledge-Graph/1.0 (https://github.com/poemich/rokumeals)")
-    
+        self.sparql.addCustomHttpHeader("User-Agent", "UniversityProject-KnowledgeGraph/4.0")
+        self.sparql.setTimeout(20) # Aman karena query kita efisien
+
     def clean_ingredient_name(self, ingredient_name: str) -> str:
-        """Clean ingredient name for searching"""
+        """Membersihkan nama bahan."""
         clean_name = ingredient_name.lower()
-        
-        # Remove common cooking terms
         remove_terms = [
             'fresh', 'dried', 'chopped', 'sliced', 'diced', 'minced',
             'ground', 'whole', 'raw', 'cooked', 'organic', 'extra',
             'virgin', 'unsalted', 'salted', 'low', 'fat', 'sodium',
-            'cup', 'cups', 'tablespoon', 'tablespoons', 'teaspoon', 'teaspoons',
-            'pound', 'pounds', 'ounce', 'ounces', 'gram', 'grams', 'kg'
+            'cup', 'cups', 'tbsp', 'tsp', 'oz', 'lb', 'gram', 'kg',
+            'large', 'small', 'medium', 'clove', 'can', 'bottle'
         ]
-        
         for term in remove_terms:
             clean_name = re.sub(rf'\b{term}\b', '', clean_name)
-        
-        # Clean up extra spaces and punctuation
-        clean_name = re.sub(r'[^\w\s]', '', clean_name)
-        clean_name = ' '.join(clean_name.split())
-        
-        return clean_name.strip()
+        return ' '.join(re.sub(r'[^\w\s]', '', clean_name).split())
 
-    def search_ingredient_in_wikidata(self, ingredient_name: str) -> Optional[str]:
-        """
-        Search for ingredient in Wikidata and return entity ID if found
-        """
-        clean_name = self.clean_ingredient_name(ingredient_name)
-        
-        # First try exact match with basic food items
-        exact_query = f"""
-        SELECT DISTINCT ?item ?itemLabel WHERE {{
-          ?item wdt:P31/wdt:P279* wd:Q2095 .  # instance of food or subclass of food
-          ?item rdfs:label ?itemLabel .
-          FILTER(LANG(?itemLabel) = "en")
-          FILTER(LCASE(?itemLabel) = "{clean_name.lower()}")
-          
-          # Prefer basic ingredients over dishes/products
-          FILTER NOT EXISTS {{ ?item wdt:P527 ?part . }}  # Not a composite dish
-          
-          SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
-        }}
-        LIMIT 1
-        """
-        
+    def _execute_query(self, query):
         try:
-            self.sparql.setQuery(exact_query)
-            result = self.sparql.query().convert()
-            
-            bindings = result.get('results', {}).get('bindings', [])
-            
-            if bindings:
-                item_uri = bindings[0]['item']['value']
-                item_label = bindings[0]['itemLabel']['value']
-                
-                logger.info(f"Found exact Wikidata entity for '{ingredient_name}': {item_label} ({item_uri})")
-                return item_uri
-            
-            # If no exact match, try with raw ingredient name
-            raw_exact_query = f"""
-            SELECT DISTINCT ?item ?itemLabel WHERE {{
-              ?item wdt:P31/wdt:P279* wd:Q2095 .  # instance of food
-              ?item rdfs:label ?itemLabel .
-              FILTER(LANG(?itemLabel) = "en")
-              FILTER(LCASE(?itemLabel) = "{ingredient_name.lower()}")
-              
-              SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
-            }}
-            LIMIT 1
-            """
-            
-            self.sparql.setQuery(raw_exact_query)
-            result = self.sparql.query().convert()
-            
-            bindings = result.get('results', {}).get('bindings', [])
-            if bindings:
-                item_uri = bindings[0]['item']['value']
-                item_label = bindings[0]['itemLabel']['value']
-                logger.info(f"Found raw exact Wikidata entity for '{ingredient_name}': {item_label} ({item_uri})")
-                return item_uri
-            
-            # Last resort: contains search but prioritize single words
-            contains_query = f"""
-            SELECT DISTINCT ?item ?itemLabel ?description WHERE {{
-              ?item wdt:P31/wdt:P279* wd:Q2095 .  # instance of food
-              ?item rdfs:label ?itemLabel .
-              FILTER(LANG(?itemLabel) = "en")
-              FILTER(CONTAINS(LCASE(?itemLabel), "{clean_name.lower()}"))
-              
-              # Strongly prefer single words (basic ingredients)
-              FILTER(STRLEN(?itemLabel) < 20)
-              FILTER(!CONTAINS(?itemLabel, " ") || ?itemLabel = "{ingredient_name}")
-              
-              OPTIONAL {{ ?item schema:description ?description . }}
-              FILTER(LANG(?description) = "en")
-              
-              SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
-            }}
-            ORDER BY STRLEN(?itemLabel)  # Shorter names first
-            LIMIT 3
-            """
-            
-            self.sparql.setQuery(contains_query)
-            result = self.sparql.query().convert()
-            
-            bindings = result.get('results', {}).get('bindings', [])
-            if bindings:
-                # Filter out obvious dishes/products in favor of basic ingredients
-                for binding in bindings:
-                    item_label = binding['itemLabel']['value'].lower()
-                    
-                    # Skip if it contains dish/product indicators
-                    skip_keywords = ['dish', 'recipe', 'cuisine', 'food', 'cake', 'bread', 'soup', 'sauce']
-                    description = binding.get('description', {}).get('value', '').lower()
-                    
-                    is_dish = any(keyword in description for keyword in skip_keywords)
-                    
-                    # Prefer exact word matches
-                    is_exact_word = item_label == ingredient_name.lower()
-                    
-                    if is_exact_word or not is_dish:
-                        item_uri = binding['item']['value']
-                        logger.info(f"Found Wikidata entity (contains search) for '{ingredient_name}': {item_label} ({item_uri})")
-                        return item_uri
-                
-                # If all options seem to be dishes, take the first one
-                item_uri = bindings[0]['item']['value']
-                item_label = bindings[0]['itemLabel']['value']
-                logger.info(f"Found Wikidata entity (fallback) for '{ingredient_name}': {item_label} ({item_uri})")
-                return item_uri
-                
-        except Exception as e:
-            logger.error(f"Error searching Wikidata for '{ingredient_name}': {e}")
-        
-        logger.info(f"No Wikidata entity found for ingredient: {ingredient_name}")
-        return None
-
-    def get_nutritional_data(self, entity_uri: str) -> Dict:
-        """
-        Get comprehensive information for a Wikidata entity
-        Including image, class, description, source, and nutritional facts
-        """
-        try:
-            # Extract entity ID from URI
-            entity_id = entity_uri.split('/')[-1]
-            
-            # Comprehensive query for general information
-            query = f"""
-            SELECT DISTINCT ?itemLabel ?description ?image ?instanceOfLabel ?subclassOfLabel 
-                   ?madeFromLabel ?hasUseLabel ?hasCharacteristicLabel ?hasPartLabel
-                   ?calories ?carbs ?protein ?fat ?fiber ?water ?sugar
-                   ?vitaminC ?calcium ?iron ?sodium ?potassium ?magnesium
-            WHERE {{
-              wd:{entity_id} rdfs:label ?itemLabel .
-              FILTER(LANG(?itemLabel) = "en")
-              
-              # Basic information
-              OPTIONAL {{ wd:{entity_id} schema:description ?description . FILTER(LANG(?description) = "en") }}
-              OPTIONAL {{ wd:{entity_id} wdt:P18 ?image . }}
-              
-              # Classification
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P31 ?instanceOf .
-                ?instanceOf rdfs:label ?instanceOfLabel .
-                FILTER(LANG(?instanceOfLabel) = "en")
-              }}
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P279 ?subclassOf .
-                ?subclassOf rdfs:label ?subclassOfLabel .
-                FILTER(LANG(?subclassOfLabel) = "en")
-              }}
-              
-              # Material and usage
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P186 ?madeFrom .
-                ?madeFrom rdfs:label ?madeFromLabel .
-                FILTER(LANG(?madeFromLabel) = "en")
-              }}
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P366 ?hasUse .
-                ?hasUse rdfs:label ?hasUseLabel .
-                FILTER(LANG(?hasUseLabel) = "en")
-              }}
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P1552 ?hasCharacteristic .
-                ?hasCharacteristic rdfs:label ?hasCharacteristicLabel .
-                FILTER(LANG(?hasCharacteristicLabel) = "en")
-              }}
-              OPTIONAL {{ 
-                wd:{entity_id} wdt:P527 ?hasPart .
-                ?hasPart rdfs:label ?hasPartLabel .
-                FILTER(LANG(?hasPartLabel) = "en")
-              }}
-              
-              # Nutritional information (various properties)
-              OPTIONAL {{ wd:{entity_id} wdt:P2076 ?calories . }}        # energy value
-              OPTIONAL {{ wd:{entity_id} wdt:P2844 ?carbs . }}           # carbohydrate content
-              OPTIONAL {{ wd:{entity_id} wdt:P2864 ?protein . }}         # protein content  
-              OPTIONAL {{ wd:{entity_id} wdt:P2887 ?fat . }}             # fat content
-              OPTIONAL {{ wd:{entity_id} wdt:P3074 ?fiber . }}           # dietary fiber content
-              OPTIONAL {{ wd:{entity_id} wdt:P527/wdt:P2067 ?water . }}  # water content
-              OPTIONAL {{ wd:{entity_id} wdt:P5138 ?sugar . }}           # sugar content
-              
-              # Vitamins and minerals
-              OPTIONAL {{ wd:{entity_id} wdt:P3078 ?vitaminC . }}        # vitamin C content
-              OPTIONAL {{ wd:{entity_id} wdt:P3082 ?calcium . }}         # calcium content
-              OPTIONAL {{ wd:{entity_id} wdt:P3083 ?iron . }}            # iron content
-              OPTIONAL {{ wd:{entity_id} wdt:P3087 ?sodium . }}          # sodium content
-              OPTIONAL {{ wd:{entity_id} wdt:P3088 ?potassium . }}       # potassium content
-              OPTIONAL {{ wd:{entity_id} wdt:P3089 ?magnesium . }}       # magnesium content
-              
-              SERVICE wikibase:label {{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }}
-            }}
-            LIMIT 1
-            """
-            
             self.sparql.setQuery(query)
-            result = self.sparql.query().convert()
-            
-            enriched_data = {}
-            
-            bindings = result.get('results', {}).get('bindings', [])
-            if bindings:
-                binding = bindings[0]
-                
-                # Basic information
-                if 'itemLabel' in binding:
-                    enriched_data['entity_label'] = binding['itemLabel']['value']
-                
-                if 'description' in binding:
-                    enriched_data['description'] = binding['description']['value']
-                
-                if 'image' in binding:
-                    enriched_data['image_url'] = binding['image']['value']
-                
-                # Classification information
-                classifications = []
-                if 'instanceOfLabel' in binding:
-                    classifications.append(f"Instance of: {binding['instanceOfLabel']['value']}")
-                if 'subclassOfLabel' in binding:
-                    classifications.append(f"Subclass of: {binding['subclassOfLabel']['value']}")
-                if classifications:
-                    enriched_data['classification'] = "; ".join(classifications)
-                
-                # Material and usage information
-                material_info = []
-                if 'madeFromLabel' in binding:
-                    material_info.append(f"Made from: {binding['madeFromLabel']['value']}")
-                if 'hasUseLabel' in binding:
-                    material_info.append(f"Used as: {binding['hasUseLabel']['value']}")
-                if 'hasCharacteristicLabel' in binding:
-                    material_info.append(f"Characteristic: {binding['hasCharacteristicLabel']['value']}")
-                if 'hasPartLabel' in binding:
-                    material_info.append(f"Contains: {binding['hasPartLabel']['value']}")
-                if material_info:
-                    enriched_data['material_info'] = "; ".join(material_info)
-                
-                # Nutritional data with proper extraction
-                nutritional_fields = {
-                    'calories': 'calories_per_100g',
-                    'carbs': 'carbohydrates_g',
-                    'protein': 'protein_g',
-                    'fat': 'fat_g',
-                    'fiber': 'fiber_g',
-                    'water': 'water_g',
-                    'sugar': 'sugar_g',
-                    'vitaminC': 'vitamin_c_mg',
-                    'calcium': 'calcium_mg',
-                    'iron': 'iron_mg',
-                    'sodium': 'sodium_mg',
-                    'potassium': 'potassium_mg',
-                    'magnesium': 'magnesium_mg'
-                }
-                
-                for wikidata_field, our_field in nutritional_fields.items():
-                    if wikidata_field in binding and binding[wikidata_field]:
-                        value = binding[wikidata_field]['value']
-                        numeric_value = self._extract_numeric_value(value)
-                        if numeric_value is not None:
-                            enriched_data[our_field] = numeric_value
-            
-            enriched_data['wikidata_entity'] = entity_uri
-            
-            return enriched_data
-            
+            data = self.sparql.query().convert()
+            return data.get('results', {}).get('bindings', [])
         except Exception as e:
-            logger.error(f"Error getting comprehensive data from {entity_uri}: {e}")
-            return {}
+            logger.warning(f"Query warning: {e}")
+            return []
 
-    def _extract_numeric_value(self, value_str: str) -> Optional[float]:
-        """Extract numeric value from Wikidata property value"""
-        if not value_str:
-            return None
-            
-        try:
-            # Try to extract number directly
-            if value_str.replace('.', '').replace('-', '').isdigit():
-                return float(value_str)
-            
-            # Extract from strings with units
-            import re
-            numbers = re.findall(r'[\d.]+', str(value_str))
-            if numbers:
-                return float(numbers[0])
-                
-        except (ValueError, TypeError):
-            pass
+    def _search_item_id(self, name: str) -> Dict:
+        """
+        Langkah 1: SEARCH BROAD & FILTER LOCALLY
+        Strategi: Ambil kandidat berdasarkan nama, lalu filter pakai Python.
+        Jauh lebih cepat daripada memaksa SPARQL melakukan path traversal.
+        """
         
-        return None
-
-    def enrich_ingredient(self, ingredient_name: str) -> Dict:
+        # 1. Query Ringan (Hanya cek Label & Gambar/Deskripsi)
+        query = f"""
+        SELECT ?item ?itemLabel ?description ?image WHERE {{
+          # Gunakan Index Label (Cepat)
+          VALUES ?label {{ "{name}"@en }}
+          ?item rdfs:label ?label .
+          
+          # Ambil info (Optional semua agar tidak membatasi)
+          OPTIONAL {{ ?item schema:description ?description . FILTER(LANG(?description) = "en") }}
+          OPTIONAL {{ ?item wdt:P18 ?image . }}
+          
+          SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
+        }}
+        LIMIT 5  # Ambil top 5 kandidat (misal: Apple fruit, Apple company, Apple surname...)
         """
-        Main method to enrich an ingredient with Wikidata data
+        
+        candidates = self._execute_query(query)
+        
+        if not candidates:
+            return None
+
+        # 2. CLIENT-SIDE FILTERING (Python Logic)
+        # Daftar kata kunci positif (Bahan Makanan/Kimia)
+        valid_keywords = [
+            'food', 'fruit', 'vegetable', 'plant', 'berry', 'nut', 'meat', 
+            'dish', 'cuisine', 'ingredient', 'spice', 'herb', 'sauce', 
+            'liquid', 'water', 'compound', 'chemical', 'mineral', 'substance',
+            'sweetener', 'dairy', 'cheese', 'bread', 'cereal', 'condiment',
+            'snack', 'beverage', 'drink', 'edible', 'crop', 'legume'
+        ]
+        
+        # Daftar kata kunci negatif (Pasti bukan bahan)
+        invalid_keywords = [
+            'company', 'business', 'corporation', 'enterprise', 'software',
+            'band', 'album', 'song', 'music', 'film', 'movie', 
+            'village', 'city', 'town', 'river', 'mountain', 
+            'surname', 'given name', 'family name', 'human'
+        ]
+
+        best_match = None
+        
+        for cand in candidates:
+            desc = cand.get('description', {}).get('value', '').lower()
+            label = cand.get('itemLabel', {}).get('value', '')
+            
+            # Skor Relevansi Sederhana
+            is_valid = any(kw in desc for kw in valid_keywords)
+            is_invalid = any(kw in desc for kw in invalid_keywords)
+            has_image = 'image' in cand
+            
+            # LOGIKA PEMILIHAN:
+            
+            # Prioritas 1: Deskripsi mengandung kata kunci makanan/kimia
+            if is_valid and not is_invalid:
+                return self._format_result(cand)
+            
+            # Prioritas 2: Punya gambar DAN tidak mengandung kata kunci negatif (untuk jaga-jaga)
+            if has_image and not is_invalid and best_match is None:
+                best_match = cand
+                
+            # Prioritas 3: Simpan kandidat pertama yang tidak invalid sebagai cadangan
+            if not is_invalid and best_match is None:
+                best_match = cand
+        
+        # Jika tidak ada yang perfect match (Priority 1), kembalikan match terbaik (Priority 2/3)
+        return self._format_result(best_match) if best_match else None
+
+    def _format_result(self, binding):
+        """Helper untuk format output"""
+        return {
+            'uri': binding['item']['value'],
+            'label': binding['itemLabel']['value'],
+            'description': binding.get('description', {}).get('value', '-'),
+            'image_url': binding.get('image', {}).get('value', None)
+        }
+
+    def _get_item_details(self, uri: str) -> Dict:
         """
-        try:
-            # Search for ingredient in Wikidata
-            entity_uri = self.search_ingredient_in_wikidata(ingredient_name)
+        Langkah 2: Adaptive Detail Fetching (Smart Mode).
+        Mengambil atribut apa saja yang tersedia secara dinamis.
+        Filter: Hapus ID Eksternal & Metadata teknis.
+        Limit: Max 15 atribut paling relevan.
+        """
+        
+        query = f"""
+        SELECT ?propLabel ?valLabel ?val WHERE {{
+          # Bind URI subject
+          <{uri}> ?p ?val .
+          
+          # Dapatkan Meta-data Properti (untuk filter tipe)
+          ?prop wikibase:directClaim ?p .       # Link wdt:Pxx -> wd:Pxx
+          ?prop wikibase:propertyType ?type .   # Cek tipe properti
+          
+          # FILTER 1: Buang External ID (seperti Google KG ID, Freebase ID, dll)
+          # Ini penting agar info box bersih dari kode-kode aneh
+          FILTER(?type != wikibase:ExternalId)
+          
+          # FILTER 2: Buang URL/Link Website (Url tipe)
+          FILTER(?type != wikibase:Url)
+          
+          # FILTER 3: Blacklist Properti Metadata/Multimedia yg sudah ada/tidak perlu
+          # P18 (Image), P373 (Commons), P910 (Topic Cat), P1343 (Source)
+          FILTER(?p != wdt:P18 && ?p != wdt:P373 && ?p != wdt:P910 && ?p != wdt:P1343)
+          
+          # Ambil Label Properti (Inggris)
+          ?prop rdfs:label ?propLabel .
+          FILTER(LANG(?propLabel) = "en")
+          
+          # Magic Service untuk Label Value
+          SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
+        }}
+        LIMIT 100
+        """
+        
+        results = self._execute_query(query)
+        
+        details = {}
+        for r in results:
+            prop = r['propLabel']['value']
             
-            if not entity_uri:
-                return {
-                    'ingredient_name': ingredient_name,
-                    'wikidata_found': False,
-                    'error': 'No Wikidata entity found'
-                }
+            # Trik: Ambil label jika ada, jika tidak ambil raw value (untuk angka/tanggal)
+            val = r.get('valLabel', {}).get('value', r['val']['value'])
             
-            # Get nutritional data
-            nutritional_data = self.get_nutritional_data(entity_uri)
+            # Skip jika value masih berupa URL (kadang lolos filter)
+            if val.startswith("http"): continue
             
-            result = {
-                'ingredient_name': ingredient_name,
-                'wikidata_found': True,
-                'wikidata_entity': entity_uri,
-                **nutritional_data
-            }
+            if prop not in details:
+                details[prop] = set()
+            details[prop].add(val)
             
-            return result
+        # Finishing: Adaptif max 15 atribut
+        final_attributes = {}
+        for i, (k, v) in enumerate(details.items()):
+            if i >= 15: break # Stop setelah 15 atribut (agar UI tidak kepanjangan)
+            final_attributes[k] = ", ".join(list(v)[:5]) # Max 5 value per atribut
             
-        except Exception as e:
-            logger.error(f"Error enriching ingredient '{ingredient_name}': {e}")
-            return {
-                'ingredient_name': ingredient_name,
-                'wikidata_found': False,
-                'error': str(e)
-            }
+        return final_attributes
 
+    def enrich(self, ingredient_name: str) -> Dict:
+        clean_name = self.clean_ingredient_name(ingredient_name)
+        logger.info(f"⚡ Enriching: '{clean_name}'")
+        
+        # 1. SEARCH
+        basic_info = self._search_item_id(clean_name)
+        
+        result = {
+            'ingredient_name': ingredient_name,
+            'clean_name': clean_name,
+            'found': False,
+            'image_url': "https://via.placeholder.com/150?text=No+Image",
+            'description': "-",
+            'attributes': {}
+        }
 
-# Test function
-def test_wikidata_enricher():
+        if basic_info:
+            result['found'] = True
+            result['uri'] = basic_info['uri']
+            result['label'] = basic_info['label']
+            result['description'] = basic_info['description']
+            if basic_info['image_url']:
+                result['image_url'] = basic_info['image_url']
+            
+            # 2. GET DETAILS
+            logger.info(f"   ...Fetching details for {basic_info['uri']}...")
+            details = self._get_item_details(basic_info['uri'])
+            result['attributes'] = details
+            
+            # Flatten some key attributes for easy access
+            result['category'] = details.get('subclass of', details.get('instance of', 'Ingredient'))
+            
+            logger.info(f"   ✅ Done. Found {len(details)} attribute types.")
+        else:
+            logger.info("   ❌ Not found.")
+
+        return result
+
+# --- TESTING ---
+if __name__ == "__main__":
     enricher = WikidataEnricher()
     
-    # Test dengan beberapa ingredient
-    test_ingredients = ["tomato", "rice", "apple", "potato", "carrot"]
+    # Test items: Honey (Kaya fitur), Salt (Non-food class), Chicken (Nutrisi)
+    test_items = ["quinoa","pepper","honey", "salt", "chicken breast", "apple"]
     
-    for ingredient in test_ingredients:
-        print(f"\n{'='*50}")
-        print(f"Testing: {ingredient}")
-        print('='*50)
+    print(f"\n{'ITEM':<15} | {'FOUND':<5} | {'ATTRS':<5} | {'DETAILS (Sample)'}")
+    print("-" * 80)
+    
+    for ing in test_items:
+        data = enricher.enrich(ing)
         
-        result = enricher.enrich_ingredient(ingredient)
+        found = "✅" if data['found'] else "❌"
+        num_attrs = len(data.get('attributes', {}))
         
-        if result['wikidata_found']:
-            print(f"✅ Found data for {ingredient}")
-            print(f"Entity: {result.get('entity_label', 'N/A')}")
-            print(f"URI: {result.get('wikidata_entity', 'N/A')}")
+        # Format sample string
+        sample = ""
+        if data['found']:
+            parts = [f"{k}: {v}" for k, v in list(data['attributes'].items())[:3]]
+            sample = " | ".join(parts)
             
-            # Print nutritional data
-            nutritional_keys = ['calories_per_100g', 'carbohydrates_g', 'protein_g', 'fat_g', 'fiber_g']
-            for key in nutritional_keys:
-                if key in result and result[key]:
-                    print(f"{key}: {result[key]}")
-            
-            if 'description' in result:
-                print(f"Description: {result['description'][:150]}...")
-        else:
-            print(f"❌ No data found for {ingredient}")
-            print(f"Error: {result.get('error', 'Unknown error')}")
-
-
-if __name__ == "__main__":
-    test_wikidata_enricher()
+        print(f"{ing:<15} | {found:<5} | {num_attrs:<5} | {sample[:50]}...")

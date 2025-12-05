@@ -18,3 +18,5 @@ tqdm==4.66.1
 # For external knowledge integration
 SPARQLWrapper==2.0.0
 requests==2.31.0
+
+google-generativeai

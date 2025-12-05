@@ -12,6 +12,8 @@ import json
 import logging
 
 from .models import Recipe, Ingredient, Category
+from .simple_semantic_search import simple_semantic_search
+from .services import embedding_service
 
 logger = logging.getLogger(__name__)
 
@@ -51,40 +53,94 @@ def search_api(request):
         
         try:
             if search_type == 'all' or search_type == 'recipe':
-                recipes = Recipe.search_by_name(query, limit)
-                for recipe in recipes:
+                # Optimized single query to avoid N+1 problem
+                recipe_query = """
+                MATCH (r:Recipe)
+                WHERE toLower(r.title) CONTAINS toLower($query)
+                OPTIONAL MATCH (r)-[:CONTAINS]->(i:Ingredient)
+                OPTIONAL MATCH (r)-[:BELONGS_TO]->(c:Category)
+                WITH r, count(DISTINCT i) as ingredient_count, collect(DISTINCT c.name) as categories
+                RETURN r.recipe_id as id, r.title as title, r.rating as rating, r.calories as calories,
+                       r.description as description, ingredient_count, categories
+                ORDER BY CASE WHEN r.rating IS NULL THEN 0 ELSE r.rating END DESC
+                LIMIT $limit
+                """
+                recipe_results, _ = db.cypher_query(recipe_query, {'query': query, 'limit': limit})
+                
+                for row in recipe_results:
+                    recipe_id, title, rating, calories, description, ing_count, categories = row
+                    # Handle description truncation
+                    desc_display = description[:200] + '...' if description and len(description) > 200 else (description or '')
                     results.append({
                         'type': 'recipe',
-                        'id': recipe.recipe_id,
-                        'title': recipe.title,
-                        'rating': recipe.rating,
-                        'calories': recipe.calories,
-                        'description': recipe.description[:200] + '...' if recipe.description and len(recipe.description) > 200 else recipe.description,
-                        'ingredient_count': recipe.ingredient_count,
-                        'categories': recipe.categories_list
+                        'id': recipe_id,
+                        'title': title,
+                        'rating': rating or 0,
+                        'calories': calories or 0,
+                        'description': desc_display,
+                        'ingredient_count': ing_count,
+                        'categories': categories or []
                     })
             
             if search_type == 'all' or search_type == 'ingredient':
-                ingredients = Ingredient.search_by_name(query, limit)
-                for ingredient in ingredients:
+                # Optimized single query to avoid N+1 problem + hide duplicates
+                ingredient_query = """
+                MATCH (i:Ingredient)
+                WHERE toLower(i.name) CONTAINS toLower($query)
+                OPTIONAL MATCH (i)<-[:CONTAINS]-(r:Recipe)
+                WITH i, count(DISTINCT r) as recipe_count
+                WITH toLower(i.name) as lower_name, collect({
+                    id: i.ingredient_id,
+                    name: i.name,
+                    category: i.category,
+                    calories: i.calories_per_100g,
+                    recipe_count: recipe_count
+                }) as ingredients
+                WITH lower_name, ingredients,
+                     [x in ingredients WHERE x.category IS NOT NULL AND x.category <> 'Unknown'][0] as best_ingredient
+                WITH CASE WHEN best_ingredient IS NULL 
+                     THEN ingredients[0] 
+                     ELSE best_ingredient END as selected
+                RETURN selected.id as id, selected.name as name, selected.category as category,
+                       selected.calories as calories_per_100g, selected.recipe_count as recipe_count
+                ORDER BY recipe_count DESC, selected.name
+                LIMIT $limit
+                """
+                ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query, 'limit': limit})
+                
+                for row in ingredient_results:
+                    ing_id, name, category, calories, rec_count = row
                     results.append({
                         'type': 'ingredient',
-                        'id': ingredient.ingredient_id,
-                        'name': ingredient.name,
-                        'category': ingredient.category,
-                        'calories_per_100g': ingredient.calories_per_100g,
-                        'recipe_count': ingredient.recipe_count
+                        'id': ing_id,
+                        'name': name,
+                        'category': category or 'Unknown',
+                        'calories_per_100g': calories or 0,
+                        'recipe_count': rec_count
                     })
             
             if search_type == 'all' or search_type == 'category':
-                categories = Category.search_by_name(query, limit)
-                for category in categories:
+                # Optimized single query to avoid N+1 problem
+                category_query = """
+                MATCH (c:Category)
+                WHERE toLower(c.name) CONTAINS toLower($query)
+                OPTIONAL MATCH (c)<-[:BELONGS_TO]-(r:Recipe)
+                OPTIONAL MATCH (c)<-[:CLASSIFIED_AS]-(i:Ingredient)
+                WITH c, count(DISTINCT r) + count(DISTINCT i) as item_count
+                RETURN c.category_id as id, c.name as name, c.type as category_type, item_count
+                ORDER BY item_count DESC, c.name
+                LIMIT $limit
+                """
+                category_results, _ = db.cypher_query(category_query, {'query': query, 'limit': limit})
+                
+                for row in category_results:
+                    cat_id, name, cat_type, item_count = row
                     results.append({
                         'type': 'category',
-                        'id': category.category_id,
-                        'name': category.name,
-                        'category_type': category.type,
-                        'item_count': category.item_count
+                        'id': cat_id,
+                        'name': name,
+                        'category_type': cat_type or 'Unknown',
+                        'item_count': item_count
                     })
             
             return JsonResponse({
@@ -100,6 +156,88 @@ def search_api(request):
                 'message': f'Search error: {str(e)}',
                 'data': []
             })
+    
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
+
+@csrf_exempt
+def semantic_search_api(request):
+    """
+    API endpoint for semantic search using Gemini embeddings
+    """
+    if request.method == 'GET':
+        query = request.GET.get('q', '').strip()
+        search_type = request.GET.get('type', 'all').lower()
+        limit = int(request.GET.get('limit', 20))
+        # Threshold: 0.4 is usually a good starting point for Qwen embeddings
+        threshold = float(request.GET.get('threshold', 0.1))
+        
+        if not query:
+            return JsonResponse({'status': 'error', 'message': 'Query required', 'data': []})
+        
+        try:
+            # 1. Generate Query Vector (Using our new service)
+            # This turns the user's text into a list of floats [0.23, -0.1...]
+            # We use 'recipe' task by default if searching all, otherwise specific type
+            target_type = 'recipe' if search_type == 'all' else search_type
+            query_vector = embedding_service.generate_embedding(query, target_type)
+            
+            if not query_vector:
+                return JsonResponse({
+                    'status': 'error',
+                    'message': 'Failed to generate embedding. The model might still be loading.'
+                })
+
+            # 2. Fetch from Neo4j using the vector
+            results = []
+            if search_type == 'all':
+                # Search all 3 indexes
+                for stype in ['recipe', 'ingredient', 'category']:
+                    sub = simple_semantic_search.search_by_embedding(query_vector, stype, 5, threshold)
+                    results.extend(sub)
+                
+                # Sort combined results by score
+                results.sort(key=lambda x: x['similarity_score'], reverse=True)
+                results = results[:limit]
+            else:
+                # Search specific index
+                results = simple_semantic_search.search_by_embedding(query_vector, search_type, limit, threshold)
+            
+            return JsonResponse({
+                'status': 'success',
+                'data': results,
+                'total': len(results)
+            })
+            
+        except Exception as e:
+            logger.error(f'Semantic search error: {e}')
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
+    
+    return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
+
+
+@csrf_exempt
+def similar_items_api(request, item_type, item_id):
+    """
+    Find similar items based on EXISTING database vectors.
+    """
+    if request.method == 'GET':
+        limit = int(request.GET.get('limit', 5))
+        threshold = float(request.GET.get('threshold', 0.1))
+        
+        try:
+            results = simple_semantic_search.find_similar_items(
+                item_id, item_type, limit, threshold
+            )
+            
+            return JsonResponse({
+                'status': 'success',
+                'data': results,
+                'total': len(results)
+            })
+            
+        except Exception as e:
+            logger.error(f'Similar items error: {e}')
+            return JsonResponse({'status': 'error', 'message': str(e), 'data': []})
     
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
 
@@ -212,23 +350,55 @@ def autocomplete_api(request):
     suggestions = []
     
     try:
-        # Get recipe suggestions
-        recipes = Recipe.search_by_name(query, 5)
-        for recipe in recipes:
+        # Use two separate simple queries (faster than complex UNION)
+        # Recipe suggestions
+        recipe_query = """
+        MATCH (r:Recipe) 
+        WHERE toLower(r.title) CONTAINS toLower($query)
+        RETURN 'recipe' as type, r.recipe_id as id, r.title as text
+        ORDER BY r.title
+        LIMIT 5
+        """
+        recipe_results, _ = db.cypher_query(recipe_query, {'query': query})
+        
+        for row in recipe_results:
+            item_type, item_id, text = row
             suggestions.append({
-                'text': recipe.title,
-                'type': 'recipe',
-                'id': recipe.recipe_id
+                'text': text,
+                'type': item_type,
+                'id': item_id
             })
         
-        # Get ingredient suggestions
-        ingredients = Ingredient.search_by_name(query, 5)
-        for ingredient in ingredients:
+        # Ingredient suggestions (hide duplicates)
+        ingredient_query = """
+        MATCH (i:Ingredient) 
+        WHERE toLower(i.name) CONTAINS toLower($query)
+        WITH toLower(i.name) as lower_name, collect({
+            id: i.ingredient_id,
+            name: i.name,
+            category: i.category
+        }) as ingredients
+        WITH lower_name, ingredients,
+             [x in ingredients WHERE x.category IS NOT NULL AND x.category <> 'Unknown'][0] as best_ingredient
+        WITH CASE WHEN best_ingredient IS NULL 
+             THEN ingredients[0] 
+             ELSE best_ingredient END as selected
+        RETURN 'ingredient' as type, selected.id as id, selected.name as text
+        ORDER BY selected.name
+        LIMIT 5
+        """
+        ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query})
+        
+        for row in ingredient_results:
+            item_type, item_id, text = row
             suggestions.append({
-                'text': ingredient.name,
-                'type': 'ingredient',
-                'id': ingredient.ingredient_id
+                'text': text,
+                'type': item_type,
+                'id': item_id
             })
+        
+        # Limit total results
+        suggestions = suggestions[:10]
         
         return JsonResponse({'suggestions': suggestions})
         
@@ -241,21 +411,34 @@ def autocomplete_api(request):
 def stats_api(request):
     """API endpoint untuk statistik database"""
     try:
+        # Use efficient Cypher queries instead of loading all data
+        recipe_count, _ = db.cypher_query("MATCH (r:Recipe) RETURN count(r) as count")
+        ingredient_count, _ = db.cypher_query("MATCH (i:Ingredient) RETURN count(i) as count")
+        category_count, _ = db.cypher_query("MATCH (c:Category) RETURN count(c) as count")
+        
         stats = {
-            'total_recipes': len(Recipe.nodes.all()),
-            'total_ingredients': len(Ingredient.nodes.all()),
-            'total_categories': len(Category.nodes.all()),
+            'total_recipes': recipe_count[0][0],
+            'total_ingredients': ingredient_count[0][0],
+            'total_categories': category_count[0][0],
             'top_rated_recipes': [],
             'popular_ingredients': []
         }
         
-        # Top rated recipes
-        top_recipes = Recipe.nodes.filter(rating__gt=0).order_by('-rating')[:5]
-        for recipe in top_recipes:
+        # Top rated recipes - using efficient query with LIMIT
+        top_recipes_query = """
+        MATCH (r:Recipe) 
+        WHERE r.rating > 0 
+        RETURN r.recipe_id, r.title, r.rating 
+        ORDER BY r.rating DESC 
+        LIMIT 5
+        """
+        top_recipes_result, _ = db.cypher_query(top_recipes_query)
+        
+        for row in top_recipes_result:
             stats['top_rated_recipes'].append({
-                'title': recipe.title,
-                'rating': recipe.rating,
-                'id': recipe.recipe_id
+                'id': row[0],
+                'title': row[1],
+                'rating': row[2]
             })
         
         return JsonResponse({
@@ -387,7 +570,6 @@ def category_detail(request, category_id):
                 })
         except:
             # If no direct relationship, use Cypher query
-            from neomodel import db
             results, meta = db.cypher_query(
                 "MATCH (c:Category {category_id: $category_id})<-[:BELONGS_TO]-(r:Recipe) "
                 "RETURN r.recipe_id as recipe_id, r.title as title, r.rating as rating, r.calories as calories "
@@ -413,7 +595,6 @@ def category_detail(request, category_id):
                 })
         except:
             # Use Cypher query for ingredients
-            from neomodel import db
             results, meta = db.cypher_query(
                 "MATCH (c:Category {category_id: $category_id})<-[:CLASSIFIED_AS]-(i:Ingredient) "
                 "RETURN i.ingredient_id as ingredient_id, i.name as name, i.calories_per_100g as calories "
@@ -496,48 +677,58 @@ def enrich_ingredient(request, ingredient_id):
             })
         
         # Enrich the ingredient
-        enrichment_result = enricher.enrich_ingredient(ingredient.name)
+        enrichment_result = enricher.enrich(ingredient.name)
         
-        if enrichment_result['wikidata_found']:
-            # Update ingredient with enriched data
-            nutritional_fields = {
-                'calories_per_100g': 'calories_per_100g',
-                'carbohydrates_g': 'carbohydrates_g',
-                'protein_g': 'protein_g',
-                'fat_g': 'fat_g',
-                'fiber_g': 'fiber_g',
-                'sugar_g': 'sugar_g',
-                'water_g': 'water_g',
-                'vitamin_c_mg': 'vitamin_c_mg',
-                'calcium_mg': 'calcium_mg',
-                'iron_mg': 'iron_mg',
-                'sodium_mg': 'sodium_mg',
-                'potassium_mg': 'potassium_mg',
-                'magnesium_mg': 'magnesium_mg'
+        if enrichment_result['found']:
+            # Update ingredient with enriched data - get from attributes
+            attributes = enrichment_result.get('attributes', {})
+            
+            # Map common nutritional attributes from Wikidata to our fields
+            nutritional_mapping = {
+                'energy per unit mass': 'calories_per_100g',
+                'carbohydrate': 'carbohydrates_g',
+                'protein': 'protein_g',
+                'fat': 'fat_g',
+                'dietary fiber': 'fiber_g',
+                'sugar': 'sugar_g',
+                'water': 'water_g',
+                'vitamin C': 'vitamin_c_mg',
+                'calcium': 'calcium_mg',
+                'iron': 'iron_mg',
+                'sodium': 'sodium_mg',
+                'potassium': 'potassium_mg',
+                'magnesium': 'magnesium_mg'
             }
             
             updated_fields = []
-            for source_field, target_field in nutritional_fields.items():
-                if source_field in enrichment_result and enrichment_result[source_field]:
-                    setattr(ingredient, target_field, enrichment_result[source_field])
-                    updated_fields.append(target_field)
+            
+            # Process nutritional attributes
+            for attr_name, field_name in nutritional_mapping.items():
+                if attr_name in attributes:
+                    # Extract numeric value from string (e.g., "1.5 gram per 100 gram" -> 1.5)
+                    attr_value = attributes[attr_name]
+                    import re
+                    numbers = re.findall(r'\d+(?:\.\d+)?', str(attr_value))
+                    if numbers:
+                        setattr(ingredient, field_name, float(numbers[0]))
+                        updated_fields.append(field_name)
             
             # Update other comprehensive fields
-            comprehensive_fields = {
-                'description': 'description',
-                'image_url': 'image_url',
-                'classification': 'classification',
-                'material_info': 'material_info',
-                'wikidata_entity': 'wikidata_entity'
-            }
+            if 'description' in enrichment_result and enrichment_result['description']:
+                setattr(ingredient, 'description', enrichment_result['description'][:500])
+                updated_fields.append('description')
             
-            for source_field, target_field in comprehensive_fields.items():
-                if source_field in enrichment_result and enrichment_result[source_field]:
-                    if source_field == 'description':
-                        setattr(ingredient, target_field, enrichment_result[source_field][:500])
-                    else:
-                        setattr(ingredient, target_field, enrichment_result[source_field])
-                    updated_fields.append(target_field)
+            if 'image_url' in enrichment_result and enrichment_result['image_url']:
+                setattr(ingredient, 'image_url', enrichment_result['image_url'])
+                updated_fields.append('image_url')
+            
+            if 'uri' in enrichment_result:
+                setattr(ingredient, 'wikidata_entity', enrichment_result['uri'])
+                updated_fields.append('wikidata_entity')
+            
+            if 'category' in enrichment_result:
+                setattr(ingredient, 'classification', enrichment_result['category'])
+                updated_fields.append('classification')
             
             # Save changes
             ingredient.save()
@@ -549,32 +740,35 @@ def enrich_ingredient(request, ingredient_id):
                 'message': f'Successfully enriched {ingredient.name} with Wikidata data',
                 'updated_fields': updated_fields,
                 'data': {
-                    'entity_label': enrichment_result.get('entity_label', ''),
-                    'wikidata_entity': enrichment_result.get('wikidata_entity', ''),
+                    'entity_label': enrichment_result.get('label', ''),
+                    'wikidata_entity': enrichment_result.get('uri', ''),
                     'description': enrichment_result.get('description', ''),
                     'image_url': enrichment_result.get('image_url', ''),
-                    'classification': enrichment_result.get('classification', ''),
-                    'material_info': enrichment_result.get('material_info', ''),
-                    'calories_per_100g': enrichment_result.get('calories_per_100g'),
-                    'carbohydrates_g': enrichment_result.get('carbohydrates_g'),
-                    'protein_g': enrichment_result.get('protein_g'),
-                    'fat_g': enrichment_result.get('fat_g'),
-                    'fiber_g': enrichment_result.get('fiber_g'),
-                    'sugar_g': enrichment_result.get('sugar_g'),
-                    'water_g': enrichment_result.get('water_g'),
-                    'vitamin_c_mg': enrichment_result.get('vitamin_c_mg'),
-                    'calcium_mg': enrichment_result.get('calcium_mg'),
-                    'iron_mg': enrichment_result.get('iron_mg'),
-                    'sodium_mg': enrichment_result.get('sodium_mg'),
-                    'potassium_mg': enrichment_result.get('potassium_mg'),
-                    'magnesium_mg': enrichment_result.get('magnesium_mg'),
+                    'classification': enrichment_result.get('category', ''),
+                    'attributes': enrichment_result.get('attributes', {}),
+                    'clean_name': enrichment_result.get('clean_name', ''),
+                    # Include some nutritional data if available
+                    'calories_per_100g': getattr(ingredient, 'calories_per_100g', None),
+                    'carbohydrates_g': getattr(ingredient, 'carbohydrates_g', None),
+                    'protein_g': getattr(ingredient, 'protein_g', None),
+                    'fat_g': getattr(ingredient, 'fat_g', None),
+                    'fiber_g': getattr(ingredient, 'fiber_g', None),
+                    'sugar_g': getattr(ingredient, 'sugar_g', None),
+                    'water_g': getattr(ingredient, 'water_g', None),
+                    'vitamin_c_mg': getattr(ingredient, 'vitamin_c_mg', None),
+                    'calcium_mg': getattr(ingredient, 'calcium_mg', None),
+                    'iron_mg': getattr(ingredient, 'iron_mg', None),
+                    'sodium_mg': getattr(ingredient, 'sodium_mg', None),
+                    'potassium_mg': getattr(ingredient, 'potassium_mg', None),
+                    'magnesium_mg': getattr(ingredient, 'magnesium_mg', None),
                 }
             })
         else:
             return JsonResponse({
                 'success': False,
-                'error': enrichment_result.get('error', 'No Wikidata entity found'),
-                'message': f'Could not find Wikidata data for {ingredient.name}'
+                'error': 'No Wikidata entity found',
+                'message': f'Could not find Wikidata data for {ingredient.name}',
+                'clean_name': enrichment_result.get('clean_name', ingredient.name)
             })
             
     except Ingredient.DoesNotExist:
