@@ -66,3 +66,5 @@ coverage.xml
 # Neo4j
 *.db
 *.log.*
+
+DEPLOYMENT.md
