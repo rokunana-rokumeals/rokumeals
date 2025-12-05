@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/stats/', views.stats_api, name='stats_api'),
     path('api/recipe/<str:recipe_id>/', views.recipe_detail_api, name='recipe_detail_api'),
     path('api/ingredient/<str:ingredient_id>/enrich/', views.enrich_ingredient, name='enrich_ingredient'),
+    path('api/category/<str:category_id>/enrich/', views.enrich_category, name='enrich_category'),
     path('api/ingredient/<str:ingredient_id>/', views.ingredient_detail_api, name='ingredient_detail_api'),
 ]
