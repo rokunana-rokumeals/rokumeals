@@ -172,6 +172,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Security Settings for Production
+CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Templates directory
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates']
 
