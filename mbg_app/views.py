@@ -338,35 +338,45 @@ def autocomplete_api(request):
     suggestions = []
     
     try:
-        # Use single optimized query for autocomplete
-        autocomplete_query = """
-        CALL {
-            MATCH (r:Recipe) 
-            WHERE toLower(r.title) CONTAINS toLower($query)
-            RETURN 'recipe' as type, r.recipe_id as id, r.title as text, r.rating as score
-            ORDER BY CASE WHEN r.rating IS NULL THEN 0 ELSE r.rating END DESC
-            LIMIT 5
-        UNION
-            MATCH (i:Ingredient) 
-            WHERE toLower(i.name) CONTAINS toLower($query)
-            RETURN 'ingredient' as type, i.ingredient_id as id, i.name as text, 
-                   CASE WHEN i.calories_per_100g IS NOT NULL THEN i.calories_per_100g ELSE 0 END as score
-            ORDER BY score DESC
-            LIMIT 5
-        }
-        RETURN type, id, text, score
-        ORDER BY CASE WHEN score IS NULL THEN 0 ELSE score END DESC
-        LIMIT 10
+        # Use two separate simple queries (faster than complex UNION)
+        # Recipe suggestions
+        recipe_query = """
+        MATCH (r:Recipe) 
+        WHERE toLower(r.title) CONTAINS toLower($query)
+        RETURN 'recipe' as type, r.recipe_id as id, r.title as text
+        ORDER BY r.title
+        LIMIT 5
         """
-        results, _ = db.cypher_query(autocomplete_query, {'query': query})
+        recipe_results, _ = db.cypher_query(recipe_query, {'query': query})
         
-        for row in results:
-            item_type, item_id, text, score = row
+        for row in recipe_results:
+            item_type, item_id, text = row
             suggestions.append({
                 'text': text,
                 'type': item_type,
                 'id': item_id
             })
+        
+        # Ingredient suggestions
+        ingredient_query = """
+        MATCH (i:Ingredient) 
+        WHERE toLower(i.name) CONTAINS toLower($query)
+        RETURN 'ingredient' as type, i.ingredient_id as id, i.name as text
+        ORDER BY i.name
+        LIMIT 5
+        """
+        ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query})
+        
+        for row in ingredient_results:
+            item_type, item_id, text = row
+            suggestions.append({
+                'text': text,
+                'type': item_type,
+                'id': item_id
+            })
+        
+        # Limit total results
+        suggestions = suggestions[:10]
         
         return JsonResponse({'suggestions': suggestions})
         
