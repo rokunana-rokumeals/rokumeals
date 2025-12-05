@@ -53,40 +53,82 @@ def search_api(request):
         
         try:
             if search_type == 'all' or search_type == 'recipe':
-                recipes = Recipe.search_by_name(query, limit)
-                for recipe in recipes:
+                # Optimized single query to avoid N+1 problem
+                recipe_query = """
+                MATCH (r:Recipe)
+                WHERE toLower(r.title) CONTAINS toLower($query)
+                OPTIONAL MATCH (r)-[:CONTAINS]->(i:Ingredient)
+                OPTIONAL MATCH (r)-[:BELONGS_TO]->(c:Category)
+                WITH r, count(DISTINCT i) as ingredient_count, collect(DISTINCT c.name) as categories
+                RETURN r.recipe_id as id, r.title as title, r.rating as rating, r.calories as calories,
+                       r.description as description, ingredient_count, categories
+                ORDER BY CASE WHEN r.rating IS NULL THEN 0 ELSE r.rating END DESC
+                LIMIT $limit
+                """
+                recipe_results, _ = db.cypher_query(recipe_query, {'query': query, 'limit': limit})
+                
+                for row in recipe_results:
+                    recipe_id, title, rating, calories, description, ing_count, categories = row
+                    # Handle description truncation
+                    desc_display = description[:200] + '...' if description and len(description) > 200 else (description or '')
                     results.append({
                         'type': 'recipe',
-                        'id': recipe.recipe_id,
-                        'title': recipe.title,
-                        'rating': recipe.rating,
-                        'calories': recipe.calories,
-                        'description': recipe.description[:200] + '...' if recipe.description and len(recipe.description) > 200 else recipe.description,
-                        'ingredient_count': recipe.ingredient_count,
-                        'categories': recipe.categories_list
+                        'id': recipe_id,
+                        'title': title,
+                        'rating': rating or 0,
+                        'calories': calories or 0,
+                        'description': desc_display,
+                        'ingredient_count': ing_count,
+                        'categories': categories or []
                     })
             
             if search_type == 'all' or search_type == 'ingredient':
-                ingredients = Ingredient.search_by_name(query, limit)
-                for ingredient in ingredients:
+                # Optimized single query to avoid N+1 problem
+                ingredient_query = """
+                MATCH (i:Ingredient)
+                WHERE toLower(i.name) CONTAINS toLower($query)
+                OPTIONAL MATCH (i)<-[:CONTAINS]-(r:Recipe)
+                WITH i, count(DISTINCT r) as recipe_count
+                RETURN i.ingredient_id as id, i.name as name, i.category as category,
+                       i.calories_per_100g as calories_per_100g, recipe_count
+                ORDER BY recipe_count DESC, i.name
+                LIMIT $limit
+                """
+                ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query, 'limit': limit})
+                
+                for row in ingredient_results:
+                    ing_id, name, category, calories, rec_count = row
                     results.append({
                         'type': 'ingredient',
-                        'id': ingredient.ingredient_id,
-                        'name': ingredient.name,
-                        'category': ingredient.category,
-                        'calories_per_100g': ingredient.calories_per_100g,
-                        'recipe_count': ingredient.recipe_count
+                        'id': ing_id,
+                        'name': name,
+                        'category': category or 'Unknown',
+                        'calories_per_100g': calories or 0,
+                        'recipe_count': rec_count
                     })
             
             if search_type == 'all' or search_type == 'category':
-                categories = Category.search_by_name(query, limit)
-                for category in categories:
+                # Optimized single query to avoid N+1 problem
+                category_query = """
+                MATCH (c:Category)
+                WHERE toLower(c.name) CONTAINS toLower($query)
+                OPTIONAL MATCH (c)<-[:BELONGS_TO]-(r:Recipe)
+                OPTIONAL MATCH (c)<-[:CLASSIFIED_AS]-(i:Ingredient)
+                WITH c, count(DISTINCT r) + count(DISTINCT i) as item_count
+                RETURN c.category_id as id, c.name as name, c.type as category_type, item_count
+                ORDER BY item_count DESC, c.name
+                LIMIT $limit
+                """
+                category_results, _ = db.cypher_query(category_query, {'query': query, 'limit': limit})
+                
+                for row in category_results:
+                    cat_id, name, cat_type, item_count = row
                     results.append({
                         'type': 'category',
-                        'id': category.category_id,
-                        'name': category.name,
-                        'category_type': category.type,
-                        'item_count': category.item_count
+                        'id': cat_id,
+                        'name': name,
+                        'category_type': cat_type or 'Unknown',
+                        'item_count': item_count
                     })
             
             return JsonResponse({
@@ -296,22 +338,34 @@ def autocomplete_api(request):
     suggestions = []
     
     try:
-        # Get recipe suggestions
-        recipes = Recipe.search_by_name(query, 5)
-        for recipe in recipes:
-            suggestions.append({
-                'text': recipe.title,
-                'type': 'recipe',
-                'id': recipe.recipe_id
-            })
+        # Use single optimized query for autocomplete
+        autocomplete_query = """
+        CALL {
+            MATCH (r:Recipe) 
+            WHERE toLower(r.title) CONTAINS toLower($query)
+            RETURN 'recipe' as type, r.recipe_id as id, r.title as text, r.rating as score
+            ORDER BY CASE WHEN r.rating IS NULL THEN 0 ELSE r.rating END DESC
+            LIMIT 5
+        UNION
+            MATCH (i:Ingredient) 
+            WHERE toLower(i.name) CONTAINS toLower($query)
+            RETURN 'ingredient' as type, i.ingredient_id as id, i.name as text, 
+                   CASE WHEN i.calories_per_100g IS NOT NULL THEN i.calories_per_100g ELSE 0 END as score
+            ORDER BY score DESC
+            LIMIT 5
+        }
+        RETURN type, id, text, score
+        ORDER BY CASE WHEN score IS NULL THEN 0 ELSE score END DESC
+        LIMIT 10
+        """
+        results, _ = db.cypher_query(autocomplete_query, {'query': query})
         
-        # Get ingredient suggestions
-        ingredients = Ingredient.search_by_name(query, 5)
-        for ingredient in ingredients:
+        for row in results:
+            item_type, item_id, text, score = row
             suggestions.append({
-                'text': ingredient.name,
-                'type': 'ingredient',
-                'id': ingredient.ingredient_id
+                'text': text,
+                'type': item_type,
+                'id': item_id
             })
         
         return JsonResponse({'suggestions': suggestions})
@@ -484,7 +538,6 @@ def category_detail(request, category_id):
                 })
         except:
             # If no direct relationship, use Cypher query
-            from neomodel import db
             results, meta = db.cypher_query(
                 "MATCH (c:Category {category_id: $category_id})<-[:BELONGS_TO]-(r:Recipe) "
                 "RETURN r.recipe_id as recipe_id, r.title as title, r.rating as rating, r.calories as calories "
@@ -510,7 +563,6 @@ def category_detail(request, category_id):
                 })
         except:
             # Use Cypher query for ingredients
-            from neomodel import db
             results, meta = db.cypher_query(
                 "MATCH (c:Category {category_id: $category_id})<-[:CLASSIFIED_AS]-(i:Ingredient) "
                 "RETURN i.ingredient_id as ingredient_id, i.name as name, i.calories_per_100g as calories "
