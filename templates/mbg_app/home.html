@@ -570,9 +570,8 @@
         const semanticSuggestions = document.getElementById('semanticSuggestions');
         const searchInput = document.getElementById('searchInput');
         const searchButtonText = document.getElementById('searchButtonText');
-        const searchForm = document.getElementById('searchForm');
         
-        // Handle search mode toggle
+        // Handle search mode toggle only (remove the conflicting form handler)
         searchModeRadios.forEach(radio => {
             radio.addEventListener('change', function() {
                 console.log('Search mode changed to:', this.value);
@@ -590,137 +589,6 @@
                 }
             });
         });
-        
-        // Override search form submission
-        searchForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const query = searchInput.value.trim();
-            if (!query) return;
-            
-            const searchMode = document.querySelector('input[name="searchMode"]:checked').value;
-            const searchType = document.getElementById('searchType').value;
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const resultsContainer = document.getElementById('searchResults');
-            
-            console.log('Search submitted:', { query, searchMode, searchType });
-            
-            if (loadingSpinner) loadingSpinner.style.display = 'block';
-            if (resultsContainer) resultsContainer.innerHTML = '';
-            
-            try {
-                let endpoint, params;
-                
-                if (searchMode === 'semantic') {
-                    endpoint = '/api/semantic-search/';
-                    params = new URLSearchParams({
-                        q: query,
-                        type: searchType,
-                        limit: 20,
-                        threshold: 0.2
-                    });
-                    console.log('Using SEMANTIC search endpoint:', endpoint);
-                } else {
-                    endpoint = '/api/search/';
-                    params = new URLSearchParams({
-                        q: query,
-                        type: searchType,
-                        limit: 20
-                    });
-                    console.log('Using REGULAR search endpoint:', endpoint);
-                }
-                
-                const response = await fetch(`${endpoint}?${params}`);
-                const data = await response.json();
-                
-                if (loadingSpinner) loadingSpinner.style.display = 'none';
-                
-                if (data.status === 'success') {
-                    displaySearchResults(data.data, query, searchMode);
-                } else {
-                    displayError(data.message || 'Search failed');
-                }
-                
-            } catch (error) {
-                if (loadingSpinner) loadingSpinner.style.display = 'none';
-                displayError('Search failed. Please try again.');
-                console.error('Search error:', error);
-            }
-        });
-        
-        // Display results function
-        function displaySearchResults(results, query, searchMode) {
-            const container = document.getElementById('searchResults');
-            if (!container) return;
-            
-            if (results.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-5">
-                        <div class="mb-3">
-                            <i class="fas fa-search-minus fa-3x text-muted"></i>
-                        </div>
-                        <h4>No results found</h4>
-                        <p class="text-muted">Try ${searchMode === 'semantic' ? 'a different description' : 'different search terms'}</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            const searchModeLabel = searchMode === 'semantic' ? 'AI-powered' : 'Standard';
-            let html = `
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3>Search Results</h3>
-                            <span class="badge bg-primary">${results.length} results (${searchModeLabel})</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-            `;
-            
-            results.forEach(result => {
-                const typeIcon = result.type === 'recipe' ? 'fa-utensils' : 
-                                result.type === 'ingredient' ? 'fa-leaf' : 'fa-tags';
-                const typeColor = result.type === 'recipe' ? 'text-success' : 
-                                 result.type === 'ingredient' ? 'text-warning' : 'text-info';
-                
-                const similarityScore = result.similarity_score ? 
-                    `<small class="text-muted">Similarity: ${(result.similarity_score * 100).toFixed(1)}%</small>` : '';
-                
-                html += `
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="card h-100 shadow-sm clickable-card" onclick="window.location.href='/${result.type}/${result.id}/'">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <span class="badge bg-secondary">${result.type}</span>
-                                <i class="fas ${typeIcon} ${typeColor}"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">${result.title || result.name}</h5>
-                                ${result.rating ? `<p class="card-text"><i class="fas fa-star text-warning"></i> ${result.rating}</p>` : ''}
-                                ${result.calories ? `<p class="card-text">Calories: ${result.calories}</p>` : ''}
-                                ${similarityScore}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += '</div>';
-            container.innerHTML = html;
-        }
-        
-        function displayError(message) {
-            const container = document.getElementById('searchResults');
-            if (container) {
-                container.innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        ${message}
-                    </div>
-                `;
-            }
-        }
     });
 </script>
 
