@@ -83,15 +83,27 @@ def search_api(request):
                     })
             
             if search_type == 'all' or search_type == 'ingredient':
-                # Optimized single query to avoid N+1 problem
+                # Optimized single query to avoid N+1 problem + hide duplicates
                 ingredient_query = """
                 MATCH (i:Ingredient)
                 WHERE toLower(i.name) CONTAINS toLower($query)
                 OPTIONAL MATCH (i)<-[:CONTAINS]-(r:Recipe)
                 WITH i, count(DISTINCT r) as recipe_count
-                RETURN i.ingredient_id as id, i.name as name, i.category as category,
-                       i.calories_per_100g as calories_per_100g, recipe_count
-                ORDER BY recipe_count DESC, i.name
+                WITH toLower(i.name) as lower_name, collect({
+                    id: i.ingredient_id,
+                    name: i.name,
+                    category: i.category,
+                    calories: i.calories_per_100g,
+                    recipe_count: recipe_count
+                }) as ingredients
+                WITH lower_name, ingredients,
+                     [x in ingredients WHERE x.category IS NOT NULL AND x.category <> 'Unknown'][0] as best_ingredient
+                WITH CASE WHEN best_ingredient IS NULL 
+                     THEN ingredients[0] 
+                     ELSE best_ingredient END as selected
+                RETURN selected.id as id, selected.name as name, selected.category as category,
+                       selected.calories as calories_per_100g, selected.recipe_count as recipe_count
+                ORDER BY recipe_count DESC, selected.name
                 LIMIT $limit
                 """
                 ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query, 'limit': limit})
@@ -357,12 +369,22 @@ def autocomplete_api(request):
                 'id': item_id
             })
         
-        # Ingredient suggestions
+        # Ingredient suggestions (hide duplicates)
         ingredient_query = """
         MATCH (i:Ingredient) 
         WHERE toLower(i.name) CONTAINS toLower($query)
-        RETURN 'ingredient' as type, i.ingredient_id as id, i.name as text
-        ORDER BY i.name
+        WITH toLower(i.name) as lower_name, collect({
+            id: i.ingredient_id,
+            name: i.name,
+            category: i.category
+        }) as ingredients
+        WITH lower_name, ingredients,
+             [x in ingredients WHERE x.category IS NOT NULL AND x.category <> 'Unknown'][0] as best_ingredient
+        WITH CASE WHEN best_ingredient IS NULL 
+             THEN ingredients[0] 
+             ELSE best_ingredient END as selected
+        RETURN 'ingredient' as type, selected.id as id, selected.name as text
+        ORDER BY selected.name
         LIMIT 5
         """
         ingredient_results, _ = db.cypher_query(ingredient_query, {'query': query})

@@ -84,8 +84,23 @@ class SimpleSemanticSearch:
                 WHERE similarity >= $threshold
                 OPTIONAL MATCH (n)<-[:CONTAINS]-(r:Recipe)
                 WITH n, similarity, count(DISTINCT r) as recipe_count
-                RETURN n.ingredient_id as id, n.name as name, n.category as category,
-                       n.calories_per_100g as calories_per_100g, recipe_count, similarity
+                WITH toLower(n.name) as lower_name, collect({{
+                    id: n.ingredient_id,
+                    name: n.name,
+                    category: n.category,
+                    calories: n.calories_per_100g,
+                    recipe_count: recipe_count,
+                    similarity: similarity
+                }}) as ingredients
+                WITH lower_name, ingredients,
+                     [x in ingredients WHERE x.category IS NOT NULL AND x.category <> 'Unknown']
+                     [0] as best_ingredient
+                WITH CASE WHEN best_ingredient IS NULL 
+                     THEN ingredients[0] 
+                     ELSE best_ingredient END as selected
+                RETURN selected.id as id, selected.name as name, selected.category as category,
+                       selected.calories as calories_per_100g, selected.recipe_count as recipe_count, 
+                       selected.similarity as similarity
                 ORDER BY similarity DESC
                 LIMIT $limit
                 """
